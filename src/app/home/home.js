@@ -20,13 +20,20 @@ angular.module( 'sunshine.home', [
         });
     })
 
-    .controller( 'HomeCtrl', function HomeController( $scope, DepartmentList, $log ) {
+    .controller('HomeCtrl', function HomeController( $scope, DepartmentList, $log ) {
 
         DepartmentList.get_adopted().then(function (data){
             $scope.dept_list =  data;
         });
+    })
 
+    .controller('FormCtrl', function FormController( $scope, Search, $log ) {
+
+        this.submit = function(isValid, data){
+          console.log("I'm he-ere");
+          console.log(data);
+          if(!isValid){return;}
+        };
     })
 
 ;
-

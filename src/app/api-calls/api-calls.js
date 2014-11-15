@@ -42,6 +42,20 @@ angular.module( 'sunshine.api-calls', [
       };
     })
 
+    .service('Search', function($http, $rootScope, $log){
+      this.full_text = function(terms){
+        var url = apiUrl + '/search/';
+        return $http.put(url , terms)
+          .success(function(data){
+            $log.log(data);
+           // this.post.push(data);
+          })
+          .error(function(data){
+            $log.log(data);
+          });
+      };
+    })
+
     .service('Schedule', function($http, $rootScope, $log){
 
       var apiUrl = $rootScope.API_URL;
