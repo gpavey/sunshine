@@ -1,0 +1,17 @@
+    <div class="container-fluid" ng-controller="EditCtrl">
+    <div>Schedule Page</div> <button ng-click="publish()">Publish</button>
+    <strong>Count:</strong> {{ gridOptions.data.length | number }}</br>
+    <div>
+        <input name="department" ng-model="draft_schedule.draft.department">
+        <input name="website" ng-model="draft_schedule.draft.website">
+        <input name="contact" ng-model="draft_schedule.draft.contact">
+        <input name="phone" ng-model="draft_schedule.draft.phone">
+        <input name="email" ng-model="draft_schedule.draft.email">
+
+         <!--<input type="text" ng-model="selected" typeahead="record.category as record.category for record in draft_schedule.record | filter:$viewValue | limitTo:8 | unique:'category'" class="form-control">-->
+
+    </div>
+
+    <div ui-grid="gridOptions"  ui-grid-row-edit ui-grid-edit  ui-grid-cellNav  class="editGrid"></div>
+
+</div>

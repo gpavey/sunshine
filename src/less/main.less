@@ -1,0 +1,264 @@
+/**
+ * This is the main application stylesheet. It should include or import all
+ * stylesheets used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+
+/**
+ * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
+ * project should be imported as the rest are just wasting space.
+ */
+
+@import '../../vendor/bootstrap/less/bootstrap.less';
+
+
+/**
+ * This is our main variables file. We must include it last so we can overwrite any variable
+ * definitions in our imported stylesheets.
+ */
+
+@import 'variables.less';
+@import '../common/angular-ui-grid/ui-grid.less';
+
+.hashPattern{
+  background-image:url('debut_light.png');
+  background-repeat:repeat;
+}
+
+.intro{
+  height:490px;
+  background: white;
+  box-shadow: 1px 1px 1px 1px #041F4C;
+  border-radius: 1px;
+
+}
+
+.infoIcon{
+  /*color: #8C1101;*/
+  color: #D81A02;
+  font-weight: bold;
+}
+
+
+.introText{
+  color: #2C2C2C;
+  font-family: RalewayMedium, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a.whiteLink:link, a.whiteLink:visited {
+  color: white;
+}
+a.whiteLink:hover, a.whiteLink:focus  {
+  color: white;
+}
+a.whiteLink:active {
+  color: white;
+}
+a.whiteLink{
+  color:white;
+}
+.mainImg{
+  background-position: -120px;
+}
+
+.siteName{
+  color: #f5f5f5;
+  text-shadow: 1px 1px 2px #000;
+  font-size:x-large;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.siteNameSm{
+  color: #f5f5f5;
+  font-size:small;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.search{
+  background-color: #D81A02;
+  border-radius: 35px;
+}
+.searchIcon{
+  color:white;
+  font-size: x-large;
+  padding-left: 5px;
+}
+/**
+* Padding
+**/
+
+.pad0{
+  padding:0px;
+}
+
+.pad5{
+  padding:5px;
+}
+
+.pad10{
+  padding:10px;
+}
+
+.pad15{
+  padding:15px;
+}
+
+.pad20{
+  padding:20px;
+}
+
+.pad30{
+  padding:30px;
+}
+
+.pad40{
+  padding:40px;
+}
+
+.pad50{
+  padding:50px;
+}
+
+.marg0{
+  margin: 0px;
+}
+
+.font80
+{
+  font-size: 80%;
+}
+
+/**
+ * Global
+ */
+
+html,body{
+  margin:0px;
+  padding:0px;
+}
+
+/* centered columns styles */
+.row-centered {
+  text-align:center;
+}
+.col-centered {
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+  /* inline-block space fix */
+  margin-right:-4px;
+}
+
+/**
+ * Typography
+ */
+
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  src: local('Raleway'), local('Raleway-Regular'), url('fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RalewayBold';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Raleway'), local('Raleway-Bold'), url('fonts/Raleway/Raleway-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RalewayMedium';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Raleway'), local('Raleway-Medium'), url('fonts/Raleway/Raleway-Medium.ttf') format('truetype');
+}
+
+code, pre, .pre {
+  padding: 0px;
+  margin: 0px 0;
+  background-color: #EFEFEF;
+  border: 1px solid #DADADA;
+  border-radius: 3px;
+}
+
+div{
+  font-family: RalewayMedium, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding:0px;
+  margin: 0px;
+}
+
+code {
+  padding: 0 0px;
+}
+
+pre {
+  margin: 0px 0;
+  padding: 0px;
+}
+
+.page-header {
+  margin-top: 0px;
+
+  &:first-child {
+    margin-top: 0px;
+  }
+}
+
+h2 {
+  margin: 0px 0;
+  color: #666;
+}
+
+h3{
+  font-family: Raleway;
+  padding:0px;
+  margin:0px;
+}
+/**
+ * Navigation
+ */
+
+.navbar {
+  margin-top: 0px;
+  
+  small {
+    font-size: 60%;
+  }
+}
+
+
+/**
+ * Footer
+ */
+
+footer {
+  margin-top: 0px;
+  border: #4C5154; ;
+  border-width: 3px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  background-color: #878787;
+  opacity: 0.8;
+
+}
+
+.footerInner{
+  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 90%;
+}
+
+
+/**
+ * Now that all app-wide styles have been applied, we can load the styles for
+ * all the submodules and components we are using. 
+ *
+ * TODO: In a later version of this boilerplate, I'd like to automate this.
+ */
+
+@import '../app/home/home.less';
+@import '../app/console/console.less';
+

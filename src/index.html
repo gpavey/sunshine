@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="sunshine" ng-controller="AppCtrl">
+  <head>
+    <title ng-bind="pageTitle"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+  </head>
+  <body>
+
+  <div class="row" ng-hide="pageTitle == 'Home'">
+      <div class="col-xs-12 headerBar">Index of Records Administration Console  <a class="whiteLink" ui-sref="home"> HOME</a></div>
+
+  </div>
+
+   <div class="container-fluid pad0 marg0"  ui-view="main"></div>
+
+   <footer >
+        <div class="clearfix visible-xs-block"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-5 text-center footerInner">
+                    <ul class="list-unstyled white-link pad5">
+                        <li><a class="whiteLink" href="http://sfbos.org/index.aspx?page=4459">Sushine Ordinance Task Force</a></li>
+                        <li><a class="whiteLink" href="http://sfgov.org">City and County of San Francisco</a></li>
+                        <li><a class="whiteLink" href="http://sfbos.org/">Board of Supervisors</a></li>
+                    </ul>
+                </div>
+                <div class="hidden-xs col-sm-2 col-md-2 text-center">
+                    <img src="assets/footerlogo.png">
+                    <div class="siteNameSm">City of San Francisco</div>
+                </div>
+               <div class="col-xs-12 col-sm-5 col-md-5 text-center footerInner white pad5">
+                    <ul class="list-unstyled">
+                        <li><a class="whiteLink" href="http://helpdesk">Report a Problem</a></li>
+                        <li><a class="whiteLink" href="http://help">Help Me</a></li>
+                        <li><a class="whiteLink" ui-sref="console.dashboard">Administration</a></li>
+                    </ul>
+               </div>
+           </div>
+        </div>
+   </footer>
+  </body>
+</html>

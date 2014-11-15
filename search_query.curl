@@ -1,0 +1,25 @@
+curl -XGET "http://localhost:9200/index_of_records/record_types/_search" -d'
+{
+  "size": 600,
+  "query": {
+    "multi_match": {
+          "query":"records contracts administration",
+          "type": "best_fields",
+          "fields": [ "title^10",
+                      "department^9",
+                      "division",
+                      "category^5",
+                      "retention",
+                      "remarks",
+                      "on_site",
+                      "off_site",
+                      "total",
+                      "website",
+                      "link",
+                      "phone",
+                      "contact"],
+          "tie_breaker":0.3,
+          "minimum_should_match":"70%"
+      }
+  }
+}'
