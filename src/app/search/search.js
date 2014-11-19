@@ -18,11 +18,8 @@ angular.module( 'sunshine.search', ['ui.router'])
         data:{ pageTitle: 'Search Results', authorizedRoles: ['anonymous'] }
     });
 })
-.controller('SearchCtrl', function SearchController( $scope, Search ) {
-      console.log(Search.get_terms());
-    // DepartmentList.get_adopted().then(function (data){
-    //     $scope.dept_list =  data;
-    // });
-})
 
+.controller('SearchCtrl', function SearchController( $scope, Search ) {
+  Search.full_text();
+})
 ;
