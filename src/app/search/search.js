@@ -1,6 +1,4 @@
-angular.module( 'sunshine.search', [
-        'ui.router'
-    ])
+angular.module( 'sunshine.search', ['ui.router'])
 
 /**
  * Each section or module of the site can also have its own routes. AngularJS
@@ -20,8 +18,8 @@ angular.module( 'sunshine.search', [
         data:{ pageTitle: 'Search Results', authorizedRoles: ['anonymous'] }
     });
 })
-.controller('SearchCtrl', function SearchController( $scope ) {
-
+.controller('SearchCtrl', function SearchController( $scope, Search ) {
+      console.log(Search.get_terms());
     // DepartmentList.get_adopted().then(function (data){
     //     $scope.dept_list =  data;
     // });
