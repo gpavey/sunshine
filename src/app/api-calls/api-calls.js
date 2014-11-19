@@ -43,12 +43,16 @@ angular.module( 'sunshine.api-calls', [
     })
 
     .service('Search', function($http, $rootScope, $log){
+
+      var apiUrl = $rootScope.API_URL;
+
       this.full_text = function(terms){
         var url = apiUrl + '/search/';
+        console.log(url);
+
         return $http.put(url , terms)
           .success(function(data){
             $log.log(data);
-           // this.post.push(data);
           })
           .error(function(data){
             $log.log(data);
@@ -78,6 +82,8 @@ angular.module( 'sunshine.api-calls', [
 
       this.saveDraftRecord = function(record){
         var url = apiUrl + '/draft/record/';
+        console.log(url);
+
         return $http.put(url , record)
           .success(function(data){
             $log.log(data);
@@ -90,12 +96,9 @@ angular.module( 'sunshine.api-calls', [
 
       this.publish = function(schedule){
         var url = apiUrl + '/publish/';
-        $log.log("second publish call" + url + schedule);
+
         return $http.post(url + schedule)
           .success(function(data){
-            $log.log({"sucess":"happy days"});
-            $log.log(data);
-           // this.post.push(data);
           })
           .error(function(data){
             $log.log({"fail":"sad face"});

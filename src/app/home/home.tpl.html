@@ -8,23 +8,22 @@
                     <h1 style="color:white">Index of Records</h1>
                 </div>
             </div>
-            <div>
-              <form name="homeForm" ng-controller="FormCtrl as form" ng-submit="homeForm.submit(homeForm.$valid, data)">
+            <div ng-controller="FormCtl">
+              <form name="homeSearch" ng-submit="submitSearch(search.terms, data)" novalidate>
                 <div style="color:white; margin-top:200px">Explore the documents and classes of
-                      documents you can request</div>
+                      documents you can request
+                </div>
 
                 <div class="search pad10 input-group">
                     <input autofocus="autofocus" required name="search"
-                      ng-model="search" type="text" size="55" maxlength="75"
+                      ng-model="search.terms" type="text" size="55" maxlength="75"
                         style="margin-left:10px;border-radius: 6px;" placeholder="search ..."/>
 
+                    <button type="submit"
+                    ng-disabled="homeSearch.$invalid">Submit</button>
                     <i class="fa fa-search searchIcon"></i>
-
-                     <div ng-if="homeForm.$invalid">
-                      There is an error with the field...
-                    </div>
                 </div>
-                </form
+              </form>
             </div>
         </div>
     </div>
