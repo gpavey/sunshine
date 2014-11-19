@@ -21,16 +21,25 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
-//Search related API calls
+//Search Related API Calls
 .service('Search', function($http, $rootScope, $log) {
 
   var apiUrl = $rootScope.API_URL;
+  var search_term ;
+
+  this.set_terms = function(terms){
+    search_terms = terms;
+  };
+
+  this.get_terms = function(){
+      return search_terms;
+  };
 
   this.full_text = function(terms) {
     var url = apiUrl + '/search/';
     console.log(url);
 
-    return $http.put(url, terms)
+    return $http.put(url, search_terms)
       .success(function(data) {
         $log.log(data);
       })
@@ -40,7 +49,9 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
-//Schedule related API calls
+
+
+//Schedule Related API Calls
 .service('Schedule', function($http, $rootScope, $log) {
 
   var apiUrl = $rootScope.API_URL;
@@ -89,6 +100,4 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
-//Service to share information accross controllers
-.service()
 ;
