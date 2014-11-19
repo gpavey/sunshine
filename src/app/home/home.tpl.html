@@ -8,7 +8,7 @@
                     <h1 style="color:white">Index of Records</h1>
                 </div>
             </div>
-            <div ng-controller="FormCtl">
+            <div ng-controller="FormCtrl">
               <form name="homeSearch" ng-submit="submitSearch(search.terms, data)" novalidate>
                 <div style="color:white; margin-top:200px">Explore the documents and classes of
                       documents you can request
@@ -37,8 +37,8 @@
     </h3>
     <div class="row pad30" id="deptlister">
 
-        <div ng-repeat="item in dept_list | orderBy:department" class="col-xs-2 pad10">
-            {{item.department}}
+        <div ng-repeat="item in dept_list | orderBy:adopted.department" class="col-xs-2 pad10">
+            {{item.adopted.department}}
         </div>
     </div>
 </div>
