@@ -42,8 +42,8 @@ angular.module( 'sunshine.global_svcs', [])
     var url = apiUrl + '/search';
 
     return $http.put(url, search_terms)
-      .success(function(data) {
-        $log.log(data);
+      .success(function(res) {
+        return res.data;
       })
       .error(function(data) {
         $log.log(data);

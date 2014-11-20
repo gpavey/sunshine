@@ -19,7 +19,17 @@ angular.module( 'sunshine.search', ['ui.router'])
     });
 })
 
-.controller('SearchCtrl', function SearchController( $scope, Search ) {
-  Search.full_text();
+.controller('SearchCtrl', function SearchController(Search) {
+
+  var self = this;
+  self.results = {};
+
+  Search.full_text()
+    .success(function(data, status){
+      self.results = data.hits.hits;
+    })
+    .error(function(err, status){
+    });
+
 })
 ;
