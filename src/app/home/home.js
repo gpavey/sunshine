@@ -19,7 +19,6 @@ angular.module( 'sunshine.home', ['ui.router'])
 })
 
 .controller('HomeCtrl', function HomeController( $scope, DepartmentList ) {
-
     DepartmentList.get_adopted().then(function (data){
         $scope.dept_list =  data;
     });
