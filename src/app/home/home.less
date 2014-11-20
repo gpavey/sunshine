@@ -1,38 +1,80 @@
-.jumbotron {
-  margin: 40px 0 80px 0;
-  text-align: center;
 
-  h1 {
-    margin-bottom: 20px;
-    font-size: 55px;
-    line-height: 1;
-  }
 
-  div {
-    padding:0px;
-    margin:0px;
-  }
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
+/* ====== [ Colors ] ====== */
+.white-text {color: white;}
+.blue-text {color:#0a8aea;}
+.blue-background{background:#0a8aea;}
+.blue-background-lt {background: #e8ffff;}
+.grey-text {color:#adadad;}
+.grey-background {background:#f2f2f2;}
+.yellow-gold-fade {
+  background: #fecb03; /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlY2IwMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZmEyMWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  #fecb03 0%, #dfa21e 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fecb03), color-stop(100%,#dfa21e)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #fecb03 0%,#dfa21e 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #fecb03 0%,#dfa21e 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #fecb03 0%,#dfa21e 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #fecb03 0%,#dfa21e 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fecb03', endColorstr='#dfa21e',GradientType=0 ); /* IE6-8 */
+}
+.blue-fade {
+  background: #09aee6; /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA5YWVlNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYThiZWEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  #09aee6 0%, #0a8bea 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#09aee6), color-stop(100%,#0a8bea)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #09aee6 0%,#0a8bea 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #09aee6 0%,#0a8bea 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #09aee6 0%,#0a8bea 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #09aee6 0%,#0a8bea 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09aee6', endColorstr='#0a8bea',GradientType=0 ); /* IE6-8 */
 }
 
-.marketing {
-  .row {
-    margin-bottom: 10px;
-  }
-
-  .row:last-child {
-    margin-bottom: 0;
-  }
-  
-  h4 [class*=" icon-"], h4 [class^="icon-"] {
-    margin-right: 5px;
-    vertical-align: -10%;
-    font-size: 28px;
-    line-height: 1;
-  }
+.cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
+.top-4 {top:4rem;}
+.right-4 {right:4rem;}
+.px10 {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.btn {border:none;}
+
+
+/* ====== [ Header ] ====== */
+header{
+    background: url("header-image.jpg") no-repeat center center fixed;
+    height: 451px;
+    width: 100%;
+}
+
+/* ====== [ Search ] ====== */
+.search-box {
+  width: 600px;
+  height: 65px;
+  margin:50px auto;
+}
+.search-box button {
+  position: relative;
+  left:-5px;
+  margin-top: 0px;
+  height:65px;
+  width: 100px;
+}
+.search-box input {
+  position: relative;
+  top: -18px;
+  width: 80%;
+  height: calc(100% - 6px);
+}
+.search-box img {height: 100%;}
+
+/* ====== [ Header ] ====== */
