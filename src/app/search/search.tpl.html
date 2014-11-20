@@ -1,1 +1,17 @@
-<H1>This is the search</H1>
+<div ng-controller="SearchCtrl as searchCtrl">
+  <h1>SEARCH</h1>
+<div ng-repeat="result in searchCtrl.results">
+  {{result._source.title}}
+  {{result._source.category}}
+  {{result._source.department}}
+  {{result._source.division}}
+  {{result._source.contact}}
+  {{result._source.remarks}}
+  {{result._source.on_site}}
+  {{result._source.off_site}}
+  {{result._source.total}}
+</br>
+</div>
+
+
+</div>

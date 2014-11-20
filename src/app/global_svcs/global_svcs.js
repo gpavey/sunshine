@@ -25,31 +25,31 @@ angular.module( 'sunshine.global_svcs', [])
 .service('Search', function($http, $rootScope, $log) {
 
   var apiUrl = $rootScope.API_URL;
-  var search_term ;
+
+  this.search_term = "";
 
   this.set_terms = function(terms){
-    search_terms = terms;
+    var json = {};
+    json.terms = terms;
+    search_terms = json;
   };
 
   this.get_terms = function(){
-      return search_terms;
+    return search_terms;
   };
 
-  this.full_text = function(terms) {
-    var url = apiUrl + '/search/';
-    console.log(url);
+  this.full_text = function() {
+    var url = apiUrl + '/search';
 
     return $http.put(url, search_terms)
-      .success(function(data) {
-        $log.log(data);
+      .success(function(res) {
+        return res.data;
       })
       .error(function(data) {
         $log.log(data);
       });
   };
 })
-
-
 
 //Schedule Related API Calls
 .service('Schedule', function($http, $rootScope, $log) {

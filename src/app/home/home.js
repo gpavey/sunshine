@@ -26,11 +26,13 @@ angular.module( 'sunshine.home', ['ui.router'])
 })
 
 .controller('FormCtrl', function FormController( $scope, $state, Search ) {
+  var self = this;
+  self.terms = "";
 
-     $scope.submitSearch = function(search_terms){
-       Search.set_terms (search_terms);
-       $state.go('search');
-    };
+   $scope.submitSearch = function(){
+     Search.set_terms (self.terms);
+     $state.go('search');
+  };
 })
 
 ;

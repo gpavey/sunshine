@@ -8,15 +8,15 @@
                     <h1 style="color:white">Index of Records</h1>
                 </div>
             </div>
-            <div ng-controller="FormCtrl">
-              <form name="homeSearch" ng-submit="submitSearch(search.terms, data)" novalidate>
+            <div ng-controller="FormCtrl as ctrl">
+              <form name="homeSearch" ng-submit="submitSearch()" novalidate >
                 <div style="color:white; margin-top:200px">Explore the documents and classes of
                       documents you can request
                 </div>
 
                 <div class="search pad10 input-group">
                     <input autofocus="autofocus" required name="search"
-                      ng-model="search.terms" type="text" size="55" maxlength="75"
+                      ng-model="ctrl.terms" type="text" size="55" maxlength="75"
                         style="margin-left:10px;border-radius: 6px;" placeholder="search ..."/>
 
                     <button type="submit"
