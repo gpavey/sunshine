@@ -26,7 +26,7 @@ angular.module( 'sunshine.home', ['ui.router'])
 
 .controller('FormCtrl', function FormController( $scope, $state, Search ) {
   var self = this;
-  self.terms = "";
+  self.terms = "contract";
 
    $scope.submitSearch = function(){
      Search.set_terms (self.terms);
