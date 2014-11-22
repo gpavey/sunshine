@@ -255,7 +255,8 @@ changes:
   template, so script names, etc., are dynamically replaced with the correct
   values configured dynamically by Grunt.
 * `delta:less` - When any `*.less` file within `src/` changes, the
-  `src/less/main.less` file is linted and copied into
+  `src/less/main.less` file is linted and copied into. (Note from Cindy: There
+    are some .css files that I just renamed to .less so they would compile properly.)
   `build/assets/ng-boilerplate.css`.
 * `delta:jssrc` - When any JavaScript file within `src/` that does not end in
   `.spec.js` changes, all JavaScript sources are linted, all unit tests are run,
@@ -376,4 +377,3 @@ you're feeling ambitious, you can even submit a pull request - how thoughtful
 of you!
 
 So join the team! We're good people.
-
