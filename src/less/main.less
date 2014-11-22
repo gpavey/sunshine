@@ -143,68 +143,17 @@ h6,
   font-size: .75rem;
 }
 
+.border-right {
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: white;
+}
 
 .container-fluid {
      padding-right: 0 !important; /*15px in bootstrap.css*/
      padding-left: 0 !important;  /*idem*/
      margin-right: auto;
      margin-left: auto;
-}
-
-/*
-
-  Table Object
-  http://jxnblk.github.io/table-object
-*/
-
-.table {
-  display: table;
-  width: 100%;
-}
-
-.table-cell {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.table-fixed {
-  table-layout: fixed;
-}
-
-@media (min-width: 40em) {
-  .sm-table {
-    display: table;
-    width: 100%;
-  }
-
-  .sm-table-cell {
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
-
-@media (min-width: 52em) {
-  .md-table {
-    display: table;
-    width: 100%;
-  }
-
-  .md-table-cell {
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
-
-@media (min-width: 64em) {
-  .lg-table {
-    display: table;
-    width: 100%;
-  }
-
-  .lg-table-cell {
-    display: table-cell;
-    vertical-align: middle;
-  }
 }
 
 /*
@@ -272,6 +221,10 @@ h6,
 .block {display: block;}
 .inline-block {display: inline-block;}
 
+.list-unstyled {
+  list-style-type: none;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -294,6 +247,7 @@ h6,
 .fit {max-width: 100%;}
 .half-width {width: 50%;}
 .full-width {width: 100%;}
+.full-height {height:100%;}
 
 .bold {font-weight: bold;}
 .regular {font-weight: normal;}
@@ -335,6 +289,7 @@ h6,
 .mr4 {margin-right: 4rem;}
 .mb4 {margin-bottom: 4rem;}
 .ml4 {margin-left: 4rem;}
+.m100 {margin-bottom: 100%}
 
 .mxn1 {
   margin-left: -.5rem;
@@ -404,42 +359,6 @@ h6,
   padding-right: 4rem;
 }
 
-.sm-show,
-.md-show,
-.lg-show {
-  display: none !important;
-}
-
-@media (min-width: 40em) {
-  .sm-show {
-    display: block !important;
-  }
-}
-
-@media (min-width: 52em) {
-  .md-show {
-    display: block !important;
-  }
-}
-
-@media (min-width: 64em) {
-  .lg-show {
-    display: block !important;
-  }
-}
-
-@media (min-width: 40em) {
-  .sm-hide {
-    display: none !important;
-  }
-}
-
-@media (min-width: 52em) {
-  .md-hide {
-    display: none !important;
-  }
-}
-
 @media (min-width: 64em) {
   .lg-hide {
     display: none !important;
@@ -484,24 +403,7 @@ h6,
 }
 
 
-/**
- * Footer
- */
 
-footer {
-  margin-top: 0px;
-  border: #4C5154; ;
-  border-width: 3px;
-  border-top-style: solid;
-  border-bottom-style: solid;
-  background-color: #878787;
-  opacity: 0.8;
-}
-
-.footerInner{
-  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 90%;
-}
 
 
 /**

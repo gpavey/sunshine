@@ -1,29 +1,67 @@
-<header class="table relative cover overflow-hidden white-text" data-ui-component="header-area">
-<div class="left mt4 ml4 "><img src="assets/logo-main.png"></div>
-<div class="clearfix"></div>
-<div class="clearfix">
-  <div class="col-12 px10 py3 mx-auto">
-    <h2 >Welcome to the City and County of San Francisco Index of Public Records.  Inagurated in February 2001, the Index was developed by the General Services Agency as required by the Sunshine Ordinance</h2>
+<header class=" relative cover overflow-hidden white-text" data-ui-component="header-area">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12 left mt4 ml4 ">
+        <img src="assets/logo-main.png">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 px10 py3 mx-auto">
+        <h2 >Welcome to the City and County of San Francisco Index of Public Records.  Inagurated in February 2001, the Index was developed by the General Services Agency as required by the Sunshine Ordinance</h2>
+      </div>
+    </div>
+
   </div>
-</div>
-<div class="absolute top-4 right-4"><button class="btn blue-fade btn-default white-text">Administrators</button></div>
+
+  <div class="absolute top-4 right-4">
+    <button class="btn blue-fade btn-default white-text">Administrators</button>
+  </div>
 </header>
 
-<div ng-controller="FormCtrl as ctrl">
-  <form name="homeSearch" ng-submit="submitSearch(ctrl.terms)" novalidate>
+<section data-ui-component="search-area">
 
-        <input autofocus="autofocus" required name="search"
-          ng-model="ctrl.terms" type="text" size="55" maxlength="75"
-            style="margin-left:10px;border-radius: 6px;" placeholder="search ..."/>
+  <div class="container-fluid blue-background-lt" >
+    <div class="row">
+      <div class="col col-12">
+        <h1 class="blue-text center">Search for a Document</h1>
+        <h2 class="grey-text center">Use agency names, document titles, keyworks</h2>
+      </div>
+    </div>
 
-        <button type="submit"
-        ng-disabled="homeSearch.$invalid">Submit</button>
+    <div class="row">
+      <div ng-controller="FormCtrl as ctrl">
+        <div class="col col-12">
+          <form name="homeSearch" ng-submit="submitSearch(ctrl.terms)" novalidate class="search-box">
+            <input required name="search" ng-model="ctrl.terms" type="text" size="55" maxlength="75" style="margin-left:10px;border-radius: 6px;" placeholder=" search ..."/>
+            <button class="button yellow-gold-fade" ng-disabled="homeSearch.$invalid"><img src="assets/search-icon-home.png"></button>
+          </form>
+        </div>
+      </div>
+    </div>
 
-    </form>
+  </div>
+</section>
+
+
+<section data-ui-component="choose-by-agency-area">
+  <div class="container-fluid grey-background" ng-controller="HomeCtrl">
+    <div class ="absolute-center">
+      <div class="or-circle relative">or</div>
+    </div>
+    <div class="row py3">
+      <div class="col col-12">
+        <h1 class="blue-text center">Find documents based on an agency</h1>
+        <h2 class="grey-text center">Use the links below to access records belonging to a specific agency</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div ng-repeat="item in dept_list | orderBy:adopted.department" class="col-xs-4 pad10 center">
+        {{item.adopted.department}}
+      </div>
+    </div>
+
 </div>
-
-<div class="container-fluid" ng-controller="HomeCtrl">
-<div ng-repeat="item in dept_list | orderBy:adopted.department" class="col-xs-2 pad10">
-    {{item.adopted.department}}
-</div>
-</div>
+</section>
