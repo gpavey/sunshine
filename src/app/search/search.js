@@ -24,6 +24,9 @@ angular.module( 'sunshine.search', ['ui.router'])
   var self = this;
   self.results = {};
 
+  //***** Just for testing - REMOVE later **////
+  Search.set_terms("transportation");
+
   Search.full_text()
     .success(function(data, status){
       self.results = data.hits.hits;
