@@ -15,36 +15,55 @@
   </head>
   <body>
 
-  <div class="row" ng-hide="pageTitle == 'Home'">
-      <div class="col-xs-12 headerBar">Index of Records Administration Console  <a class="whiteLink" ui-sref="home"> HOME</a></div>
+    <div class="row" ng-hide="pageTitle == 'Home'">
+        <div class="col-xs-12 headerBar">Index of Records Administration Console  <a class="whiteLink" ui-sref="home"> HOME</a></div>
 
-  </div>
+    </div>
 
-   <div class="container-fluid pad0 marg0"  ui-view="main"></div>
-   <footer >
-        <div class="clearfix visible-xs-block"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-5 text-center footerInner">
-                    <ul class="list-unstyled white-link pad5">
-                        <li><a class="whiteLink" href="http://sfbos.org/index.aspx?page=4459">Sushine Ordinance Task Force</a></li>
-                        <li><a class="whiteLink" href="http://sfgov.org">City and County of San Francisco</a></li>
-                        <li><a class="whiteLink" href="http://sfbos.org/">Board of Supervisors</a></li>
-                    </ul>
-                </div>
-                <div class="hidden-xs col-sm-2 col-md-2 text-center">
-                    <img src="assets/footerlogo.png">
-                    <div class="siteNameSm">City of San Francisco</div>
-                </div>
-               <div class="col-xs-12 col-sm-5 col-md-5 text-center footerInner white pad5">
-                    <ul class="list-unstyled">
-                        <li><a class="whiteLink" href="http://helpdesk">Report a Problem</a></li>
-                        <li><a class="whiteLink" href="http://help">Help Me</a></li>
-                        <li><a class="whiteLink" ui-sref="console.dashboard">Administration</a></li>
-                    </ul>
-               </div>
-           </div>
+    <div class="container-fluid pad0 marg0 overflow-hidden"  ui-view="main"></div>
+
+    <footer class="blue-background py4" >
+    <div class="container-fluid .white-text ">
+      <div class="row">
+
+        <div class="col-xs-hidden col-sm-1 col-sm-offset-1 text-right ">
+          <img src="assets/footerlogo.png">
         </div>
-   </footer>
+
+        <div class="col-xs-12 col-sm-3 py2">
+          <h3>City and County of San Francisco</h3>
+          <ul class="list-unstyled white-link white-text">
+            <li>City Hall</li>
+            <li>1 Dr Carlton B Goodlett Pl.</li>
+            <li>San Francisco, CA 94102</li>
+            <li><a href="http://sfgov.org" target="_blank">sfgov.org</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-hidden col-sm-1 py3">
+          <div class="border-right full-height py4"></div></div>
+
+        <div class="col-xs-12 col-sm-3  py2">
+          <h3>Related Links:</h3>
+          <ul>
+            <li><a class="whiteLink" href="http://sfbos.org/index.aspx?page=4459">Sushine Ordinance Task Force</a></li>
+            <li><a href="http://sfgov.org" target="_blank">sfgov.org</a></li>
+            <li><a href="">Mayors Office</a></li>
+            <li><a class="whiteLink" href="http://sfbos.org/">Board of Supervisors</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-2 py2">
+          <h3>Support:</h3>
+          <ul>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="http://helpdesk">Report a Problem</a></li>
+            <li><a href="http://help">Get Help</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
   </body>
 </html>

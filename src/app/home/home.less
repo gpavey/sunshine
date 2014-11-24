@@ -4,7 +4,7 @@
 .white-text {color: white;}
 .blue-text {color:#0a8aea;}
 .blue-background{background:#0a8aea;}
-.blue-background-lt {background: #e8ffff;}
+.blue-background-lt {background: #fefefe;}
 .grey-text {color:#adadad;}
 .grey-background {background:#f2f2f2;}
 .yellow-gold-fade {
@@ -48,12 +48,16 @@
 
 .btn {border:none;}
 
-
 /* ====== [ Header ] ====== */
 header{
     background: url("header-image.jpg") no-repeat center center fixed;
     height: 451px;
     width: 100%;
+}
+.admin-btn {
+  position: absolute;
+  top:4rem;
+  right:4rem;
 }
 
 /* ====== [ Search ] ====== */
@@ -65,16 +69,53 @@ header{
 .search-box button {
   position: relative;
   left:-5px;
+  top:-2px;
   margin-top: 0px;
   height:65px;
   width: 100px;
+  border:none;
 }
 .search-box input {
   position: relative;
-  top: -18px;
   width: 80%;
-  height: calc(100% - 6px);
+  height: 100%;
+  border-radius: 0px !important;
+  border:1px solid #eee;
+
 }
 .search-box img {height: 100%;}
+.or-circle {
+  border-radius: 50px;
+  border: 2px solid #f2f2f2;
+  background: #fefefe;
+  height:50px;
+  width: 50px;
+  color: #adadad;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  top:-25px;
+}
 
-/* ====== [ Header ] ====== */
+/* ====== [ Footer ] ====== */
+footer a,
+footer h3,
+footer li,
+footer a:hover {
+  color:white;
+}
+
+
+@media only screen and (max-width:600px){
+  .admin-btn {
+    right:1rem;
+    top:1rem;
+  }
+  header h2 {
+    font-size: 1.2rem;
+  }
+  // header .head-text {
+  //   padding-left: 10px;
+  //   padding-right: 10px;
+  // }
+}
