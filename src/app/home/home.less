@@ -54,6 +54,11 @@ header{
     height: 451px;
     width: 100%;
 }
+.admin-btn {
+  position: absolute;
+  top:4rem;
+  right:4rem;
+}
 
 /* ====== [ Search ] ====== */
 .search-box {
@@ -101,17 +106,16 @@ footer a:hover {
 }
 
 
-// footer {
-//   margin-top: 0px;
-//   border: #4C5154; ;
-//   border-width: 3px;
-//   border-top-style: solid;
-//   border-bottom-style: solid;
-//   background-color: #878787;
-//   opacity: 0.8;
-// }
-
-// .footerInner{
-//   font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
-//   font-size: 90%;
-// }
+@media only screen and (max-width:600px){
+  .admin-btn {
+    right:1rem;
+    top:1rem;
+  }
+  header h2 {
+    font-size: 1.2rem;
+  }
+  // header .head-text {
+  //   padding-left: 10px;
+  //   padding-right: 10px;
+  // }
+}
