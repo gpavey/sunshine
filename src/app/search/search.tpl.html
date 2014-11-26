@@ -1,17 +1,24 @@
-
+<button cc-button>test</button>
 <h1>SEARCH</h1>
+<div cc-menu cc-placement="left">
+  <p>TITLE</p>
+  <div class="container-fluid" ng-controller="HomeCtrl">
+  <div ng-repeat="item in dept_list | orderBy:adopted.department | limitTo: 10">
+    {{item.adopted.department}}
+  </div>
+</div>
+</div>
 
-<ng-slide-push-menu position="left" button="push" button-icon-class="glyphicon glyphicon-cog">
-  <h3>Menu</h3>
-  <a href="#">Item 1</a>
-  <a href="#">Item 2</a>
-  <a href="#">Item 3</a>
-  <a href="#">Item 4</a>
-  <a href="#">Item 5</a>
-  <a href="#">Item 6</a>
-</ng-slide-push-menu>
-
-<div ng-controller="SearchCtrl as searchCtrl">
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<!-- <div ng-controller="SearchCtrl as searchCtrl">
   <div ng-repeat="result in searchCtrl.results">
     {{result._source.title}}
     {{result._source.category}}
@@ -24,4 +31,4 @@
     {{result._source.total}}
   </br>
   </div>
-</div>
+</div> -->

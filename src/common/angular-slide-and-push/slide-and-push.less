@@ -1,0 +1,107 @@
+/* General styles for all menus */
+.cc-menu {
+  background: #47a3da;
+  position: fixed;
+}
+
+.cc-menu a {
+  display: block;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+
+.cc-menu a:hover {
+  background: #258ecd;
+}
+
+.cc-menu a:active {
+  background: #afdefa;
+  color: #47a3da;
+}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.cc-menu-vertical {
+  height: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.cc-menu-vertical a {
+  border-bottom: 1px solid #258ecd;
+  padding: 1em;
+}
+
+.cc-menu-horizontal {
+  width: 100%;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.cc-menu-horizontal a {
+  float: left;
+  width: 20%;
+  padding: 0.8em;
+  border-left: 1px solid #258ecd;
+}
+
+/* Push classes applied to the body */
+
+.cc-menu-push {
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+}
+
+
+/* Transitions */
+
+.cc-menu,
+.cc-menu-push {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Example media queries */
+/*
+@media screen and (max-width: 55.1875em){
+
+  .cc-menu-horizontal {
+    font-size: 75%;
+    height: 110px;
+  }
+
+  .cc-menu-top {
+    top: -110px;
+  }
+
+  .cc-menu-bottom {
+    bottom: -110px;
+  }
+
+}
+
+@media screen and (max-height: 26.375em){
+
+  .cc-menu-vertical {
+    font-size: 90%;
+    width: 190px;
+  }
+
+  .cc-menu-left,
+  .cc-menu-push-toleft {
+    left: -190px;
+  }
+
+  .cc-menu-right {
+    right: -190px;
+  }
+
+  .cc-menu-push-toright {
+    left: 190px;
+  }
+}
+*/
