@@ -15,7 +15,6 @@ angular.module('cc.slide.menu', [])
     scope: {
       ccWidth: '@',
       ccHeight:'@',
-      ccTitle: '@',
       ccPlacement: '@',
       ccPush: '@'
       },
