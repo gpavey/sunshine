@@ -26,7 +26,7 @@ angular.module( 'sunshine.global_svcs', [])
 
   var apiUrl = $rootScope.API_URL;
 
-  this.search_term = "";
+  search_terms = {};
 
   this.set_terms = function(terms){
     var json = {};
