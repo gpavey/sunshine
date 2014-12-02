@@ -17,6 +17,8 @@
  */
 
 @import 'variables.less';
+
+//** Common module'scss **/
 @import '../common/angular-ui-grid/ui-grid.less';
 @import '../common/angular-slide-and-push/slide-and-push.less';
 
@@ -29,10 +31,17 @@ html,body{
   margin:0px;
   padding:0px;
 }
-html {font-size: 90%;}
+html {font-size: 95%;}
 body {font-size: 1.4rem;}
 h1   {font-size: 2.4rem;}
 
+small{
+  font-size:80%;
+}
+
+hr{
+  border-top:2px solid #eeeeee;
+}
 /**
  * Typography
  */
@@ -41,18 +50,19 @@ h1   {font-size: 2.4rem;}
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
+  font-weight: normal;
   src: local('Raleway'), local('Raleway-Regular'), url('fonts/Raleway/Raleway-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'RalewayBold';
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   src: local('Raleway'), local('Raleway-Bold'), url('fonts/Raleway/Raleway-Bold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'RalewayMedium';
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 500;
   src: local('Raleway'), local('Raleway-Medium'), url('fonts/Raleway/Raleway-Medium.ttf') format('truetype');
@@ -93,11 +103,11 @@ h4,
 h5,
 h6 {
   font-family: 'Raleway','Helvetica Neue', Helvetica, sans-serif;
-  font-weight: bold;
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
 }
+
 
 p,
 dl,
@@ -159,6 +169,23 @@ h6,
     Basscss Positions
 */
 
+.lh20{
+  line-height:2.0;
+}
+
+.lh25{
+  line-height:2.5;
+}
+
+.lh30{
+  line-height:3.0;
+}
+.lh35{
+  line-height:3.5;
+}
+.lh40{
+  line-height:4.0;
+}
 .relative {
   position: relative;
 }
@@ -311,16 +338,32 @@ h6,
   margin-right: auto;
 }
 
-.p1 {padding: .5rem;}
+
+.p1 {
+  padding: .5rem;
+  }
+.p1-right{
+  padding-right:.5em;
+  }
+.p1-left{
+  padding-left:.5em;
+}
 .py1 {
   padding-top: .5rem;
   padding-bottom: .5rem;
 }
+
 .px1 {
   padding-left: .5rem;
   padding-right: .5rem;
 }
 .p2 {padding: 1rem;}
+.p2-right{
+  padding-right:1em;
+}
+.p2-left{
+  padding-left:1em;
+}
 .py2 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -332,6 +375,18 @@ h6,
 
 .p3 {
   padding: 2rem;
+}
+.p3-right{
+  padding-right:2em;
+}
+.p3-left{
+  padding-left:2em;
+}
+.p3-top{
+  padding-top:2em;
+}
+.p3-bottom{
+  padding-bottom:2em;
 }
 
 .py3 {
@@ -348,6 +403,12 @@ h6,
   padding: 4rem;
 }
 
+.p4-top{
+  padding-top:4em;
+}
+.p4-bottom{
+  padding-bottom:4em;
+}
 .py4 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -358,6 +419,33 @@ h6,
   padding-right: 4rem;
 }
 
+.p5 {
+  padding: 5rem;
+}
+
+.py5 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.px5 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.p6 {
+  padding: 6rem;
+}
+
+.py6 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.px6 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
 @media (min-width: 64em) {
   .lg-hide {
     display: none !important;
@@ -401,7 +489,9 @@ h6,
   display: table;
 }
 
-
+.span-all{
+  column-span: all;
+}
 
 
 
@@ -414,3 +504,4 @@ h6,
 
 @import '../app/home/home.less';
 @import '../app/console/console.less';
+@import '../app/search/search.less';

@@ -29,8 +29,10 @@ angular.module( 'sunshine.home', ['ui.router'])
   self.terms = "contract";
 
    $scope.submitSearch = function(){
+
      Search.set_terms (self.terms);
      $state.go('search');
+
   };
 })
 

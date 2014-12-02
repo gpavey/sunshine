@@ -4,10 +4,10 @@ var app = angular
   'templates-app',
   'templates-common',
   'sunshine.home',
-  'sunshine.about',
   'sunshine.login',
   'sunshine.console',
-  'sunshine.api-calls',
+  'sunshine.global_svcs',
+  'sunshine.search',
   'ui.router',
   'ui.grid',
   'ui.grid.edit',
@@ -18,7 +18,8 @@ var app = angular
   'ngAnimate',
   'ui.bootstrap',
   'ui.grid.enhancements',
-  'ui.unique'
+  'ui.unique',
+  'cc.slide.menu'
 ])
 
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
