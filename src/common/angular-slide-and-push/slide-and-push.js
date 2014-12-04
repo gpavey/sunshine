@@ -1,105 +1,99 @@
 angular.module('cc.slide.menu', [])
 .factory('ccButtonSvc', ['ccMenuSvc', function(ccMenuSvc){
+
+  var show_hide =
+  function(){
+    var placement = ccMenuSvc.getPlacement();
+    var menu = angular.element(document.querySelector('.cc-menu'));
+    var content = angular.element(document.querySelector('.cc-content'));
+    var current_size = ccMenuSvc.getCurrentSize();
+
+    if(menu.hasClass('cc-menu-close')){ //open menu and push content
+      menu.removeClass('cc-menu-close');
+      menu.addClass('cc-menu-open');
+      switch (placement) {
+        case "left":
+          content.css('margin-left', current_size + "px")
+          console.log('left');
+          break;
+        // case "right":
+        //   content.css('margin-right', current_size + "px")
+        //   console.log('right');
+        //   break;
+        // case "top":
+        //   content.css('margin-top', current_size + "px")
+        //   break;
+        // case "bottom":
+        //   content.css('margin-bottom', current_size + "px")
+        //   break;
+        }
+    }else{ //close menu and push content
+      menu.removeClass('cc-menu-open');
+      menu.addClass('cc-menu-close');
+
+      content.css('margin', '0px');
+
+    }
+  }
+
   return{
     toggle: function(){
-        var pos = 0
-        var placement = ccMenuSvc.getPlacement();
-        var current_size = ccMenuSvc.getCurrentSize();
         var menu = angular.element(document.querySelector('.cc-menu'));
-        var body = angular.element(document.querySelector('body'));
-        var location = parseInt(menu.css(placement));
-        var orientation = placement == 'left' || placement == 'right' ? 'vertical' : 'horizontal';
 
-        //toggle visibility of the menu
-        pos = parseInt(menu.css(ccMenuSvc.getPlacement()));
-        pos = (pos + ccMenuSvc.getCurrentSize()) * -1;
-        pos += "px";
-        menu.css(ccMenuSvc.getPlacement(), pos);
-
-        //toggle html body push
-        if(ccMenuSvc.getPush()){
-          //vertical menu off screen
-          if(location >= 0 && orientation == 'vertical'){
-            body.css('left', '0px');
-          }
-
-          //vertical menu on screen
-          if(location < 0 && orientation == 'vertical'){
-            if(placement == 'left'){
-              body.css('left', current_size + "px");
-            }
-
-            if(placement == 'right'){
-              body.css('left', (current_size * -1) + "px");
-            }
-          }
-
-          //horizontal menu off screen
-          if(location >= 0 && orientation == 'horizontal'){
-            body.css('top', '0px');
-          }
-
-          //horizontal menu on screen
-          if(location < 0 && orientation =='horizontal'){
-            if(placement == 'top'){
-              body.css('top', current_size + "px");
-            }
-
-            if(placement == 'bottom'){
-              body.css('top', (current_size * -1) + "px");
-            }
-          }
+        if(menu.hasClass('cc-menu-close')){
+          menu.removeClass('cc-menu-close');
+          menu.addClass('cc-menu-open');
+        }else{
+          menu.removeClass('cc-menu-open');
+          menu.addClass('cc-menu-close');
         }
     },
-    bodyClose: function(e, win_width, win_height){
-      var current_size = ccMenuSvc.getCurrentSize();
+    containerClose: function(e, win_width, win_height){
       var placement = ccMenuSvc.getPlacement();
-      var menu = angular.element(document.querySelector('.cc-menu'));
-      var body = angular.element(document.querySelector('body'));
-      var is_menu_button = e.target.attributes.getNamedItem('cc-button');;
+      var current_size = ccMenuSvc.getCurrentSize();
+      var is_menu_click = true;
+      var is_menu_button = e.target.attributes.getNamedItem('cc-button');
 
+      // exit if the click event if from the menu button
       if(is_menu_button != null) return ;
 
-      if(e.x > current_size && placement == 'left'){
-
-        menu.css('left', "-" + current_size + "px");
-        body.css('left', '0px');
+      //is this click event from the menu?
+      if(e.x >= current_size){
+        is_menu_click = false;
       }
 
-      if(e.y > current_size && placement == 'top'){
+      // if(e.y > current_size && placement == 'top'){
+      //   is_menu_click = false;
+      // }
+      //
+      // if(e.x < (win_width - current_size) && placement == 'right'){
+      //   is_menu_click = false;
+      // }
+      //
+      // if(e.y  < (win_height - current_size) && placement == 'bottom'){
+      //   is_menu_click = false;
+      // }
 
-        menu.css('top', "-" + current_size + "px");
-        body.css('top', '0px');
-      }
-
-      if(e.x < (win_width - current_size) && placement == 'right'){
-
-        menu.css('right', "-" + current_size + "px");
-        body.css('left', '0px');
-      }
-      if(e.y  < (win_height - current_size) && placement == 'bottom'){
-
-        menu.css('bottom', "-" + current_size + "px");
-        body.css('top', '0px');
+      // show or hide menu and push content if click is not from menu
+      if(!is_menu_click){
+        show_hide();
       }
     }
   }
 }])
 .factory('ccMenuSvc', function(){
+  // ---------------- DEFAULTS --------------//
   var width = '320px';
   var height = '150px';
   var placement = 'left';
-  var push = true;
-  var current_size = 320;
-  var current_px = '320px';
   var start_open = false;
+  var current_size = '';
 
   return {
     getWidth: function(){return width;},
     setWidth: function(val){
                     if(typeof val !== 'undefined') {
                       width = val;
-                      current_px = width;
                       current_size = parseInt(width);
                     }
                 },
@@ -107,41 +101,33 @@ angular.module('cc.slide.menu', [])
     setHeight: function(val){
                     if(typeof val !== 'undefined'){
                       height = val;
-                      current_px = height;
                       current_size = parseInt(height);
                     }
                 },
     getPlacement: function(){return placement;},
     setPlacement: function(val){if(typeof val !== 'undefined') placement = val.toLowerCase()},
-    getPush: function(){return push;},
-    setPush: function(val){if(val == 'false'){push = false}else{val = true}},
     getStartOpen: function(){return start_open;},
     setStartOpen: function(val){if(val == 'true'){start_open = true}else{start_open = false}},
-    getCurrentSize: function(){return current_size;},
-    initStyling: function(elem){
-          elem.addClass('cc-menu');
-          elem.css(placement, "-" + current_px);
-
-          if(placement == 'right' || placement == 'left'){
-            elem.addClass('cc-menu-vertical');
-            elem.css('width', current_px);
-          }
-
-          if(placement == 'bottom' || placement == 'top'){
-            elem.addClass('cc-menu-horizontal');
-            elem.css('height', current_px);
-          }
-        }
+    getCurrentSize: function(){return current_size;}
   }
 })
+.directive('ccContent', ['ccMenuSvc', function (ccMenuSvc) {
+  return {
+    restrict: 'E',
+    scope: true,
+    link: function (scope, elem, attrs) {
+      elem.addClass('cc-content');
+      elem.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
+    }
+  }
+}])
 .directive('ccMenu', ['ccMenuSvc', 'ccButtonSvc', function (ccMenuSvc, ccButtonSvc) {
   return {
-    restrict: 'A',
+    restrict: 'E',
     scope: {
       ccWidth: '@',
       ccHeight:'@',
       ccPlacement: '@',
-      ccPush: '@',
       ccStartOpen: '@'
       },
       link: function (scope, elem, attrs) {
@@ -149,34 +135,52 @@ angular.module('cc.slide.menu', [])
         ccMenuSvc.setWidth(scope.ccWidth);
         ccMenuSvc.setHeight(scope.ccHeight);
         ccMenuSvc.setPlacement(scope.ccPlacement);
-        ccMenuSvc.setPush(scope.ccPush);
         ccMenuSvc.setStartOpen(scope.ccStartOpen);
 
-        body = angular.element(document.querySelector('body'));
-        body.addClass('cc-menu-push');
+        // menu starting position [open || close]
+        if(ccMenuSvc.getStartOpen()){
+          elem.addClass('cc-menu cc-menu-open');
+        }else{
+          elem.addClass('cc-menu cc-menu-close');
+        }
 
-        ccMenuSvc.initStyling(elem);
-
-        if(ccMenuSvc.getStartOpen() == true){
-          ccButtonSvc.toggle();
+        //menu placement
+        switch ( ccMenuSvc.getPlacement()) {
+          case "left":
+            elem.addClass('cc-menu-vertical cc-menu-left');
+            elem.css('width', ccMenuSvc.getWidth());
+            break;
+          // case "right":
+          //   elem.addClass('cc-menu-vertical cc-menu-right');
+          //   x = angular.element(document.querySelectorAll('.cc_menu-right'));
+          //   elem.css('width', ccMenuSvc.getWidth());
+          //   break;
+          // case "top":
+          //   elem.addClass('cc-menu-horizontal cc-menu-top');
+          //   elem.css('width', ccMenuSvc.getWidth());
+          //   break;
+          // case "bottom":
+          //   elem.addClass('cc-menu-horizontal cc-menu-bottom');
+          //   elem.css('width', ccMenuSvc.getWidth());
+          //   break;
         }
        }
-
-    }
+     }
   }])
-  .directive('ccButton', ['ccButtonSvc', '$window', function (ccButtonSvc, $window) {
+  .directive('ccButton', ['ccButtonSvc', 'ccMenuSvc', '$window', function (ccButtonSvc, ccMenuSvc, $window) {
     return {
-      restrict : 'A',
+      restrict : 'AE',
       scope: true,
       link: function(scope, elem, attr){
 
         elem.bind('click', ccButtonSvc.toggle);
+        elem.addClass('cc-button');
 
-        var body = angular.element(document.querySelector('body'));
+        //add click event to close the menu when area outside menu is clicked
+        body = angular.element(document.querySelectorAll('body'));
         var win_width = $window.innerWidth;
         var win_height = $window.innerHeight;
-
-        body.bind('click', function(e){ccButtonSvc.bodyClose(e, win_width, win_height)});
+      //  body.bind('click', function(e){ccButtonSvc.containerClose(e, win_width, win_height)});
       }
     };
   }])
