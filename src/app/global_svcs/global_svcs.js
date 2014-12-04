@@ -38,6 +38,10 @@ angular.module( 'sunshine.global_svcs', [])
     return search_terms;
   };
 
+  this.get_result_count = function(){
+    return result_count;
+  };
+
   this.full_text = function() {
     var url = apiUrl + '/search';
 
