@@ -19,23 +19,45 @@ angular.module( 'sunshine.search', ['ui.router'])
     });
 })
 
-.controller('SearchCtrl', function SearchController(Search) {
+.controller('SearchFormCtrl', function SearchFormController( $scope, $state, Search ) {
+  var self = this;
+
+  this.submitSearch = function(){
+    Search.set_terms (self.terms);
+    $state.go('search');
+
+  };
+})
+.controller('SearchCtrl', function SearchController($scope, $state, Search) {
 
   var self = this;
   self.results = {};
   self.aggs = {};
-
-  //***** Just for testing - REMOVE later **////
-  Search.set_terms("transportation");
-
+  self.terms = Search.get_terms().terms;
 
   Search.full_text()
-    .success(function(data, status){
-      self.results = data.hits.hits;
-      self.aggs = data.aggregations;
-    })
-    .error(function(err, status){
-    });
+  .success(function(data, status){
+    self.results = data.hits.hits;
+    self.aggs = data.aggregations;
+  })
+  .error(function(err, status){
+  });
+
+   $scope.submitMainSearch = function(){
+     Search.set_terms (self.terms);
+
+     Search.full_text()
+     .success(function(data, status){
+       self.results = data.hits.hits;
+       self.aggs = data.aggregations;
+     })
+     .error(function(err, status){
+     });
+
+     //$state.go('search');
+   };
+
+
 
 })
 ;

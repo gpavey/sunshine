@@ -1,12 +1,33 @@
-/* General styles for all menus */
-.cc-menu {
-  background: #ffffff;
-  position: fixed;
+
+/* general content styling */
+.cc-content{
+  float:left;
 }
 
+.cc-button{
+  position:relative;
+  border:0;
+}
+
+/* General styles for all menus */
+.cc-menu {
+  float:left;
+  overflow:hidden;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
+}
+
+.cc-menu-close{
+  display:none;
+}
+
+.cc-menu-open{
+  display:inline;
+}
 .cc-menu a {
   display: block;
-  color: #fff;
+  color: #000;
   font-size: 1.1em;
   font-weight: 300;
 }
@@ -21,11 +42,7 @@
 }
 
 /* Orientation-dependent styles for the content of the menu */
-
 .cc-menu-vertical {
-  height: 100%;
-  top: 0;
-  z-index: 1000;
 }
 
 .cc-menu-vertical a {
@@ -33,33 +50,14 @@
   padding: 1em;
 }
 
-.cc-menu-horizontal {
-  width: 100%;
-  left: 0;
-  z-index: 1000;
-  overflow: hidden;
+.cc-menu-left{
+  left:0;
 }
-
-.cc-menu-horizontal a {
-  float: left;
-  width: 20%;
-  padding: 0.8em;
-  border-left: 1px solid #258ecd;
-}
-
-/* Push classes applied to the body */
-
-.cc-menu-push {
-  overflow-x: hidden;
-  position: relative;
-  left: 0;
-}
-
 
 /* Transitions */
 
-.cc-menu,
-.cc-menu-push {
+.cc-menu
+{
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
