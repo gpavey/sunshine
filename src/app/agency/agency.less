@@ -1,0 +1,9 @@
+Schedule.get_draft()
+.then(function (data){
+  $scope.gridOptions.data =  data.draft.record;
+  $scope.draft_schedule = data;
+  $scope.gridOptions.columnDefs[0].editDropdownOptionsArray = data.record;
+  $scope.gridOptions.columnDefs[0].editDropdownValueLabel = 'category';
+  $scope.gridOptions.columnDefs[0].editDropdownIdLabel = 'category';
+
+  });

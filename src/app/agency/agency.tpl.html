@@ -1,0 +1,28 @@
+<header class=" relative cover overflow-hidden white-text search-banner" data-ui-component="header-area">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12 left mt4 ml4 mb4">
+        <img src="assets/logo-main.png">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div ng-controller="AgencyCtrl as agencyCtrl">
+  <div class="row blue-background-md mt2 mr2 ml2 p2 grey-border">
+    <div class="col-md-9">
+      <H1 class="bold lh05">{{agencyCtrl.adopted.department}}</H1>
+      <a class="lh05" href="http://{{agencyCtrl.adopted.website}}" target="_blank">{{agencyCtrl.adopted.website}}</a>
+    </div>
+    <div class="col-md-3 lh10">
+      <H4 class="bold" >Department Contact:</H4>
+      <div>{{agencyCtrl.adopted.contact}}</div>
+      <a href="mailto:{{agencyCtrl.adopted.email}}">{{agencyCtrl.adopted.email}}</a>
+      <div>{{agencyCtrl.adopted.phone}}</div>
+    </div>
+  </div>
+  <div ui-grid="agencyCtrl.gridOptions"  ui-grid-cellNav></div>
+  </br>
+</br></br></br></br></br></br></br>
+</div>
