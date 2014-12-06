@@ -4,7 +4,7 @@
 
     <div class="row">
       <div class="col-12 left mt4 ml4 mb4">
-        <img src="assets/logo-main.png">
+        <a ui-sref="home"><img src="assets/logo-main.png"></a>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
         <h1 class="blue-text">{{result._source.title}}</h1>
         <table>
           <tr class="lh20">
-            <td ng-if="result._source.department" class="bold p3-right">Department: </td>   <td>{{result._source.department}}</td>
+            <td ng-if="result._source.department" class="bold p3-right">Department: </td>   <td><a ui-sref="agency({schedule_id:'{{result._source.schedule_id}}'})">{{result._source.department}}</a></td>
           </tr>
           <tr class="lh20">
             <td ng-if="result._source.category" class="bold p3-right">Category:</td>   <td>{{result._source.category}}</td>

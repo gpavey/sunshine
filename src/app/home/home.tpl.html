@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-12 left mt4 ml4">
-        <img src="assets/logo-main.png">
+        <a ui-sref="home"><img src="assets/logo-main.png"></a>
       </div>
     </div>
 
@@ -57,9 +57,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mb6">
       <div ng-repeat="item in dept_list | orderBy:adopted.department" class="col-xs-4 pad10 center">
-        {{item.adopted.department}}
+        <a ui-sref="agency({schedule_id:'{{item._id}}'})" class="lh25">{{item.adopted.department}}</a>
       </div>
     </div>
 

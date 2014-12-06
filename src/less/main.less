@@ -21,10 +21,12 @@
 //** Common module'scss **/
 @import '../common/angular-ui-grid/ui-grid.less';
 @import '../common/angular-slide-and-push/slide-and-push.less';
+@import '../common/paper-input/paper-input.less';
 
 /**
  * Global
  */
+
 .card {
   background: #fefefe;
   -webkit-transition: all 250ms;
@@ -75,6 +77,7 @@ small{
 hr{
   border-top:2px solid #eeeeee;
 }
+
 /**
  * Typography
  */
@@ -183,6 +186,26 @@ h5,
 h6,
 .h6 {
   font-size: .75rem;
+}
+
+.noborder{
+  border:none;
+}
+
+.noborder-right{
+  border-right:0px;
+}
+
+.noborder-left{
+  border-left:0px;
+}
+
+.noborder-top{
+  border-top: none;
+}
+
+.noborder-bottom{
+  border-bottom:0px;
 }
 
 .border-right {
@@ -366,6 +389,16 @@ h6,
 .mr4 {margin-right: 4rem;}
 .mb4 {margin-bottom: 4rem;}
 .ml4 {margin-left: 4rem;}
+.m5 {margin: 5rem;}
+.mt5 {margin-top: 5rem;}
+.mr5 {margin-right: 5rem;}
+.mb5 {margin-bottom: 5rem;}
+.ml5 {margin-left: 5rem;}
+.m6 {margin: 6rem;}
+.mt6 {margin-top: 6rem;}
+.mr6 {margin-right: 6rem;}
+.mb6 {margin-bottom: 6rem;}
+.ml6 {margin-left: 6rem;}
 .m100 {margin-bottom: 100%}
 
 .mxn1 {
@@ -402,6 +435,7 @@ h6,
 .p1-left{
   padding-left:.5em;
 }
+
 .py1 {
   padding-top: .5rem;
   padding-bottom: .5rem;
@@ -412,6 +446,7 @@ h6,
   padding-right: .5rem;
 }
 .p2 {padding: 1rem;}
+
 .p2-right{
   padding-right:1em;
 }
@@ -429,6 +464,9 @@ h6,
 
 .p3 {
   padding: 2rem;
+}
+.p3-top{
+  padding-top:3em;
 }
 .p3-right{
   padding-right:2em;
@@ -557,3 +595,4 @@ h6,
 @import '../app/home/home.less';
 @import '../app/console/console.less';
 @import '../app/search/search.less';
+@import '../app/agency/agency.less';
