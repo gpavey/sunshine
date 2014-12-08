@@ -8,6 +8,7 @@ var app = angular
   'sunshine.console',
   'sunshine.global_svcs',
   'sunshine.search',
+  'sunshine.agency',
   'ui.router',
   'ui.grid',
   'ui.grid.edit',
@@ -19,7 +20,8 @@ var app = angular
   'ui.bootstrap',
   'ui.grid.enhancements',
   'ui.unique',
-  'cc.slide.menu'
+  'cc.slide.menu',
+  'paper.input'
 ])
 
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
@@ -65,7 +67,7 @@ var app = angular
 })
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GetDepartment, Departments ) {
 
-    $rootScope.API_URL = 'http://ADD_URL:ADD_PORT';
+    $rootScope.API_URL = 'http://localhost:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
