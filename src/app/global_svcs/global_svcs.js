@@ -38,6 +38,10 @@ angular.module( 'sunshine.global_svcs', [])
     return search_terms;
   };
 
+  this.get_result_count = function(){
+    return result_count;
+  };
+
   this.full_text = function() {
     var url = apiUrl + '/search';
 
@@ -64,9 +68,11 @@ angular.module( 'sunshine.global_svcs', [])
       });
   };
 
-  this.get_adopted = function() {
+  this.get_adopted = function(schedule_id) {
+
     return $http
-      .get(apiUrl + '/schedule/' + $rootScope.selected_adopted_dept)
+      //.get(apiUrl + '/schedule/' + $rootScope.selected_adopted_dept)
+      .get(apiUrl + '/schedule/' + schedule_id)
       .then(function(res) {
         return res.data;
       });

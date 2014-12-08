@@ -34,6 +34,7 @@ angular.module( 'sunshine.search', ['ui.router'])
   self.results = {};
   self.aggs = {};
   self.terms = Search.get_terms().terms;
+  self.count = null;
 
   Search.full_text()
   .success(function(data, status){
@@ -45,19 +46,15 @@ angular.module( 'sunshine.search', ['ui.router'])
 
    $scope.submitMainSearch = function(){
      Search.set_terms (self.terms);
-
      Search.full_text()
      .success(function(data, status){
        self.results = data.hits.hits;
        self.aggs = data.aggregations;
+       self.count = data.hits.total;
      })
      .error(function(err, status){
      });
 
-     //$state.go('search');
    };
-
-
-
 })
 ;
