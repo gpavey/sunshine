@@ -17,6 +17,7 @@
  */
 
 @import 'variables.less';
+@import 'fonts/font-awesome-4.2.0/css/font-awesome.css';
 
 //** Common module'scss **/
 @import '../common/angular-ui-grid/ui-grid.less';
@@ -81,7 +82,6 @@ hr{
 /**
  * Typography
  */
-
 
 @font-face {
   font-family: 'Raleway';
@@ -221,6 +221,13 @@ h6,
      margin-left: auto;
 }
 
+.pointer{
+  cursor:pointer;
+}
+
+.no-decoration:visited {
+  text-decoration:none;
+}
 /*
     Basscss Positions
 */
@@ -452,6 +459,9 @@ h6,
 }
 .p2-left{
   padding-left:1em;
+}
+.p2-bottom{
+  padding-bottom:1em;
 }
 .py2 {
   padding-top: 1rem;

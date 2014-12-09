@@ -52,41 +52,69 @@
     </form>
 
       <div  ng-if="searchCtrl.results" class="px2" ng-repeat="result in searchCtrl.results">
-        <h1 class="blue-text">{{result._source.title}}</h1>
+        <h1 ng-if="result.highlight.title" class="blue-text" ng-bind-html="result.highlight.title[0]"></h1>
+        <h1 ng-if="!result.highlight.title"class="blue-text">{{result._source.title}}</h1>
         <table>
           <tr class="lh20">
-            <td ng-if="result._source.department" class="bold p3-right">Department: </td>   <td><a ui-sref="agency({schedule_id:'{{result._source.schedule_id}}'})">{{result._source.department}}</a></td>
+            <td ng-if="result._source.department" class="bold p3-right">Department: </td>
+            <td ng-if="result.highlight.department[0]">
+              <a ui-sref="agency({schedule_id:'{{result._source.schedule_id}}'})">
+                <span ng-bind-html="result.highlight.department[0]"</span></a> </td>
+            <td ng-if="!result.highlight.department[0]">
+              <a ui-sref="agency({schedule_id:'{{result._source.schedule_id}}'})">{{result._source.department}}</a></td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.category" class="bold p3-right">Category:</td>   <td>{{result._source.category}}</td>
+            <td ng-if="result._source.category" class="bold p3-right">Category:</td>
+            <td ng-if="result.highlight.category[0]" ng-bind-html="result.highlight.category[0]"></td>
+            <td ng-if="!result.highlight.category[0]">{{result._source.category}}</td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.division" class="bold p3-right">Division: </td>   <td>{{result._source.division}}</td>
+            <td ng-if="result._source.division" class="bold p3-right">Division: </td>
+            <td ng-if="result.highlight.division[0]" ng-bind-html="result.highlight.division[0]"></td>
+            <td ng-if="!result.highlight.division[0]">{{result._source.division}}</td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.contact" class="bold p3-right">Contact: </td>   <td>{{result._source.contact}}
-              <span ng-if="result._source.email" class="fa fa-envelope-o px2" alt="email address">
-                {{result._source.email}}
-              </span>
-              <span ng-if="result._source.phone" class="fa fa-phone" alt= "phone number">
-              {{result._source.phone}}
-              </span>
+            <td ng-if="result._source.contact" class="bold p3-right">Contact: </td>
+            <td>
+                <!-- ------------- Contact ------------------- -->
+                <span ng-if="result.highlight.contact[0]" ng-bind-html="result.highlight.contact[0]"></span>
+                <span ng-if="!result.highlight.contact[0]">{{result._source.contact}}</span>
+
+                <!-- ------------- Email ------------------- -->
+              <span ng-if="result.highlight.email[0]" class="fa fa-envelope-o px2" ng-bind-html="result.highlight.email[0]"></span>
+              <span ng-if="!result.highlight.email[0]" class="fa fa-envelope-o px2">{{result._source.email}}</span>
+
+              <!-- ------------- Phone ------------------- -->
+              <span ng-if="result.highlight.phone[0]" ng-bind-html="result.highlight.phone[0]" class="fa fa-phone px2"></span>
+              <span ng-if="!result.highlight.phone[0]" class="fa fa-phone">&nbsp;{{result._source.phone}}</span>
             </td>
           </tr>
-          <tr ng-if="result._source.remarks" class="lh20 p3-right">
-            <td class="bold">Remarks: </td>   <td>{{result._source.remarks}}</td>
+          <tr class="lh20">
+            <td ng-if="result._source.remarks" class="bold p3-right">Remarks: </td>
+            <td ng-if="result.highlight.remarks[0]" ng-bind-html="result.highlight.remarks[0]"></td>
+            <td ng-if="!result.highlight.remarks[0]">{{result._source.remarks}}</td>
           </tr>
           <tr class="lh40">
             <td colspan="2">
               <small>
               <span ng-if="result._source.retention">
-                <span class="bold p1-right">retention type: </span>{{result._source.retention}}</span>
+                <span class="bold p1-right">retention type: </span>
+                <span ng-if="result.highlight.retention[0]" ng-bind-html="result.highlight.retention[0]"></span>
+                <span ng-if="!result.highlight.retention[0]">{{result._source.retention}}</span>
+              </span>
               <span ng-if="result._source.on_site">
-                <span class="bold p2-left p1-right">retained on-site: </span>{{result._source.on_site}}</span>
+                <span class="bold p2-left p1-right">retained on-site: </span>
+                <span ng-if="result.highlight.on_site[0]" ng-bind-html="result.highlight.on_site[0]"></span>
+                <span ng-if="!result.highlight.on_site[0]">{{result._source.on_site}}</span>
+              </span>
               <span ng-if="result._source.off_site">
-                <span class="bold p2-left p1-right">retained off-site: </span>{{result._source.off_site}}</span>
+                <span class="bold p2-left p1-right">retained off-site: </span>
+                <span ng-if="result.highlight.off_site[0]" ng-bind-html="result.highlight.off_site[0]"></span>
+                <span ng-if="!result.highlight.off_site[0]">{{result._source.off_site}}</span>
               <span ng-if="result._source.total">
-                <span class="bold p2«»-left p1-right">total time retained: </span>{{result._source.total}}</span>
+                <span class="bold p2«»-left p1-right">total time retained: </span>
+                <span ng-if="result.highlight.total[0]" ng-bind-html="result.highlight.total[0]"></span>
+                <span ng-if="!result.highlight.total[0]">{{result._source.total}}</span>
             </small>
             </td>
           </tr>

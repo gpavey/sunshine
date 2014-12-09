@@ -1,0 +1,108 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/Users/cindy/Sites/sunshine',
+5 verbose install   [ 'angular-sanitize',
+5 verbose install     'grunt',
+5 verbose install     'grunt-contrib-less',
+5 verbose install     'grunt-contrib-clean',
+5 verbose install     'grunt-contrib-copy',
+5 verbose install     'grunt-contrib-jshint',
+5 verbose install     'grunt-contrib-concat',
+5 verbose install     'grunt-contrib-watch',
+5 verbose install     'grunt-contrib-uglify',
+5 verbose install     'grunt-ngmin',
+5 verbose install     'grunt-html2js',
+5 verbose install     'grunt-contrib-coffee',
+5 verbose install     'grunt-coffeelint',
+5 verbose install     'grunt-conventional-changelog',
+5 verbose install     'grunt-bump',
+5 verbose install     'karma-firefox-launcher',
+5 verbose install     'karma-jasmine',
+5 verbose install     'grunt-karma',
+5 verbose install     'karma-coffee-preprocessor',
+5 verbose install     'karma' ] ]
+6 info preinstall sunshine@0.3.2
+7 verbose readDependencies using package.json deps
+8 verbose already installed skipping angular-sanitize@^1.3.5 /Users/cindy/Sites/sunshine
+9 verbose already installed skipping grunt@~0.4.1 /Users/cindy/Sites/sunshine
+10 verbose already installed skipping grunt-contrib-less@~0.11.0 /Users/cindy/Sites/sunshine
+11 verbose already installed skipping grunt-contrib-clean@^0.4.1 /Users/cindy/Sites/sunshine
+12 verbose already installed skipping grunt-contrib-copy@^0.4.1 /Users/cindy/Sites/sunshine
+13 verbose already installed skipping grunt-contrib-jshint@^0.4.3 /Users/cindy/Sites/sunshine
+14 verbose already installed skipping grunt-contrib-concat@^0.3.0 /Users/cindy/Sites/sunshine
+15 verbose already installed skipping grunt-contrib-watch@^0.4.4 /Users/cindy/Sites/sunshine
+16 verbose already installed skipping grunt-contrib-uglify@^0.2.7 /Users/cindy/Sites/sunshine
+17 verbose already installed skipping grunt-ngmin@0.0.2 /Users/cindy/Sites/sunshine
+18 verbose already installed skipping grunt-html2js@^0.1.9 /Users/cindy/Sites/sunshine
+19 verbose already installed skipping grunt-contrib-coffee@^0.7.0 /Users/cindy/Sites/sunshine
+20 verbose already installed skipping grunt-coffeelint@~0.0.10 /Users/cindy/Sites/sunshine
+21 verbose already installed skipping grunt-conventional-changelog@^0.1.2 /Users/cindy/Sites/sunshine
+22 verbose already installed skipping grunt-bump@0.0.6 /Users/cindy/Sites/sunshine
+23 verbose already installed skipping karma-firefox-launcher@^0.1.3 /Users/cindy/Sites/sunshine
+24 verbose already installed skipping karma-jasmine@^0.1.5 /Users/cindy/Sites/sunshine
+25 verbose already installed skipping grunt-karma@^0.8.2 /Users/cindy/Sites/sunshine
+26 verbose already installed skipping karma-coffee-preprocessor@^0.2.1 /Users/cindy/Sites/sunshine
+27 verbose already installed skipping karma@^0.12.9 /Users/cindy/Sites/sunshine
+28 silly resolved []
+29 info build /Users/cindy/Sites/sunshine
+30 verbose linkStuff [ false, false, false, '/Users/cindy/Sites' ]
+31 info linkStuff sunshine@0.3.2
+32 verbose linkBins sunshine@0.3.2
+33 verbose linkMans sunshine@0.3.2
+34 verbose rebuildBundles sunshine@0.3.2
+35 verbose rebuildBundles [ '.bin',
+35 verbose rebuildBundles   'angular-sanitize',
+35 verbose rebuildBundles   'coffeelint',
+35 verbose rebuildBundles   'grunt',
+35 verbose rebuildBundles   'grunt-bump',
+35 verbose rebuildBundles   'grunt-coffeelint',
+35 verbose rebuildBundles   'grunt-contrib-clean',
+35 verbose rebuildBundles   'grunt-contrib-coffee',
+35 verbose rebuildBundles   'grunt-contrib-concat',
+35 verbose rebuildBundles   'grunt-contrib-copy',
+35 verbose rebuildBundles   'grunt-contrib-jshint',
+35 verbose rebuildBundles   'grunt-contrib-less',
+35 verbose rebuildBundles   'grunt-contrib-uglify',
+35 verbose rebuildBundles   'grunt-contrib-watch',
+35 verbose rebuildBundles   'grunt-conventional-changelog',
+35 verbose rebuildBundles   'grunt-html2js',
+35 verbose rebuildBundles   'grunt-karma',
+35 verbose rebuildBundles   'grunt-ngmin',
+35 verbose rebuildBundles   'karma',
+35 verbose rebuildBundles   'karma-coffee-preprocessor',
+35 verbose rebuildBundles   'karma-firefox-launcher',
+35 verbose rebuildBundles   'karma-jasmine' ]
+36 verbose rebuild bundle /Users/cindy/Sites/sunshine/node_modules/coffeelint
+37 info build /Users/cindy/Sites/sunshine/node_modules/coffeelint
+38 info preinstall coffeelint@1.6.1
+39 verbose linkStuff [ false,
+39 verbose linkStuff   false,
+39 verbose linkStuff   false,
+39 verbose linkStuff   '/Users/cindy/Sites/sunshine/node_modules' ]
+40 info linkStuff coffeelint@1.6.1
+41 verbose linkBins coffeelint@1.6.1
+42 verbose link bins [ { coffeelint: './bin/coffeelint' },
+42 verbose link bins   '/Users/cindy/Sites/sunshine/node_modules/.bin',
+42 verbose link bins   false ]
+43 verbose linkMans coffeelint@1.6.1
+44 verbose rebuildBundles coffeelint@1.6.1
+45 verbose rebuildBundles [ '.bin', 'coffee-script', 'glob', 'ignore', 'optimist', 'resolve' ]
+46 error Error: EACCES, unlink '/Users/cindy/Sites/sunshine/node_modules/.bin/coffeelint'
+46 error  { [Error: EACCES, unlink '/Users/cindy/Sites/sunshine/node_modules/.bin/coffeelint']
+46 error   errno: 3,
+46 error   code: 'EACCES',
+46 error   path: '/Users/cindy/Sites/sunshine/node_modules/.bin/coffeelint' }
+47 error Please try running this command again as root/Administrator.
+48 error System Darwin 14.0.0
+49 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+50 error cwd /Users/cindy/Sites/sunshine
+51 error node -v v0.10.32
+52 error npm -v 1.4.28
+53 error path /Users/cindy/Sites/sunshine/node_modules/.bin/coffeelint
+54 error code EACCES
+55 error errno 3
+56 error stack Error: EACCES, unlink '/Users/cindy/Sites/sunshine/node_modules/.bin/coffeelint'
+57 verbose exit [ 3, true ]
