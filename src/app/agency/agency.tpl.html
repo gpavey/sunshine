@@ -1,0 +1,80 @@
+<header class=" relative cover overflow-hidden white-text search-banner" data-ui-component="header-area">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12 left mt4 ml4 mb4">
+        <a ui-sref="home"><img src="assets/logo-main.png"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div ng-controller="AgencyCtrl as agencyCtrl">
+  <table class="ml2 mr2 mt3 noborder-top grey-border ">
+    <thead>
+      <tr>
+        <th colspan="8">
+          <div class="row blue-background-md mt2 mr2 ml3 p2 grey-border">
+            <div class="float-left">
+              <H1 class="bold lh05">{{agencyCtrl.adopted.department}}</H1>
+              <a class="lh05" href="http://{{agencyCtrl.adopted.website}}" target="_blank">{{agencyCtrl.adopted.website}}</a>
+            </div>
+            <div class="float-right">
+              <H4 class="bold" >Department Contact:</H4>
+              <div>{{agencyCtrl.adopted.contact}}</div>
+              <a href="mailto:{{agencyCtrl.adopted.email}}">{{agencyCtrl.adopted.email}}</a>
+              <div>{{agencyCtrl.adopted.phone}}</div>
+            </div>
+          </div>
+        <th>
+      </tr>
+      <tr>
+        <th class="p3-top">
+          <paper-input label="Category" model-ref="agencyCtrl.category_fltr" type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="Title" model-ref="agencyCtrl.title_fltr"  type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="Division" model-ref="agencyCtrl.division_fltr"  type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="Remark" model-ref="agencyCtrl.remark_fltr" type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="Retention" model-ref="agencyCtrl.retention_fltr" type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="On-site" model-ref="agencyCtrl.on_site_fltr" type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="Off-Site" model-ref="agencyCtrl.off_site_fltr" type="text" icon="fa fa-filter"></paper-input>
+        </th>
+        <th class="p3-top">
+          <paper-input label="Total" model-ref="agencyCtrl.total_fltr" type="text" icon="fa fa-filter"></paper-input>
+        </th>
+      </tr>
+    </thead>
+  <tbody>
+    <tr ng-repeat="record in agencyCtrl.records | filter : {category: agencyCtrl.category_fltr,
+                                                            title: agencyCtrl.title_fltr,
+                                                            division: agencyCtrl.division_fltr,
+                                                            remarks:agencyCtrl.remark_fltr,
+                                                            retention: agencyCtrl.retention_fltr,
+                                                            on_site: agencyCtrl.on_site_fltr,
+                                                            off_site: agencyCtrl.off_site_fltr,
+                                                            total: agencyCtrl.total_fltr}"
+        ng-class-odd="'grey-background-lt'" ng-class="'grey-border'">
+      <td class="p1 grey-border" style="width:16%">{{record.category}}</td>{{agency.cat}}
+      <td class="p1 grey-border" style="width:12%">{{record.title}}</td>
+      <td class="p1 grey-border" style="width:12%">{{record.division}}</td>
+      <td class="p1 grey-border" style="width:12%">{{record.remarks}}</td>
+      <td class="p1 grey-border" style="width:12%">{{record.retention}}</td>
+      <td class="p1 grey-border" style="width:12%">{{record.on_site}}</td>
+      <td class="p1 grey-border" style="width:12%">{{record.off_site}}</td>
+      <td class="p1" style="width:15%">{{record.total}}</td>
+    </tr>
+</tbody>
+  </table>
+</br>
+</div>

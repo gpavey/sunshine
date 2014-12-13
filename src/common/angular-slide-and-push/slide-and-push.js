@@ -39,13 +39,16 @@ angular.module('cc.slide.menu', [])
   return{
     toggle: function(){
         var menu = angular.element(document.querySelector('.cc-menu'));
+        var content = angular.element(document.querySelector('.cc-content'));
 
         if(menu.hasClass('cc-menu-close')){
           menu.removeClass('cc-menu-close');
           menu.addClass('cc-menu-open');
+          content.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
         }else{
           menu.removeClass('cc-menu-open');
           menu.addClass('cc-menu-close');
+          content.css('width', '100%');
         }
     },
     containerClose: function(e, win_width, win_height){
@@ -117,7 +120,13 @@ angular.module('cc.slide.menu', [])
     scope: true,
     link: function (scope, elem, attrs) {
       elem.addClass('cc-content');
-      elem.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
+
+      if(ccMenuSvc.getStartOpen()){
+        elem.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
+      }else{
+        elem.css('width', '100%');
+      }
+
     }
   }
 }])
