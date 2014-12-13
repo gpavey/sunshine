@@ -1,7 +1,7 @@
 angular.module( 'paper.input', [])
 .run(['$templateCache', function($templateCache) {
   $templateCache.put('paperInput',
-    "<div ng-form=\"inputForm\"><div class=\"group paper-input\"><input type=\"{{ type }}\" ng-model=\"modelRef\" name=\"modelName\" ng-required=\"isRequired\"><span class=\"highlight\"></span><span class=\"bar\"></span><label class=\"{{ icon }}\"> {{ label }}</label></div><div>"
+    "<div ng-form=\"inputForm\"><div class=\"group paper-input\"><input type=\"{{ type }}\" ng-model=\"modelRef\" name=\"modelName\" ng-required=\"isRequired\"><span class=\"highlight\"></span><span class=\"bar\"></span><label class=\"{{ icon }}\"> {{ label }}</label></div></div>"
   );
 }])
 

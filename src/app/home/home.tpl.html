@@ -62,7 +62,7 @@
     </div>
 
     <div class="row mb6">
-      <div ng-repeat="item in dept_list | orderBy:adopted.department" class="col-xs-4 pad10 center">
+      <div ng-repeat="item in dept_list" class="col-xs-4 pad10 center">
         <a ui-sref="agency({schedule_id:'{{item._id}}'})" class="lh25">{{item.adopted.department}}</a>
       </div>
     </div>

@@ -21,7 +21,9 @@ var app = angular
   'ui.grid.enhancements',
   'ui.unique',
   'cc.slide.menu',
-  'paper.input'
+  'paper.input',
+  'checklist-model',
+  'ngSanitize'
 ])
 
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
