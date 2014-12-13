@@ -71,6 +71,8 @@ module.exports = {
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/angular-animate/angular-animate.js',
       'vendor/slide.and.push/scripts/slide.and.push.js',
+      'vendor/angular-sanitize/angular-sanitize.js',
+      'vendor/checklist-model/checklist-model.js'
       //'vendor/jquery/dist/jquery.min.js', // required by slide.and.push
 
     ],
