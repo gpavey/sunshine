@@ -19,16 +19,7 @@ angular.module( 'sunshine.search', ['ui.router'])
     });
 })
 
-.controller('SearchFormCtrl', function SearchFormController( $scope, $state, Search ) {
-  var self = this;
-
-  this.submitSearch = function(){
-    Search.set_terms (self.terms);
-    $state.go('search');
-
-  };
-})
-.controller('SearchCtrl', function SearchController($scope, $state, Search) {
+.controller('SearchCtrl', function ($scope, $state, Search) {
 
   var self = this;
   self.results = {};
@@ -36,25 +27,96 @@ angular.module( 'sunshine.search', ['ui.router'])
   self.terms = Search.get_terms().terms;
   self.count = null;
 
+  self.dept_sel = [];
+  self.division_sel = {};
+  self.category_sel = {};
+  self.retention_sel = {};
+
+  $scope.$watch(
+    function(){
+      return self.dept_sel.toString();
+    },
+    function(newVal, oldVal){
+      Search.set_filters('department.og', self.dept_sel);
+      Search.full_text()
+      .success(function(data, status){
+        self.results = data.hits.hits;
+        self.aggs = data.aggregations;
+        self.count = data.hits.total;
+      })
+      .error(function(err, status){
+      });
+    }
+  );
+
+  $scope.$watch(
+    function(){
+      return self.category_sel.toString();
+    },
+    function(newVal, oldVal){
+      Search.set_filters('category.og', self.category_sel);
+
+      Search.full_text()
+      .success(function(data, status){
+        self.results = data.hits.hits;
+        self.aggs = data.aggregations;
+        self.count = data.hits.total;
+      })
+      .error(function(err, status){
+      });
+    }
+  );
+  //-----------TESTING ONLY -------------//
+  Search.set_terms("Contract");
+  //-------------------------------------//
+
   Search.full_text()
   .success(function(data, status){
     self.results = data.hits.hits;
-    self.aggs = data.aggregations;
+    self. aggs = data.aggregations;
+    self.count = data.hits.total;
   })
   .error(function(err, status){
   });
 
-   $scope.submitMainSearch = function(){
-     Search.set_terms (self.terms);
-     Search.full_text()
-     .success(function(data, status){
-       self.results = data.hits.hits;
-       self.aggs = data.aggregations;
-       self.count = data.hits.total;
-     })
-     .error(function(err, status){
-     });
 
-   };
+  this.division_click = function(division){
+    Search.set_filters('division.og', self.division_sel);
+
+    Search.full_text()
+    .success(function(data, status){
+      self.results = data.hits.hits;
+      self.aggs = data.aggregations;
+      self.count = data.hits.total;
+    })
+    .error(function(err, status){
+    });
+  };
+
+  this.retention_click = function(retention){
+    Search.set_filters('retention.og', self.retention_sel);
+
+    Search.full_text()
+    .success(function(data, status){
+      self.results = data.hits.hits;
+      self.aggs = data.aggregations;
+      self.count = data.hits.total;
+    })
+    .error(function(err, status){
+    });
+  };
+
+ this.submitMainSearch = function(){
+   Search.set_terms (self.terms);
+   Search.full_text()
+   .success(function(data, status){
+     self.results = data.hits.hits;
+     self.aggs = data.aggregations;
+     self.count = data.hits.total;
+   })
+   .error(function(err, status){
+   });
+
+ };
 })
 ;

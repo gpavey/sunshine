@@ -22,17 +22,43 @@ angular.module( 'sunshine.global_svcs', [])
 })
 
 //Search Related API Calls
-.service('Search', function($http, $rootScope, $log) {
+.service('Search', function($http, $rootScope, $filter, $log) {
 
   var apiUrl = $rootScope.API_URL;
 
   search_terms = {};
+  search_filters = {};
+
+  // function get_filter_string(){
+  //   var filter_string = '';
+  //
+  //   for(var item in search_filters){
+  //     filter_string += item;
+  //     filter_string += item[0];
+  //   }
+  //   console.log(filter_string);
+  //   return filter_string;
+  // }
+
+  this.set_filters = function(field, arrToAdd ){
+    delete search_filters[field];
+
+    if(arrToAdd.length > 0) {
+      search_filters[field] = arrToAdd;
+    }
+    return search_filters;
+  };
+
+  this.get_filters = function(){
+    return search_filters;
+  };
 
   this.set_terms = function(terms){
     var json = {};
     json.terms = terms;
     search_terms = json;
   };
+
 
   this.get_terms = function(){
     return search_terms;
@@ -45,10 +71,13 @@ angular.module( 'sunshine.global_svcs', [])
   this.full_text = function() {
     var url = apiUrl + '/search';
 
-    return $http.put(url, search_terms)
+    var req_data = {};
+    req_data.criteria = search_terms;
+    req_data.filters = $filter('json')(search_filters).replace(/(\r\n|\n|\r)/gm,"");
+
+    return $http.put(url, req_data)
       .success(function(res) {
         return res.data;
-
       })
       .error(function(data) {
         $log.log(data);

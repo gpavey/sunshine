@@ -22,6 +22,7 @@ var app = angular
   'ui.unique',
   'cc.slide.menu',
   'paper.input',
+  'checklist-model',
   'ngSanitize'
 ])
 
