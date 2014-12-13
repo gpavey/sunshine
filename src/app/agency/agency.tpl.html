@@ -13,7 +13,7 @@
   <table class="noborder-top grey-border">
     <thead>
       <tr>
-        <th colspan="15" class="blue-background-md grey-border p2-bottom">
+        <th colspan="8" class="blue-background-md grey-border p2-bottom">
 
             <div class="left">
               <H1 class="bold lh05">{{agencyCtrl.adopted.department}}</H1>
@@ -31,51 +31,35 @@
       <tr>
         <th class="p3-top">
           <paper-input label="Category" model-ref="agencyCtrl.category_fltr" type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'category'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'category'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="Title" model-ref="agencyCtrl.title_fltr"  type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'title'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'title'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="Division" model-ref="agencyCtrl.division_fltr"  type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'division'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'division'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="Remark" model-ref="agencyCtrl.remark_fltr" type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'remarks'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'remarks'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="Retention" model-ref="agencyCtrl.retention_fltr" type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'retention'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'retention'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="On-site" model-ref="agencyCtrl.on_site_fltr" type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'on_site'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'on_site'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="Off-Site" model-ref="agencyCtrl.off_site_fltr" type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'off_site'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'off_site'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
           <paper-input label="Total" model-ref="agencyCtrl.total_fltr" type="text" icon="fa fa-filter"></paper-input>
-        </th>
-        <th>
-          <i href="" class="fa fa-sort-alpha-asc left pointer mt2" ng-click="predicate = 'total'; reverse=!reverse"></i>
+          <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'total'; reverse=!reverse"></i>
         </th>
       </tr>
     </thead>
@@ -90,14 +74,14 @@
                                                             off_site: agencyCtrl.off_site_fltr,
                                                             total: agencyCtrl.total_fltr}"
         ng-class-odd="'grey-background'" ng-class="'grey-border'">
-      <td class="p1 grey-border" colspan="2" >{{record.category}}</td>{{agency.cat}}
-      <td class="p1 grey-border" colspan="2">{{record.title}}</td>
-      <td class="p1 grey-border" colspan="2">{{record.division}}</td>
-      <td class="p1 grey-border" colspan="2">{{record.remarks}}</td>
-      <td class="p1 grey-border" colspan="2">{{record.retention}}</td>
-      <td class="p1 grey-border" colspan="2">{{record.on_site}}</td>
-      <td class="p1 grey-border" colspan="2">{{record.off_site}}</td>
-      <td class="p1" colspan="2">{{record.total}}</td>
+      <td class="p1 grey-border" >{{record.category}}</td>{{agency.cat}}
+      <td class="p1 grey-border" >{{record.title}}</td>
+      <td class="p1 grey-border" >{{record.division}}</td>
+      <td class="p1 grey-border" >{{record.remarks}}</td>
+      <td class="p1 grey-border" >{{record.retention}}</td>
+      <td class="p1 grey-border" >{{record.on_site}}</td>
+      <td class="p1 grey-border" >{{record.off_site}}</td>
+      <td class="p1" >{{record.total}}</td>
     </tr>
 </tbody>
   </table>
