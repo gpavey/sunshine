@@ -29,24 +29,18 @@ angular.module( 'sunshine.global_svcs', [])
   search_terms = {};
   search_filters = {};
 
-  // function get_filter_string(){
-  //   var filter_string = '';
-  //
-  //   for(var item in search_filters){
-  //     filter_string += item;
-  //     filter_string += item[0];
-  //   }
-  //   console.log(filter_string);
-  //   return filter_string;
-  // }
-
   this.set_filters = function(field, arrToAdd ){
+
     delete search_filters[field];
 
     if(arrToAdd.length > 0) {
       search_filters[field] = arrToAdd;
     }
     return search_filters;
+  };
+
+  this.clear_filters = function(){
+    search_fitlers = {};
   };
 
   this.get_filters = function(){
@@ -73,7 +67,8 @@ angular.module( 'sunshine.global_svcs', [])
 
     var req_data = {};
     req_data.criteria = search_terms;
-    req_data.filters = $filter('json')(search_filters).replace(/(\r\n|\n|\r)/gm,"");
+console.log(search_filters);
+    req_data.filters = search_filters;
 
     return $http.put(url, req_data)
       .success(function(res) {

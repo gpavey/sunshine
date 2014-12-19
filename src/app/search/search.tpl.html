@@ -11,46 +11,54 @@
 </header>
 
 <div ng-controller="SearchCtrl as searchCtrl">
-{{searchCtrl.dept_sel}}
 <!-------------------- Search Filters -------------------->
-  <cc-menu cc-placement="left" cc-start-open="true" cc-width="320px">
+  <cc-menu cc-placement="left" cc-start-open="true" cc-width="340px">
 
     <form name="refineSearch" ng-submit="searchCtrl.submitRefineSearch(searchCtrl.terms)" novalidate>
 
       <div class="card m2">
 
         <div class="bold blue-background-md lh35 px2" ng-if="searchCtrl.aggs.departments.buckets">Department</div>
-        <label ng-repeat="department in searchCtrl.aggs.departments.buckets" class="ml2 lh20 regular">
+        <div ng-repeat="department in searchCtrl.aggs.departments.buckets" class="ml2 lh20 regular">
+          <input type="checkbox" checklist-model="searchCtrl.dept_sel" checklist-value="department.key"
+                                                                                ng-model= "searchCtrl.dept_sel" >
+          <label class="regular">{{department.key}}</label>
 
-          <input type="checkbox" checklist-model="searchCtrl.dept_sel" checklist-value="department.key" ng-model= "searchCtrl.dept_sel" >
-          {{department.key}} ({{department.doc_count}})
-
-          <label ng-repeat="division in department.division.buckets" class="ml3 lh20 regular">
-            <input type="checkbox" checklist-model="searchCtrl.division_sel" checklist-value="division.key">
-            {{division.key}} ({{division.doc_count}})
-          </label>
-        </label>
+          <ul>
+            <li class="no-bullet">
+              <div ng-repeat="division in department.division.buckets" class="ml3 lh20 regular">
+                <input type="checkbox" checklist-model="searchCtrl.division_sel" checklist-value="division.key">
+                <label class="regular">{{division.key}}</label>
+              </div>
+            </li>
+          </ul>
+        </ul>
+        </div>
 
       </div>
 
       <div class="card m2">
         <div class="bold blue-background-md lh35 px2" ng-if="searchCtrl.aggs.category.buckets">Category</div>
-        <div>
-          <label ng-repeat="category in searchCtrl.aggs.category.buckets" class="ml2 lh20 regular">
+        <ul>
+          <li class="no-bullet">
+          <div ng-repeat="category in searchCtrl.aggs.category.buckets" class="ml2 lh20 regular">
             <input type="checkbox" checklist-model="searchCtrl.category_sel" checklist-value="category.key">
-              {{category.key}} ( {{category.doc_count}} )
-          </label>
-        </div>
+              <label class="regular">{{category.key}}</label>
+          </div>
+          </li>
+        </ul>
       </div>
 
       <div class="card m2">
         <div class="bold blue-background-md lh35 px2" ng-if="searchCtrl.aggs.retention.buckets">Retention Type</div>
-        <div>
-          <label ng-repeat="retention in searchCtrl.aggs.retention.buckets" class="ml2 lh20 regular">
-            <input type="checkbox" checklist-model="searchCtrl.retention_sel" checklist-value="retention.key">
-              {{retention.key}} ( {{retention.doc_count}} )
-          </label>
-        </div>
+        <ul>
+          <li class="no-bullet">
+            <div ng-repeat="retention in searchCtrl.aggs.retention.buckets" class="ml2 lh20 regular">
+              <input type="checkbox" checklist-model="searchCtrl.retention_sel" checklist-value="retention.key">
+              <label class="regular"> {{retention.key}}</label>
+            </div>
+          </li>
+        </ul>
       </div>
 
     </form>

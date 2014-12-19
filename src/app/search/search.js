@@ -28,9 +28,11 @@ angular.module( 'sunshine.search', ['ui.router'])
   self.count = null;
 
   self.dept_sel = [];
-  self.division_sel = {};
-  self.category_sel = {};
-  self.retention_sel = {};
+  self.division_sel = [];
+  self.category_sel = [];
+  self.retention_sel = [];
+
+  Search.clear_filters();
 
   $scope.$watch(
     function(){
@@ -38,6 +40,27 @@ angular.module( 'sunshine.search', ['ui.router'])
     },
     function(newVal, oldVal){
       Search.set_filters('department.og', self.dept_sel);
+      console.log("department watch");
+      Search.full_text()
+      .success(function(data, status){
+        self.results = data.hits.hits;
+        self.aggs = data.aggregations;
+        self.count = data.hits.total;
+      })
+      .error(function(err, status){
+      });
+    }
+  );
+
+
+  $scope.$watch(
+    function(){
+      return self.category_sel.toString();
+    },
+    function(newVal, oldVal){
+      Search.set_filters('category.og', self.category_sel);
+      console.log("category watch");
+
       Search.full_text()
       .success(function(data, status){
         self.results = data.hits.hits;
@@ -51,10 +74,30 @@ angular.module( 'sunshine.search', ['ui.router'])
 
   $scope.$watch(
     function(){
-      return self.category_sel.toString();
+      return self.division_sel.toString();
     },
     function(newVal, oldVal){
-      Search.set_filters('category.og', self.category_sel);
+      Search.set_filters('division.og', self.division_sel);
+      console.log("division watch");
+
+      Search.full_text()
+      .success(function(data, status){
+        self.results = data.hits.hits;
+        self.aggs = data.aggregations;
+        self.count = data.hits.total;
+      })
+      .error(function(err, status){
+      });
+    }
+  );
+
+  $scope.$watch(
+    function(){
+      return self.retention_sel.toString();
+    },
+    function(newVal, oldVal){
+      Search.set_filters('retention.og', self.retention_sel);
+      console.log("retention watch");
 
       Search.full_text()
       .success(function(data, status){
@@ -67,44 +110,17 @@ angular.module( 'sunshine.search', ['ui.router'])
     }
   );
   //-----------TESTING ONLY -------------//
-  Search.set_terms("Contract");
+  //Search.set_terms("Bench");
   //-------------------------------------//
 
-  Search.full_text()
-  .success(function(data, status){
-    self.results = data.hits.hits;
-    self. aggs = data.aggregations;
-    self.count = data.hits.total;
-  })
-  .error(function(err, status){
-  });
-
-
-  this.division_click = function(division){
-    Search.set_filters('division.og', self.division_sel);
-
-    Search.full_text()
-    .success(function(data, status){
-      self.results = data.hits.hits;
-      self.aggs = data.aggregations;
-      self.count = data.hits.total;
-    })
-    .error(function(err, status){
-    });
-  };
-
-  this.retention_click = function(retention){
-    Search.set_filters('retention.og', self.retention_sel);
-
-    Search.full_text()
-    .success(function(data, status){
-      self.results = data.hits.hits;
-      self.aggs = data.aggregations;
-      self.count = data.hits.total;
-    })
-    .error(function(err, status){
-    });
-  };
+  // Search.full_text()
+  // .success(function(data, status){
+  //   self.results = data.hits.hits;
+  //   self. aggs = data.aggregations;
+  //   self.count = data.hits.total;
+  // })
+  // .error(function(err, status){
+  // });
 
  this.submitMainSearch = function(){
    Search.set_terms (self.terms);
