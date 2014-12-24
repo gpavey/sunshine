@@ -12,8 +12,8 @@
     </div>
 
     <div class="row">
-      <div class="col-12 px10 py3 mx-auto head-text">
-        <h2 >Welcome to the City and County of San Francisco Index of Public Records.  Inagurated in February 2001, the Index was developed by the General Services Agency as required by the Sunshine Ordinance.</h2>
+      <div class="col-12 px20 py3 mx-auto head-text">
+        <h3 >Welcome to the City and County of San Francisco's Index of Public Records.  The Index is made available to assist the public with access to City records in accordance with the Sunshine Ordinance.</h2>
       </div>
     </div>
 
@@ -29,16 +29,18 @@
   <div class="container-fluid blue-background-lt" >
     <div class="row">
       <div class="col col-12">
-        <h1 class="blue-text center">Search for a Document</h1>
-        <h2 class="grey-text center">Use agency names, document titles, keyworks</h2>
+        <h1 class="blue-text center">Search for a Record</h1>
+        <h2 class="grey-text center">Use agency names, record titles, keyworks</h2>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row p6-bottom">
       <div ng-controller="FormCtrl as ctrl">
         <div class="col col-12">
           <form name="homeSearch" ng-submit="submitSearch(ctrl.terms)" novalidate class="search-box">
-            <input required name="search" ng-model="ctrl.terms" type="text" size="55" maxlength="75" style="margin-left:10px;border-radius: 6px;" placeholder=" search ..."/>
+            <input required name="search" ng-model="ctrl.terms" type="text" size="55" maxlength="75"
+                  style="margin-left:10px;border-radius: 6px;" class="grey-border-dk grey-background"
+                  placeholder=" search ..."/>
             <button class="button yellow-gold-fade" ng-disabled="homeSearch.$invalid"><img src="assets/search-icon-home.png"></button>
           </form>
         </div>
@@ -56,7 +58,7 @@
     </div>
     <div class="row py3">
       <div class="col col-12">
-        <h1 class="blue-text center">Find documents based on an agency</h1>
+        <h1 class="blue-text center">Find records based on an agency</h1>
         <h2 class="grey-text center">Use the links below to access records belonging to a specific agency</h2>
       </div>
     </div>

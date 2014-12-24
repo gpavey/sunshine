@@ -67,7 +67,7 @@ angular.module( 'sunshine.global_svcs', [])
 
     var req_data = {};
     req_data.criteria = search_terms;
-console.log(search_filters);
+
     req_data.filters = search_filters;
 
     return $http.put(url, req_data)

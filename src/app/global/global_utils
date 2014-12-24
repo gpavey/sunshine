@@ -1,1 +1,0 @@
-angular.module( 'sunshine.global_s', [])

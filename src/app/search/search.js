@@ -40,12 +40,14 @@ angular.module( 'sunshine.search', ['ui.router'])
     },
     function(newVal, oldVal){
       Search.set_filters('department.og', self.dept_sel);
-      console.log("department watch");
+
       Search.full_text()
       .success(function(data, status){
-        self.results = data.hits.hits;
-        self.aggs = data.aggregations;
-        self.count = data.hits.total;
+        if(typeof data.hits != 'undefined'){
+          self.results = data.hits.hits;
+          self.aggs = data.aggregations;
+          self.count = data.hits.total;
+        }
       })
       .error(function(err, status){
       });
@@ -59,37 +61,39 @@ angular.module( 'sunshine.search', ['ui.router'])
     },
     function(newVal, oldVal){
       Search.set_filters('category.og', self.category_sel);
-      console.log("category watch");
 
       Search.full_text()
       .success(function(data, status){
-        self.results = data.hits.hits;
-        self.aggs = data.aggregations;
-        self.count = data.hits.total;
+
+        if(typeof data.hits != 'undefined'){
+          self.results = data.hits.hits;
+          self.aggs = data.aggregations;
+          self.count = data.hits.total;
+        }
       })
       .error(function(err, status){
       });
     }
   );
 
-  $scope.$watch(
-    function(){
-      return self.division_sel.toString();
-    },
-    function(newVal, oldVal){
-      Search.set_filters('division.og', self.division_sel);
-      console.log("division watch");
-
-      Search.full_text()
-      .success(function(data, status){
-        self.results = data.hits.hits;
-        self.aggs = data.aggregations;
-        self.count = data.hits.total;
-      })
-      .error(function(err, status){
-      });
-    }
-  );
+  // $scope.$watch(
+  //   function(){
+  //     return self.division_sel.toString();
+  //   },
+  //   function(newVal, oldVal){
+  //     Search.set_filters('division.og', self.division_sel);
+  //     console.log("division watch");
+  //
+  //     Search.full_text()
+  //     .success(function(data, status){
+  //       self.results = data.hits.hits;
+  //       self.aggs = data.aggregations;
+  //       self.count = data.hits.total;
+  //     })
+  //     .error(function(err, status){
+  //     });
+  //   }
+  // );
 
   $scope.$watch(
     function(){
@@ -97,20 +101,22 @@ angular.module( 'sunshine.search', ['ui.router'])
     },
     function(newVal, oldVal){
       Search.set_filters('retention.og', self.retention_sel);
-      console.log("retention watch");
 
       Search.full_text()
       .success(function(data, status){
-        self.results = data.hits.hits;
-        self.aggs = data.aggregations;
-        self.count = data.hits.total;
+
+        if(typeof data.hits != 'undefined'){
+          self.results = data.hits.hits;
+          self.aggs = data.aggregations;
+          self.count = data.hits.total;
+        }
       })
       .error(function(err, status){
       });
     }
   );
   //-----------TESTING ONLY -------------//
-  Search.set_terms("Bench");
+  //Search.set_terms("Bench");
   //-------------------------------------//
 
   // Search.full_text()
