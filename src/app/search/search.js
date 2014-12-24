@@ -116,7 +116,7 @@ angular.module( 'sunshine.search', ['ui.router'])
     }
   );
   //-----------TESTING ONLY -------------//
-  //Search.set_terms("Bench");
+  Search.set_terms("transit");
   //-------------------------------------//
 
   // Search.full_text()

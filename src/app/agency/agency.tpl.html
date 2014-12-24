@@ -9,11 +9,14 @@
   </div>
 </header>
 
-<div ng-controller="AgencyCtrl as agencyCtrl">
+<div ng-controller="AgencyCtrl as agencyCtrl" class="m2">
+  <div class="mb2">
+    <a ui-sref="home">Home</a>
+  </div>
   <table class="noborder-top grey-border">
     <thead>
       <tr>
-        <th colspan="8" class="blue-background-md grey-border p2-bottom">
+        <th colspan="8" class="blue-background-md grey-border p2-bottom p2-right p2-left">
 
             <div class="left">
               <H1 class="bold lh05">{{agencyCtrl.adopted.department}}</H1>
