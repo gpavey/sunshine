@@ -122,7 +122,8 @@ angular.module('cc.slide.menu', [])
       elem.addClass('cc-content');
 
       if(ccMenuSvc.getStartOpen()){
-        elem.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
+          var w  = ccMenuSvc.getCurrentSize() + 10 //account for left padding in stylesheet
+        elem.css('width', 'calc(100% - ' + w + 'px)');
       }else{
         elem.css('width', '100%');
       }

@@ -11,37 +11,57 @@
 </header>
 
 <div ng-controller="SearchCtrl as searchCtrl">
+  <div>
+    <a ui-sref="home" class="lh25 px2">Home</a>
+  </div>
 <!-------------------- Search Filters -------------------->
-  <cc-menu cc-placement="left" cc-start-open="true" cc-width="340px">
-
-    <form name="refineSearch" ng-submit="searchCtrl.submitRefineSearch(searchCtrl.terms)" novalidate>
-
-      <div class="card m2">
-
-        <div class="bold blue-background-md lh35 px2" ng-if="searchCtrl.aggs.departments.buckets">Department</div>
-        <div ng-repeat="department in searchCtrl.aggs.departments.buckets" class="ml2 lh20 regular">
-          <input type="checkbox" checklist-model="searchCtrl.dept_sel" checklist-value="department.key"
-                                                                                ng-model= "searchCtrl.dept_sel" >
-          <label class="regular">{{department.key}}</label>
-
-          <ul>
-            <li class="no-bullet">
-              <div ng-repeat="division in department.division.buckets" class="ml3 lh20 regular">
-                <input type="checkbox" checklist-model="searchCtrl.division_sel" checklist-value="division.key">
-                <label class="regular">{{division.key}}</label>
-              </div>
-            </li>
-          </ul>
-        </ul>
-        </div>
-
+  <cc-menu cc-placement="left" cc-start-open="true" cc-width="300px" class="grey-background">
+    <form name="mainSearch" ng-submit="searchCtrl.submitMainSearch(searchCtrl.terms)" novalidate>
+      <div class="search-box-sml px3">
+        <input required name="search" ng-model="searchCtrl.terms" type="text" size="50" maxlength="75" placeholder=" search ..."/>
+        <button class="button yellow-gold-fade" ng-disabled="Search.$invalid">
+          <i class="fa fa-search"></i>
+        <!-- This about where to put this link
+        <a class="blue-background white-text" cc-button >Refine</a>
+      -->
       </div>
+      <div class="center" ng-if="searchCtrl.count > 0">
+        Number of matchs: {{searchCtrl.count}}
+        <hr class="grey-border">
+      </div>
+    </form>
 
-      <div class="card m2">
-        <div class="bold blue-background-md lh35 px2" ng-if="searchCtrl.aggs.category.buckets">Category</div>
+    <form ng-if="searchCtrl.count > 0" name="refineSearch" ng-submit="searchCtrl.submitRefineSearch(searchCtrl.terms)" novalidate>
+
+      <div class="m2" ng-if="searchCtrl.aggs.departments.buckets">
+
+        <div class="bold lh35" >Refine by Department</div>
+
         <ul>
           <li class="no-bullet">
-          <div ng-repeat="category in searchCtrl.aggs.category.buckets" class="ml2 lh20 regular">
+            <div ng-repeat="department in searchCtrl.aggs.departments.buckets" class="lh20 regular">
+              <input type="checkbox" checklist-model="searchCtrl.dept_sel" checklist-value="department.key"
+                                                                          ng-model= "searchCtrl.dept_sel" >
+              <label class="regular">{{department.key}}</label>
+
+<!--               <ul>
+  <li class="no-bullet">
+    <div ng-repeat="division in department.division.buckets" class="lh20 regular">
+      <input type="checkbox" checklist-model="searchCtrl.division_sel" checklist-value="division.key">
+      <label class="regular small">{{division.key}}</label>
+    </div>
+  </li>
+</ul> -->
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="m2" ng-if="searchCtrl.aggs.category.buckets">
+        <div class="bold lh35" > Refine by Category</div>
+        <ul>
+          <li class="no-bullet">
+          <div ng-repeat="category in searchCtrl.aggs.category.buckets" class="lh20 regular">
             <input type="checkbox" checklist-model="searchCtrl.category_sel" checklist-value="category.key">
               <label class="regular">{{category.key}}</label>
           </div>
@@ -49,11 +69,11 @@
         </ul>
       </div>
 
-      <div class="card m2">
-        <div class="bold blue-background-md lh35 px2" ng-if="searchCtrl.aggs.retention.buckets">Retention Type</div>
+      <div class="m2" ng-if="searchCtrl.aggs.retention.buckets">
+        <div class="bold lh35">Refine by Retention Type</div>
         <ul>
           <li class="no-bullet">
-            <div ng-repeat="retention in searchCtrl.aggs.retention.buckets" class="ml2 lh20 regular">
+            <div ng-repeat="retention in searchCtrl.aggs.retention.buckets" class="lh20 regular">
               <input type="checkbox" checklist-model="searchCtrl.retention_sel" checklist-value="retention.key">
               <label class="regular"> {{retention.key}}</label>
             </div>
@@ -66,30 +86,19 @@
 
 
 
-
-
-
   <!------------ Search Result ------------------>
-  <cc-content>
-      <div class="blue-background white-text search-header"><button class="blue-background white-text" cc-button >
-        <i class="fa fa-bars"></i> Refine</button></div>
-      <form name="mainSearch" ng-submit="searchCtrl.submitMainSearch(searchCtrl.terms)" novalidate>
-      <div class="search-box-sml">
-        <input required name="search" ng-model="searchCtrl.terms" type="text" size="50" maxlength="75"
-          style="margin-left:10px;border-radius: 6px;" placeholder=" search ..."/>
-        <button class="button yellow-gold-fade" ng-disabled="Search.$invalid"><img src="assets/search-icon-home.png"></button>
-      </div>
-      <div class="center" ng-if="searchCtrl.count > 0">
-        Number of record classes that match you search: {{searchCtrl.count}}
-      </div>
-    </form>
+  <cc-content  style="min-height:400px">
 
-      <div  ng-if="searchCtrl.results" class="px2" ng-repeat="result in searchCtrl.results">
+      <div ng-if="searchCtrl.count > 0" class="three-quarter-width absolute-center">You can request any of the records
+                    returned by this search. When possible, a link is included. If there is no link, please contact the department
+                    in question using the information provided.</div>
+
+      <div  ng-if="searchCtrl.results" class="px4" ng-repeat="result in searchCtrl.results">
         <h1 ng-if="result.highlight.title" class="blue-text shadow" ng-bind-html="result.highlight.title[0]"></h1>
         <h1 ng-if="!result.highlight.title"class="blue-text">{{result._source.title}}</h1>
         <table>
           <tr class="lh20">
-            <td ng-if="result._source.department" class="bold p3-right">Department: </td>
+            <td ng-if="result._source.department" class="bold p3-right vertical-align-top">Department: </td>
             <td ng-if="result.highlight.department[0]">
               <a ui-sref="agency({schedule_id:'{{result._source.schedule_id}}'})">
                 <span ng-bind-html="result.highlight.department[0]"</span></a> </td>
@@ -97,17 +106,17 @@
               <a ui-sref="agency({schedule_id:'{{result._source.schedule_id}}'})">{{result._source.department}}</a></td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.category" class="bold p3-right">Category:</td>
+            <td ng-if="result._source.category" class="bold p3-right vertical-align-top">Category:</td>
             <td ng-if="result.highlight.category[0]" ng-bind-html="result.highlight.category[0]"></td>
             <td ng-if="!result.highlight.category[0]">{{result._source.category}}</td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.division" class="bold p3-right">Division: </td>
+            <td ng-if="result._source.division" class="bold p3-right vertical-align-top">Division: </td>
             <td ng-if="result.highlight.division[0]" ng-bind-html="result.highlight.division[0]"></td>
             <td ng-if="!result.highlight.division[0]">{{result._source.division}}</td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.contact" class="bold p3-right">Contact: </td>
+            <td ng-if="result._source.contact" class="bold p3-right vertical-align-top">Contact: </td>
             <td>
                 <!-- ------------- Contact ------------------- -->
                 <span ng-if="result.highlight.contact[0]" ng-bind-html="result.highlight.contact[0]"></span>
@@ -115,7 +124,7 @@
 
                 <!-- ------------- Email ------------------- -->
               <span ng-if="result.highlight.email[0]" class="fa fa-envelope-o px2" ng-bind-html="result.highlight.email[0]"></span>
-              <span ng-if="!result.highlight.email[0]" class="fa fa-envelope-o px2">{{result._source.email}}</span>
+              <span ng-if="!result.highlight.email[0]" class="fa fa-envelope-o px2">&nbsp;{{result._source.email}}</span>
 
               <!-- ------------- Phone ------------------- -->
               <span ng-if="result.highlight.phone[0]" ng-bind-html="result.highlight.phone[0]" class="fa fa-phone px2"></span>
@@ -123,7 +132,7 @@
             </td>
           </tr>
           <tr class="lh20">
-            <td ng-if="result._source.remarks" class="bold p3-right">Remarks: </td>
+            <td ng-if="result._source.remarks" class="bold p3-right vertical-align-top">Remarks: </td>
             <td ng-if="result.highlight.remarks[0]" ng-bind-html="result.highlight.remarks[0]"></td>
             <td ng-if="!result.highlight.remarks[0]">{{result._source.remarks}}</td>
           </tr>
@@ -157,7 +166,7 @@
 
       <div ng-if="searchCtrl.count == 0" class="py5 half-width horizontal-center">No results were found ...
         To see some examples of the kind of information held in the Index of Records,
-        return to the <a ui-sref="home">home</a> page and click a department link.
+        return to the <a ui-sref="home">home</a> page and click on one of the agencies.
       </div>
   </cc-content>
 </div>

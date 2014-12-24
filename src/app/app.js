@@ -7,6 +7,7 @@ var app = angular
   'sunshine.login',
   'sunshine.console',
   'sunshine.global_svcs',
+  'sunshine.global_utils',
   'sunshine.search',
   'sunshine.agency',
   'ui.router',
@@ -25,6 +26,20 @@ var app = angular
   'checklist-model',
   'ngSanitize'
 ])
+
+.config(function ($httpProvider) {
+  $httpProvider.responseInterceptors.push('HttpInterceptor');
+
+  var spinnerFunction = function spinnerFunction(data, headersGetter) {
+  var search_button = angular.element(document.querySelector('.fa-search'));
+     search_button.removeClass('fa-search');
+     search_button.addClass('fa-spinner');
+     search_button.addClass('fa-spin');
+    return data;
+  };
+
+  $httpProvider.defaults.transformRequest.push(spinnerFunction);
+})
 
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise( '/home' );
