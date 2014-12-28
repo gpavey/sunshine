@@ -26,9 +26,15 @@
       -->
       </div>
       <div class="center" ng-if="searchCtrl.count > 0">
-        Number of matchs: {{searchCtrl.count}}
+        Number of matches: {{searchCtrl.count}}
         <hr class="grey-border">
       </div>
+      <div class="center">
+        Did you mean: {{searchCtrl.suggest.general[0].options[0].text}}
+        <hr class="grey-border">
+      </div>
+
+
     </form>
 
     <form ng-if="searchCtrl.count > 0" name="refineSearch" ng-submit="searchCtrl.submitRefineSearch(searchCtrl.terms)" novalidate>

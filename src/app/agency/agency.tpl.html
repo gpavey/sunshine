@@ -33,39 +33,81 @@
       </tr>
       <tr>
         <th class="p3-top">
-          <paper-input label="Category" model-ref="agencyCtrl.category_fltr" type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.category_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Category</label>
+          </div>
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'category'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="Title" model-ref="agencyCtrl.title_fltr"  type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.title_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Title</label>
+          </div>
+
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'title'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="Division" model-ref="agencyCtrl.division_fltr"  type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.division_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Division</label>
+          </div>
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'division'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="Remark" model-ref="agencyCtrl.remark_fltr" type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.remark_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Remarks</label>
+          </div>
+
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'remarks'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="Retention" model-ref="agencyCtrl.retention_fltr" type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.retention_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Retention</label>
+          </div>
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'retention'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="On-site" model-ref="agencyCtrl.on_site_fltr" type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.on_site_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>On Site</label>
+          </div>
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'on_site'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="Off-Site" model-ref="agencyCtrl.off_site_fltr" type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.off_site_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Off Site</label>
+          </div>
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'off_site'; reverse=!reverse"></i>
         </th>
         <th class="p3-top">
-          <paper-input label="Total" model-ref="agencyCtrl.total_fltr" type="text" icon="fa fa-filter"></paper-input>
+          <div class="md-group">
+            <input type="text" required ng-model="agencyCtrl.total_fltr">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label ><i class="fa fa-filter"></i>Total</label>
+          </div>
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'total'; reverse=!reverse"></i>
         </th>
       </tr>
-    </thead>
+  </thead>
   <tbody>
     <tr ng-repeat="record in agencyCtrl.records | orderBy:predicate:reverse
                                                 | filter : {category: agencyCtrl.category_fltr,

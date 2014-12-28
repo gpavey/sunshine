@@ -26,6 +26,7 @@ angular.module( 'sunshine.search', ['ui.router'])
   self.aggs = {};
   self.terms = Search.get_terms().terms;
   self.count = null;
+  self.suggest = {};
 
   self.dept_sel = [];
   self.division_sel = [];
@@ -46,6 +47,7 @@ angular.module( 'sunshine.search', ['ui.router'])
         if(typeof data.hits != 'undefined'){
           self.results = data.hits.hits;
           self.aggs = data.aggregations;
+          self.suggest = data.suggest;
           self.count = data.hits.total;
         }
       })
@@ -68,6 +70,7 @@ angular.module( 'sunshine.search', ['ui.router'])
         if(typeof data.hits != 'undefined'){
           self.results = data.hits.hits;
           self.aggs = data.aggregations;
+          self.suggest = data.suggest;
           self.count = data.hits.total;
         }
       })
@@ -108,6 +111,7 @@ angular.module( 'sunshine.search', ['ui.router'])
         if(typeof data.hits != 'undefined'){
           self.results = data.hits.hits;
           self.aggs = data.aggregations;
+          self.suggest = data.suggest;
           self.count = data.hits.total;
         }
       })
@@ -116,7 +120,7 @@ angular.module( 'sunshine.search', ['ui.router'])
     }
   );
   //-----------TESTING ONLY -------------//
-  Search.set_terms("transit");
+  //Search.set_terms("transit");
   //-------------------------------------//
 
   // Search.full_text()
@@ -134,7 +138,9 @@ angular.module( 'sunshine.search', ['ui.router'])
    .success(function(data, status){
      self.results = data.hits.hits;
      self.aggs = data.aggregations;
+     self.suggest = data.suggest;
      self.count = data.hits.total;
+console.log(self.suggest);
    })
    .error(function(err, status){
    });

@@ -15,26 +15,22 @@ angular.module( 'paper.input', [])
             icon : '@'
         },
         template: $templateCache.get('paperInput'),
-        link: function(scope, elem, attrs){
+        link: function (scope, elem, attrs){
+
           scope.isRequired = angular.isDefined(attrs.required);
           scope.isDatepicker = angular.isDefined(attrs.date);
           scope.state = {
             opened : false
           };
 
-          if (scope.isDatepicker) {
-
-            scope.openDatePicker = function($event) {
-              // event.preventDefault(event);
-              // event.stopPropagation();
-              scope.state.opened = true;
-            };
-
-          }
+          elem.bind('blur', function () {
+            console.log("blur");
+            elem.css("border","10px solid");
+            scope.$apply();
+          });
         }
   }
 }])
-
 
 //Didn't add paper-checkbox or paper-date
 ;
