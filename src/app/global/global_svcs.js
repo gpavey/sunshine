@@ -29,6 +29,29 @@ angular.module( 'sunshine.global_svcs', [])
   search_terms = {};
   search_filters = {};
 
+  this.suggest_string = function(suggestObj){
+
+      var general = suggestObj.general;
+      var arr_len = general.length;
+      var suggest = '';
+      var count = 0;
+
+      for(var i = 0; i < arr_len ; i++){
+        if(general[i].options.length > 0){
+          count++;
+          suggest += general[i].options[0].text + ' ';
+        }else{
+          suggest += general[i].text + ' ';
+        }
+      }
+
+      if(count > 0){
+        return suggest;
+      }else{
+          return null;
+      }
+  };
+
   this.set_filters = function(field, arrToAdd ){
 
     delete search_filters[field];
@@ -40,7 +63,7 @@ angular.module( 'sunshine.global_svcs', [])
   };
 
   this.clear_filters = function(){
-    search_fitlers = {};
+    search_filters = {};
   };
 
   this.get_filters = function(){

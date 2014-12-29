@@ -26,7 +26,7 @@ angular.module( 'sunshine.search', ['ui.router'])
   self.aggs = {};
   self.terms = Search.get_terms().terms;
   self.count = null;
-  self.suggest = {};
+  self.suggestion = '';
 
   self.dept_sel = [];
   self.division_sel = [];
@@ -47,7 +47,7 @@ angular.module( 'sunshine.search', ['ui.router'])
         if(typeof data.hits != 'undefined'){
           self.results = data.hits.hits;
           self.aggs = data.aggregations;
-          self.suggest = data.suggest;
+          self.suggestion = Search.suggest_string(data.suggest);
           self.count = data.hits.total;
         }
       })
@@ -70,7 +70,7 @@ angular.module( 'sunshine.search', ['ui.router'])
         if(typeof data.hits != 'undefined'){
           self.results = data.hits.hits;
           self.aggs = data.aggregations;
-          self.suggest = data.suggest;
+          self.suggest = Search.suggest_string(data.suggest);
           self.count = data.hits.total;
         }
       })
@@ -111,7 +111,7 @@ angular.module( 'sunshine.search', ['ui.router'])
         if(typeof data.hits != 'undefined'){
           self.results = data.hits.hits;
           self.aggs = data.aggregations;
-          self.suggest = data.suggest;
+          self.suggest = Search.suggest_string(data.suggest);
           self.count = data.hits.total;
         }
       })
@@ -120,7 +120,7 @@ angular.module( 'sunshine.search', ['ui.router'])
     }
   );
   //-----------TESTING ONLY -------------//
-  //Search.set_terms("transit");
+  //Search.set_terms("clinic agenda");
   //-------------------------------------//
 
   // Search.full_text()
@@ -133,18 +133,24 @@ angular.module( 'sunshine.search', ['ui.router'])
   // });
 
  this.submitMainSearch = function(){
+  console.log("submitMainSearch");
+  self.dept_sel = [];
+  self.division_sel = [];
+  self.category_sel = [];
+  self.retention_sel = [];
+
    Search.set_terms (self.terms);
    Search.full_text()
    .success(function(data, status){
      self.results = data.hits.hits;
      self.aggs = data.aggregations;
-     self.suggest = data.suggest;
+     self.suggest = Search.suggest_string(data.suggest);
      self.count = data.hits.total;
-console.log(self.suggest);
    })
    .error(function(err, status){
    });
 
  };
 })
+
 ;
