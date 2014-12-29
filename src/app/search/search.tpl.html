@@ -17,7 +17,7 @@
 <!-------------------- Search Filters -------------------->
   <cc-menu cc-placement="left" cc-start-open="true" cc-width="300px" class="grey-background">
     <form name="mainSearch" ng-submit="searchCtrl.submitMainSearch(searchCtrl.terms)" novalidate>
-      <div class="search-box-sml px3">
+      <div class="search-box-sml mb1 mt2 px3">
         <input required name="search" ng-model="searchCtrl.terms" type="text" size="50" maxlength="75" placeholder=" search ..."/>
         <button class="button yellow-gold-fade" ng-disabled="Search.$invalid">
           <i class="fa fa-search"></i>
@@ -25,16 +25,17 @@
         <a class="blue-background white-text" cc-button >Refine</a>
       -->
       </div>
+      <div class="center small mb2 blue-text" ng-if="searchCtrl.suggest">
+        Did you mean: <a href="" class="underline"
+                          ng-click="searchCtrl.terms = searchCtrl.suggest;
+                                    searchCtrl.submitMainSearch(searchCtrl.terms)" >
+                        {{searchCtrl.suggest}}
+                      </a>
+      </div>
       <div class="center" ng-if="searchCtrl.count > 0">
         Number of matches: {{searchCtrl.count}}
         <hr class="grey-border">
       </div>
-      <div class="center">
-        Did you mean: {{searchCtrl.suggest.general[0].options[0].text}}
-        <hr class="grey-border">
-      </div>
-
-
     </form>
 
     <form ng-if="searchCtrl.count > 0" name="refineSearch" ng-submit="searchCtrl.submitRefineSearch(searchCtrl.terms)" novalidate>
@@ -172,8 +173,8 @@
       </div>
 
       <div ng-if="searchCtrl.count == 0" class="py5 half-width horizontal-center">No results were found ...
-        To see some examples of the kind of information held in the Index of Records,
-        return to the <a ui-sref="home">home</a> page and click on one of the agencies.
+        Please check your spelling or return to the <a ui-sref="home">home</a> page and click on one of the agencies.
+        This can help you get an idea of the types of records that are in the Index.
       </div>
   </cc-content>
 </div>
