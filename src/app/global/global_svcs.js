@@ -63,7 +63,7 @@ angular.module( 'sunshine.global_svcs', [])
   };
 
   this.clear_filters = function(){
-    search_fitlers = {};
+    search_filters = {};
   };
 
   this.get_filters = function(){

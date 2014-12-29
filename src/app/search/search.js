@@ -133,6 +133,12 @@ angular.module( 'sunshine.search', ['ui.router'])
   // });
 
  this.submitMainSearch = function(){
+  console.log("submitMainSearch");
+  self.dept_sel = [];
+  self.division_sel = [];
+  self.category_sel = [];
+  self.retention_sel = [];
+
    Search.set_terms (self.terms);
    Search.full_text()
    .success(function(data, status){

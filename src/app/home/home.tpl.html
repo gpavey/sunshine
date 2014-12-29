@@ -38,7 +38,7 @@
       <div ng-controller="FormCtrl as ctrl">
         <div class="col col-12">
           <form name="homeSearch" ng-submit="submitSearch(ctrl.terms)" novalidate class="search-box">
-            <input required name="search" ng-model="ctrl.terms" type="text" size="55" maxlength="75"
+            <input required name="search" autofocus ng-model="ctrl.terms" type="text" size="55" maxlength="75"
                   style="margin-left:10px;border-radius: 6px;" class="grey-border-dk grey-background"
                   placeholder=" search ..."/>
             <button class="button yellow-gold-fade" ng-disabled="homeSearch.$invalid"><img src="assets/search-icon-home.png"></button>

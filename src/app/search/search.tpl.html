@@ -18,7 +18,7 @@
   <cc-menu cc-placement="left" cc-start-open="true" cc-width="300px" class="grey-background">
     <form name="mainSearch" ng-submit="searchCtrl.submitMainSearch(searchCtrl.terms)" novalidate>
       <div class="search-box-sml mb1 mt2 px3">
-        <input required name="search" ng-model="searchCtrl.terms" type="text" size="50" maxlength="75" placeholder=" search ..."/>
+        <input required name="search" autofocus ng-model="searchCtrl.terms" type="text" size="50" maxlength="75" placeholder=" search ..."/>
         <button class="button yellow-gold-fade" ng-disabled="Search.$invalid">
           <i class="fa fa-search"></i>
         <!-- This about where to put this link
@@ -26,11 +26,11 @@
       -->
       </div>
       <div class="center small mb2 blue-text" ng-if="searchCtrl.suggest">
-        Did you mean: <a href="" class="underline"
+        Did you mean : <a href="" class="underline"
                           ng-click="searchCtrl.terms = searchCtrl.suggest;
                                     searchCtrl.submitMainSearch(searchCtrl.terms)" >
                         {{searchCtrl.suggest}}
-                      </a>
+                      </a> ?
       </div>
       <div class="center" ng-if="searchCtrl.count > 0">
         Number of matches: {{searchCtrl.count}}
