@@ -107,6 +107,11 @@
           <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'total'; reverse=!reverse"></i>
         </th>
       </tr>
+      <tr>
+        <th  class="right-align" colspan="8">
+          <a class="px1 regular" ui-sref="agency_list({schedule_id:'{{agencyCtrl.schedule_id}}'})">list view</a>
+        </th>
+      </tr>
   </thead>
   <tbody>
     <tr ng-repeat="record in agencyCtrl.records | orderBy:predicate:reverse
@@ -119,7 +124,7 @@
                                                             off_site: agencyCtrl.off_site_fltr,
                                                             total: agencyCtrl.total_fltr}"
         ng-class-odd="'grey-background'" ng-class="'grey-border'">
-      <td class="p1 grey-border" >{{record.category}}</td>{{agency.cat}}
+      <td class="p1 grey-border" >{{record.category}}</td>{{agency.cat}}<!-- what is this -->
       <td class="p1 grey-border" >{{record.title}}</td>
       <td class="p1 grey-border" >{{record.division}}</td>
       <td class="p1 grey-border" >{{record.remarks}}</td>

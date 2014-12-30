@@ -50,6 +50,9 @@
 .blue-background-md{background: #B2DAF8;}
 .grey-text {color: #adadad;}
 .grey-border{border:1px solid #d7d7d7}
+.grey-border-right{border-right:1px solid #d7d7d7}
+.grey-border-left{border-left:1px solid #d7d7d7}
+.grey-border-bottom{border-bottom:1px solid #d7d7d7}
 .grey-background {background: #f2f2f2;}
 .yellow-gold-fade {
   background: #fecb03; /* Old browsers */
@@ -151,6 +154,10 @@ html,body{
 html {font-size: 95%;}
 body {font-size: 1.4rem;}
 h1   {font-size: 2.4rem;}
+
+.collapse{
+  border-collapse: collapse
+}
 
 small{
   font-size:80%;
@@ -557,6 +564,9 @@ h6,
 .p2-bottom{
   padding-bottom:1em;
 }
+.p2-top{
+  padding-top:1em;
+}
 .py2 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -663,11 +673,6 @@ h6,
 .w110{
   width:110px
 }
-@media (min-width: 64em) {
-  .lg-hide {
-    display: none !important;
-  }
-}
 
 .display-none {
   display: none !important;
@@ -710,6 +715,28 @@ h6,
   column-span: all;
 }
 
+@media (min-width: 64em) {
+  .lg-hide {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width:479px){
+  footer .col-sm-1:first-child,
+  footer .col-xs-6:nth-child(2) {
+    width: 100%!important;
+    text-align: center;
+    padding-left: 0!important;
+  }
+}
+
+@media only screen and (max-width:980px){
+    .sm-left{float:left;}
+}
+
+@media only screen and (max-width:980px){
+  .sm-clear:{clear:both;}
+}
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using.

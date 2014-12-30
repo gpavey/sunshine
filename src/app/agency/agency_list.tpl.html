@@ -1,0 +1,90 @@
+<header class=" relative cover overflow-hidden white-text search-banner" data-ui-component="header-area">
+  <div class="container-fluid">
+
+    <div>
+      <div class="col-12 left mt4 ml4 mb4">
+        <a ui-sref="home"><img src="assets/logo-main.png"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div ng-controller="AgencyCtrl as agencyCtrl" class="m2 px4">
+  <div class="mb2">
+    <a ui-sref="home">Home</a>
+  </div>
+
+  <div class="full-width absolute-center p2-bottom">You can access any of the following records.
+    When possible, a link is included. If there is no link, please contact the agency directly
+    using the information provided in the header below. If a division contact is given for a record, it is the preferred way to
+     request access.</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th colspan="8" class="blue-background-md grey-border p2-bottom p2-right p2-left">
+
+            <div class="left">
+              <H1 class="bold p1-right">{{agencyCtrl.adopted.department}}</H1>
+              <a class="lh05" href="http://{{agencyCtrl.adopted.website}}" target="_blank">{{agencyCtrl.adopted.website}}</a>
+            </div>
+            <div class="right sm-left">
+              <H4 class="bold" >Department Contact:</H4>
+              <div class="regular">{{agencyCtrl.adopted.contact}}</div>
+              <a href="mailto:{{agencyCtrl.adopted.email}}" class="regular">{{agencyCtrl.adopted.email}}</a>
+              <div class="regular">{{agencyCtrl.adopted.phone}}</div>
+            </div>
+
+        </th>
+      </tr>
+    </thead>
+  </table>
+  <div class="right px1">
+      <a ui-sref="agency({schedule_id:'{{agencyCtrl.schedule_id}}'})">table view </a>
+  </div>
+  <div ng-repeat="record in agencyCtrl.records" class="grey-border-bottom grey-border-right grey-border-left ">
+    <h1 class="blue-text ml2 mr2 mt0 p2-top">{{record.title}}</h1>
+    <table class="ml2 mr2">
+      <tr class="lh20">
+        <td ng-if="record.category" class="bold vertical-align-top w110">Category:</td>
+        <td>{{record.category}}</td>
+      </tr>
+      <tr class="lh20">
+        <td ng-if="record.division" class="bold vertical-align-top">Division: </td>
+        <td>{{record.division}}</td>
+      </tr>
+      <tr class="lh20">
+        <td ng-if="record.division_contact" class="bold vertical-align-top">Division Contact: </td>
+        <td>{{record.division_contact}}</td>
+      </tr>
+      </tr>
+     <tr class="lh20">
+        <td ng-if="record.remarks" class="bold vertical-align-top">Remarks: </td>
+        <td>{{record.remarks}}</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="py2">
+          <small>
+                      <span ng-if="record.retention">
+                        <span class="bold p1-right">retention type: </span>
+                        <span class="p2-right">{{record.retention}}</span>
+                      </span>
+                      <span ng-if="record.on_site">
+                        <span class="bold p1-right">retained on-site: </span>
+                        <span class="p2-right">{{record.on_site}}</span>
+                      </span>
+                      <span ng-if="record.off_site">
+                        <span class="bold p1-right">retained off-site: </span>
+                        <span class="p2-right">{{record.off_site}}</span>
+                      </span>
+                      <span ng-if="record.total">
+                        <span class="bold p1-right">total time retained: </span>
+                        <span class="p2-right">{{record.total}}</span>
+                      </span>
+            </small>
+        </td>
+      </tr>
+    </table>
+  </div>
+</br>
+</div>
