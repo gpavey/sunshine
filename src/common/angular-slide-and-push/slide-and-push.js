@@ -13,8 +13,7 @@ angular.module('cc.slide.menu', [])
       menu.addClass('cc-menu-open');
       switch (placement) {
         case "left":
-          content.css('margin-left', current_size + "px")
-          console.log('left');
+         content.css('margin-left', current_size + "px")
           break;
         // case "right":
         //   content.css('margin-right', current_size + "px")
@@ -31,7 +30,7 @@ angular.module('cc.slide.menu', [])
       menu.removeClass('cc-menu-open');
       menu.addClass('cc-menu-close');
 
-      content.css('margin', '0px');
+      //content.css('margin', '0px');
 
     }
   }
@@ -39,18 +38,28 @@ angular.module('cc.slide.menu', [])
   return{
     toggle: function(){
         var menu = angular.element(document.querySelector('.cc-menu'));
-        var content = angular.element(document.querySelector('.cc-content'));
+        //var content = angular.element(document.querySelector('.cc-content'));
+
+        if(menu.hasClass('cc-media-start-closed')){
+          menu.removeClass('cc-media-start-closed');
+          menu.addClass('cc-menu-close');
+          menu.addClass('cc-menu-open');
+        }
 
         if(menu.hasClass('cc-menu-close')){
           menu.removeClass('cc-menu-close');
           menu.addClass('cc-menu-open');
-          content.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
+        // content.css('width', 'calc(100% - ' + ccMenuSvc.getWidth() + ')');
+
         }else{
           menu.removeClass('cc-menu-open');
           menu.addClass('cc-menu-close');
-          content.css('width', '100%');
+        //   content.css('width', '100%');
+
         }
     },
+    buttonHide: function(elem){elem.addClass('cc-button-hide'); elem.removeClass('cc-button-show');},
+    buttonShow:function(elem){elem.addClass('cc-button-show'); elem.removeClass('cc-button-hide');},
     containerClose: function(e, win_width, win_height){
       var placement = ccMenuSvc.getPlacement();
       var current_size = ccMenuSvc.getCurrentSize();
@@ -84,12 +93,24 @@ angular.module('cc.slide.menu', [])
     }
   }
 }])
+
+.factory('ccContentSvc', function(){
+  return{
+    pushContent: function(elem, currSize){
+      var w  = currSize + 10 //account for left padding in stylesheet
+      elem.css('width', 'calc(100% - ' + w + 'px)');
+
+    },
+    fullContent: function(elem){
+      elem.css('width', '100%');
+    }
+  }
+})
 .factory('ccMenuSvc', function(){
   // ---------------- DEFAULTS --------------//
   var width = '320px';
   var height = '150px';
   var placement = 'left';
-  var start_open = false;
   var current_size = '';
 
   return {
@@ -109,55 +130,66 @@ angular.module('cc.slide.menu', [])
                 },
     getPlacement: function(){return placement;},
     setPlacement: function(val){if(typeof val !== 'undefined') placement = val.toLowerCase()},
-    getStartOpen: function(){return start_open;},
-    setStartOpen: function(val){if(val == 'true'){start_open = true}else{start_open = false}},
-    getCurrentSize: function(){return current_size;}
+    getCurrentSize: function(){return current_size;},
+    closeMenu: function(elem){ elem.addClass('cc-menu-close'); elem.removeClass('cc-menu-open');},
+    openMenu: function(elem){elem.addClass('cc-menu.close'); elem.removeClass('cc-menu-close');}
   }
 })
-.directive('ccContent', ['ccMenuSvc', function (ccMenuSvc) {
+.directive('ccContent', ['ccMenuSvc', 'ccContentSvc', '$window', 'Debounce', function (ccMenuSvc, ccContentSvc, $window, Debounce) {
   return {
     restrict: 'E',
     scope: true,
     link: function (scope, elem, attrs) {
       elem.addClass('cc-content');
 
-      if(ccMenuSvc.getStartOpen()){
-          var w  = ccMenuSvc.getCurrentSize() + 10 //account for left padding in stylesheet
-        elem.css('width', 'calc(100% - ' + w + 'px)');
+      if($window.innerWidth > 690){
+          ccContentSvc.pushContent(elem, ccMenuSvc.getCurrentSize());
       }else{
-        elem.css('width', '100%');
+          ccContentSvc.fullContent(elem);
       }
 
+      //for responsiveness
+      angular.element($window).bind('resize', Debounce.debounce(function() {
+        // must apply since the browser resize event is not seen by the digest process
+        scope.$apply(function() {
+          if($window.innerWidth > 690){
+            ccContentSvc.pushContent(elem, ccMenuSvc.getCurrentSize());
+          }else{
+            ccContentSvc.fullContent(elem);
+          }
+        });
+      }, 50));
     }
   }
 }])
-.directive('ccMenu', ['ccMenuSvc', 'ccButtonSvc', function (ccMenuSvc, ccButtonSvc) {
+.directive('ccMenu', ['ccMenuSvc', 'ccButtonSvc', '$window', 'Debounce', function (ccMenuSvc, ccButtonSvc, $window, Debounce) {
   return {
     restrict: 'E',
     scope: {
       ccWidth: '@',
       ccHeight:'@',
-      ccPlacement: '@',
-      ccStartOpen: '@'
+      ccPlacement: '@'
       },
       link: function (scope, elem, attrs) {
 
         ccMenuSvc.setWidth(scope.ccWidth);
         ccMenuSvc.setHeight(scope.ccHeight);
         ccMenuSvc.setPlacement(scope.ccPlacement);
-        ccMenuSvc.setStartOpen(scope.ccStartOpen);
 
-        // menu starting position [open || close]
-        if(ccMenuSvc.getStartOpen()){
-          elem.addClass('cc-menu cc-menu-open');
+        elem.addClass('cc-menu');
+
+        if($window.innerWidth > 690){
+         elem.removeClass('cc-menu-mobile');
+          ccMenuSvc.openMenu(elem);
         }else{
-          elem.addClass('cc-menu cc-menu-close');
+          elem.addClass('cc-menu-mobile');
+          ccMenuSvc.closeMenu(elem);
         }
 
         //menu placement
         switch ( ccMenuSvc.getPlacement()) {
-          case "left":
-            elem.addClass('cc-menu-vertical cc-menu-left');
+          case "right":
+            elem.addClass('cc-menu-vertical cc-menu-right');
             elem.css('width', ccMenuSvc.getWidth());
             break;
           // case "right":
@@ -174,10 +206,26 @@ angular.module('cc.slide.menu', [])
           //   elem.css('width', ccMenuSvc.getWidth());
           //   break;
         }
+
+          //for responsiveness
+          angular.element($window).bind('resize', Debounce.debounce(function() {
+            // must apply since the browser resize event is not seen by the digest process
+            scope.$apply(function() {
+              if($window.innerWidth > 690){
+                elem.removeClass('cc-menu-mobile');
+                ccMenuSvc.openMenu(elem);
+              }else{
+                elem.addClass('cc-menu-mobile');
+                ccMenuSvc.closeMenu(elem);
+              }
+
+            });
+          }, 50));
        }
      }
   }])
-  .directive('ccButton', ['ccButtonSvc', 'ccMenuSvc', '$window', function (ccButtonSvc, ccMenuSvc, $window) {
+  .directive('ccButton', ['ccButtonSvc', 'ccMenuSvc', '$window', 'Debounce',
+        function (ccButtonSvc, ccMenuSvc, $window, Debounce) {
     return {
       restrict : 'AE',
       scope: true,
@@ -190,8 +238,65 @@ angular.module('cc.slide.menu', [])
         body = angular.element(document.querySelectorAll('body'));
         var win_width = $window.innerWidth;
         var win_height = $window.innerHeight;
-      //  body.bind('click', function(e){ccButtonSvc.containerClose(e, win_width, win_height)});
+
+        if(win_width > 690){
+          ccButtonSvc.buttonHide(elem);
+        }else{
+          ccButtonSvc.buttonShow(elem);
+        }
+
+        //for responsiveness
+        angular.element($window).bind('resize', Debounce.debounce(function() {
+          // must apply since the browser resize event is not seen by the digest process
+          scope.$apply(function() {
+              if($window.innerWidth > 690){
+                ccButtonSvc.buttonHide(elem);
+              }else{
+                ccButtonSvc.buttonShow(elem);
+              }
+
+          });
+        }, 50));
+
       }
     };
   }])
+  .service('Debounce', function() {
+    var self = this;
+
+    // debounce() method is slightly modified version of:
+    // Underscore.js 1.4.4
+    // http://underscorejs.org
+    // (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
+    // Underscore may be freely distributed under the MIT license.
+    self.debounce = function(func, wait, immediate) {
+      var timeout,
+      result;
+
+      return function() {
+        var context = this,
+        args = arguments,
+        callNow = immediate && !timeout;
+
+        var later = function() {
+          timeout = null;
+
+          if (!immediate) {
+            result = func.apply(context, args);
+          }
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+
+        if (callNow) {
+          result = func.apply(context, args);
+        }
+
+        return result;
+      };
+    };
+
+    return self;
+  })
 ;

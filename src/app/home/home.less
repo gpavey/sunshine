@@ -176,9 +176,6 @@ footer a:hover {
   header {
     height: 320px !important;
   }
-  .head-text {
-    padding: 0 2.5rem;
-  }
   /* ====== [ Search ] ====== */
   [data-ui-component="search-area"] .row,
   [data-ui-component="choose-by-agency-area"] .row {
@@ -209,4 +206,18 @@ footer a:hover {
     font-size:1em;
   }
 
+}
+@media only screen and (max-width:479px){
+  footer .col-sm-1:first-child,
+  footer .col-xs-6:nth-child(2) {
+    width: 100%!important;
+    text-align: center;
+    padding-left: 0!important;
+  }
+}
+
+@media only screen and (max-width:1200px){
+.head-text {
+  padding: 2em 0.5rem;
+  }
 }

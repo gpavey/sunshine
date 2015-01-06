@@ -9,6 +9,9 @@ angular.module( 'sunshine.search', ['ui.router'])
 .config(function config( $stateProvider ) {
     $stateProvider.state( 'search', {
         url: '/search',
+        ncyBreadcrumb: {
+          label: 'Search'
+        },
         views: {
             "main": {
                 controller: 'SearchCtrl',
@@ -120,7 +123,7 @@ angular.module( 'sunshine.search', ['ui.router'])
     }
   );
   //-----------TESTING ONLY -------------//
-  //Search.set_terms("clinic agenda");
+  //Search.set_terms("bench");
   //-------------------------------------//
 
   // Search.full_text()

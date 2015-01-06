@@ -10,6 +10,7 @@
  */
 
 @import '../../vendor/bootstrap/less/bootstrap.less';
+@import '../../vendor/angular-busy/dist/angular-busy.less';
 
 /**
  * This is our main variables file. We must include it last so we can overwrite any variable
@@ -79,11 +80,24 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09aee6', endColorstr='#0a8bea',GradientType=0 ); /* IE6-8 */
 }
 
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .cover {
 
   background-size: cover;
 }
 
+.round-corners{
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px; /* future proofing */
+  -khtml-border-radius: 6px; /* for old Konqueror browsers */
+
+}
 .top-4 {top:4rem;}
 .right-4 {right:4rem;}
 .px10 {
@@ -634,6 +648,10 @@ h6,
   padding-bottom: 5rem;
 }
 
+.p5-bottom{
+  padding-bottom: 5em;
+}
+
 .px5 {
   padding-left: 5rem;
   padding-right: 5rem;
@@ -690,6 +708,9 @@ h6,
     Basscss Positions
 */
 
+.max-height-30{
+  max-height: 30px;
+}
 .relative {position: relative;}
 .absolute {position: absolute;}
 .fixed {position: fixed;}
@@ -721,6 +742,41 @@ h6,
   }
 }
 
+@media only screen and (min-width: 651px) {
+  .md-hide {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 1420px) {
+  .sm-hide {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width:980px){
+    .sm-left{
+            float:left;
+            width:100%;
+            }
+
+}
+
+@media only screen and (max-width:620px){
+  .sm-full-width{
+    padding-right: 0.30em;
+    padding-left: 0.30em;
+    margin-right: 0em;
+    margin-left: 0em;
+    width:100%;
+  }
+
+  .sm-no-pad{
+    padding-right: 0em;
+    padding-left: 0em;
+  }
+}
+
 @media only screen and (max-width:479px){
   footer .col-sm-1:first-child,
   footer .col-xs-6:nth-child(2) {
@@ -730,13 +786,8 @@ h6,
   }
 }
 
-@media only screen and (max-width:980px){
-    .sm-left{float:left;}
-}
 
-@media only screen and (max-width:980px){
-  .sm-clear:{clear:both;}
-}
+
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using.
