@@ -9,11 +9,15 @@
   </div>
 </header>
 
-<div ng-controller="AgencyCtrl as agencyCtrl" class="m2">
-  <div class="mb2">
-    <a ui-sref="home">Home</a>
-  </div>
-  <table class="noborder-top grey-border">
+<div class="white-background" ncy-breadcrumb></div>
+
+<div ng-controller="AgencyCtrl as agencyCtrl" class="m2" style="min-height:400px">
+
+  <div class="relative center"
+  cg-busy="{promise:agencyCtrl.agency_promise,templateUrl:'loading_msg.html',delay:30}">
+</div>
+
+  <table ng-if="agencyCtrl.adopted.department" class="noborder-top grey-border">
     <thead>
       <tr>
         <th colspan="8" class="blue-background-md grey-border p2-bottom p2-right p2-left">

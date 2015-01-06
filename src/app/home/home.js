@@ -8,6 +8,9 @@ angular.module( 'sunshine.home', ['ui.router'])
 .config(function config( $stateProvider ) {
     $stateProvider.state( 'home', {
         url: '/home',
+        ncyBreadcrumb: {
+          label: 'Home'
+        },
         views: {
             "main": {
                 controller: 'HomeCtrl',
@@ -19,8 +22,9 @@ angular.module( 'sunshine.home', ['ui.router'])
 })
 
 .controller('HomeCtrl', function HomeController( $scope, DepartmentList ) {
+    var self = this;
     DepartmentList.get_adopted().then(function (data){
-        $scope.dept_list =  data;
+        self.dept_list =  data;
     });
 })
 

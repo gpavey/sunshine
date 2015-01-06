@@ -72,7 +72,9 @@ module.exports = {
       'vendor/angular-animate/angular-animate.js',
       'vendor/slide.and.push/scripts/slide.and.push.js',
       'vendor/angular-sanitize/angular-sanitize.js',
-      'vendor/checklist-model/checklist-model.js'
+      'vendor/checklist-model/checklist-model.js',
+      'vendor/angular-busy/dist/angular-busy.js',
+      'vendor/angular-breadcrumb/dist/angular-breadcrumb.js'
       //'vendor/jquery/dist/jquery.min.js', // required by slide.and.push
 
     ],

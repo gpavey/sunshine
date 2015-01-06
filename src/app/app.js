@@ -24,9 +24,18 @@ var app = angular
   'cc.slide.menu',
   'paper.input',
   'checklist-model',
-  'ngSanitize'
+  'ngSanitize',
+  'angular-ellipsis',
+  'cgBusy',
+  'ncy-angular-breadcrumb'
 ])
 
+.config(function($breadcrumbProvider) {
+  $breadcrumbProvider.setOptions({
+    prefixStateName: 'home',
+    template: 'bootstrap3'
+  });
+})
 .config(function ($httpProvider) {
   $httpProvider.responseInterceptors.push('HttpInterceptor');
 
@@ -35,6 +44,7 @@ var app = angular
      search_button.removeClass('fa-search');
      search_button.addClass('fa-spinner');
      search_button.addClass('fa-spin');
+
     return data;
   };
 

@@ -11,11 +11,9 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 px20 py3 mx-auto head-text">
+      <div class="col-12 px20 mx-auto head-text p6-bottom p4-top">
         <h3 >Welcome to the City and County of San Francisco's Index of Public Records.  The Index is made available to assist the public with access to City records. This is in accordance with the Sunshine Ordinance.</h2>
       </div>
-    </div>
 
   </div>
 
@@ -30,7 +28,7 @@
     <div class="row">
       <div class="col col-12">
         <h1 class="blue-text center">Search for a Record</h1>
-        <h2 class="grey-text center">Use agency names, record titles, keyworks</h2>
+        <h2 class="grey-text center">Use agency names, record titles, keywords</h2>
       </div>
     </div>
 
@@ -40,7 +38,7 @@
           <form name="homeSearch" ng-submit="submitSearch(ctrl.terms)" novalidate class="search-box">
             <input required name="search" autofocus ng-model="ctrl.terms" type="text" size="55" maxlength="75"
                   style="margin-left:10px;border-radius: 6px;" class="grey-border-dk grey-background"
-                  placeholder=" search ..."/>
+                  placeholder=" search ..." autocomplete="off"/>
             <button class="button yellow-gold-fade" ng-disabled="homeSearch.$invalid"><img src="assets/search-icon-home.png"></button>
           </form>
         </div>
@@ -52,20 +50,21 @@
 
 
 <section data-ui-component="choose-by-agency-area">
-  <div class="container-fluid grey-background" ng-controller="HomeCtrl">
+  <div class="container-fluid grey-background" ng-controller="HomeCtrl as homeCtrl">
     <div class ="absolute-center">
       <div class="or-circle relative">or</div>
     </div>
-    <div class="row py3">
+    <div class="row py2">
       <div class="col col-12">
         <h1 class="blue-text center">Find records based on an agency</h1>
-        <h2 class="grey-text center">Use the links below to access records belonging to a specific agency</h2>
+        <h2 class="grey-text center ml1 mr1">Use the links below to access records belonging to a specific agency</h2>
       </div>
     </div>
-
-    <div class="row mb6">
-      <div ng-repeat="item in dept_list" class="col-xs-4 pad10 center">
-        <a ui-sref="agency_list({schedule_id:'{{item._id}}'})" class="lh25">{{item.adopted.department}}</a>
+    <div class="row mb6 ml3">
+      <div ng-repeat="item in homeCtrl.dept_list" class="col-xs-6  col-sm-4 col-md-3 p2-bottom">
+        <a class="block max-height-30 mt1 mb1"
+            data-ellipsis ui-sref="agency_list({schedule_id:'{{item._id}}'})"
+            data-ng-bind="item.adopted.department" ></a>
       </div>
     </div>
 
