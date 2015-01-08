@@ -94,7 +94,7 @@ var app = angular
 })
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GetDepartment, Departments ) {
 
-    $rootScope.API_URL = 'http://localhost:1971';
+    $rootScope.API_URL = 'http://10.250.60.109:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){

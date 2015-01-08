@@ -1,21 +1,6 @@
-/**
- * This is the main application stylesheet. It should include or import all
- * stylesheets used throughout the application as this is the only stylesheet in
- * the Grunt configuration that is automatically processed.
- */
-
-/**
- * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
- * project should be imported as the rest are just wasting space.
- */
 
 @import '../../vendor/bootstrap/less/bootstrap.less';
 @import '../../vendor/angular-busy/dist/angular-busy.less';
-
-/**
- * This is our main variables file. We must include it last so we can overwrite any variable
- * definitions in our imported stylesheets.
- */
 
 @import 'variables.less';
 @import 'fonts/font-awesome-4.2.0/css/font-awesome.css';
@@ -26,9 +11,6 @@
 @import '../common/paper-input/paper-input.less';
 @import '../common/paper-input/paper-input.less';
 
-/**
- * Global
- */
 
  /* ====== [ Colors ] ====== */
 .white-text {color: white;}
@@ -44,9 +26,7 @@
   border-left: none;
   border-top: none;
 }
-.shadow{
-  text-shadow: 1px 1px #f2f2f2;
-}
+
 .blue-background-lt {background: #fefefe;}
 .blue-background-md{background: #B2DAF8;}
 .grey-text {color: #adadad;}
@@ -80,107 +60,6 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09aee6', endColorstr='#0a8bea',GradientType=0 ); /* IE6-8 */
 }
 
-.vertical-center {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.cover {
-
-  background-size: cover;
-}
-
-.round-corners{
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px; /* future proofing */
-  -khtml-border-radius: 6px; /* for old Konqueror browsers */
-
-}
-.top-4 {top:4rem;}
-.right-4 {right:4rem;}
-.px10 {
-  padding-left: 10rem;
-  padding-right: 10rem;
-}
-
-.btn {border:none;}
-
- .card {
-   background: #fefefe;
-   -webkit-transition: all 250ms;
-   -moz-transition: all 250ms;
-   transition: all 250ms;
-   .BoxShadowHelper(3);
- }
-
-.card-dynamic {
-  background: #fefefe;
-  -webkit-transition: all 250ms;
-  -moz-transition: all 250ms;
-  transition: all 250ms;
-  .BoxShadowHelper(1);
-  &:hover {
-    .BoxShadowHelper(3);
-     -webkit-transform: translateY(-5px);
-     -moz-transform: translateY(-5px);
-    transform: translateY(-5px);
-    }
-}
-
-.BoxShadowHelper(@level: 1){
-  & when (@level = 1) {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  }
-  & when (@level = 2) {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  }
-  & when (@level = 3) {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  }
-  & when (@level = 4) {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
-  & when (@level = 5) {
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-  }
-}
-
-li label {
-  display:inline-block;
-  max-width:80%;
-  vertical-align:top;
-}
-
-.vertical-align-top{
-  vertical-align: top;
-}
-
-
-input:focus{outline:none;}
-button:focus{outline:none;}
-html,body{
-  max-width: 1440px;
-  margin:0 auto;
-  padding:0px;
-}
-html {font-size: 95%;}
-body {font-size: 1.4rem;}
-h1   {font-size: 2.4rem;}
-
-.collapse{
-  border-collapse: collapse
-}
-
-small{
-  font-size:80%;
-}
-
-hr{
-  border-top:2px solid #eeeeee;
-}
-
 /**
  * Typography
  */
@@ -204,6 +83,46 @@ hr{
   font-style: normal;
   font-weight: 500;
   src: local('Raleway'), local('Raleway-Medium'), url('fonts/Raleway/Raleway-Medium.ttf') format('truetype');
+}
+
+/* ====== [ BASS ] ====== */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+tr th {
+  border-right: 1px solid #eee;
+}
+
+hr{
+  border-top:2px solid #eeeeee;
+}
+
+th i {
+  margin-right: 3px;
+}
+
+li label {
+  display:inline-block;
+  max-width:80%;
+  vertical-align:top;
+}
+
+html,body{
+  margin:0 auto;
+  padding:0px;
+}
+html {font-size: 95%;}
+body {font-size: 1.4rem;}
+h1   {font-size: 2.4rem;}
+
+.collapse{
+  border-collapse: collapse
+}
+
+small{
+  font-size:80%;
 }
 
 body,
@@ -430,6 +349,25 @@ h6,
   display: table;
 }
 
+.vertical-align-top{
+  vertical-align: top;
+}
+
+input:focus{outline:none;}
+
+:invalid {
+  box-shadow: none;
+}
+
+:-moz-submit-invalid {
+  box-shadow: none;
+}
+
+:-moz-ui-invalid {
+  box-shadow:none;
+}
+
+button:focus{outline:none;}
 /*
     Basscss Utilities
 */
@@ -674,6 +612,16 @@ h6,
   padding-left: 6rem;
   padding-right: 6rem;
 }
+.px10 {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.px20 {
+  padding-left: 20rem;
+  padding-right: 20rem;
+}
+
 .w40{
   width:40px
 }
@@ -736,6 +684,208 @@ h6,
   column-span: all;
 }
 
+/* ====== [ Header ] ====== */
+header{
+  background: url("header-image.jpg");
+  min-height: 100%;
+  min-width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.admin-btn {
+  position: absolute;
+  top:4rem;
+  right:4rem;
+}
+.logo{
+  margin-top: 4rem;
+  margin-left: 4rem;
+}
+
+
+/* ====== [ Search ] ====== */
+.search-box {
+  width: 600px;
+  height: 65px;
+  margin:50px auto;
+}
+.search-box button {
+  position: relative;
+  left:-5px;
+  top:-2px;
+  margin-top: 0px;
+  height:65px;
+  width: 100px;
+  border:none;
+  font-size:1.5em;
+}
+.search-box input {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  border-radius: 0px !important;
+  border:1px solid #dfa21e;
+  font-size:1.5em;
+
+}
+.search-box img {height: 100%;}
+.or-circle {
+  border-radius: 50px;
+  border: 2px solid #f2f2f2;
+  background: #fefefe;
+  height:50px;
+  width: 50px;
+  color: #adadad;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  top:-25px;
+}
+
+/* ====== [ Footer ] ====== */
+footer a,
+footer h3,
+footer li,
+footer a:hover {
+  color:white;
+}
+.col-sm-1 {padding-left: 0;}
+
+@media only screen and (max-width:759px){
+  /*====== [ FOOTER ] ====== */
+  footer {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+  }
+  footer .col-sm-1:first-child {
+    text-align: center;
+    padding-top: 8%;
+  }
+  footer .container-fluid > .row{
+    padding-left: 2rem;
+  }
+}
+
+/* ====== [ Console Nav ] ====== */
+.headerBar{
+  background-color: black;
+  color:white;
+}
+
+.navBar{
+  background-color: #68B9E8;
+  color:white;
+}
+
+.linkPading{
+  padding-right: 20px;
+}
+
+.navBarSelect{
+  margin-right: 20px;
+  color: black;
+}
+
+/* ====== [ Search ] ====== */
+.search-box-sml {
+  width: 349px;
+  height: 30px;
+}
+
+.search-box-sml button {
+  position: relative;
+  left:-5px;
+  top: 4px;
+  height:30px;
+  width: 50px;
+  border:none;
+  font-size:1em;
+}
+
+.search-box-sml input {
+  position: relative;
+  width: 65%;
+  height: 100%;
+  border-radius: 0px !important;
+  border:1px solid #dfa21e;
+  font-size:1em;
+}
+
+.search-box-sml i {
+  font-size:1.75em;
+  color:#6f4d04;
+}
+
+.search-banner{
+  max-height:255px;
+}
+.search-header{
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
+  width:100%;
+}
+
+/* ====== [ Media Queries ] ====== */
+
+@media only screen and (max-width:600px){
+  .admin-btn {
+    display: none;
+  }
+  header h2 {
+    font-size: 1.2rem;
+  }
+  span[class=switcher] {
+    display:block;
+    background-image: url(logo-main-small.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 166px !important;
+    height: 70px !important;
+  }
+  img[class=houdini] {
+    display: none !important;
+  }
+  .logo {
+    margin-top: 2rem;
+    margin-left: 2.5rem;
+  }
+  header {
+    height: 320px !important;
+  }
+  [data-ui-component="search-area"] .row,
+  [data-ui-component="choose-by-agency-area"] .row {
+    margin:0;
+  }
+  [data-ui-component="choose-by-agency-area"] .row {
+    position: relative;
+    top:-15px;
+    padding: 0px 15px 15px;
+  }
+
+  [data-ui-component="search-area"] .row:last-child {
+    margin-bottom: 30px;
+  }
+  .search-box {
+    width: 320px;
+    height: 30px;
+    margin:20px auto;
+  }
+  .search-box button {
+    height:30px;
+    width: 50px;
+    font-size:1em;
+  }
+  .search-box input {
+    width: 80%;
+    height: 100%;
+    font-size:1em;
+  }
+
+}
+
 @media (min-width: 64em) {
   .lg-hide {
     display: none !important;
@@ -759,7 +909,6 @@ h6,
             float:left;
             width:100%;
             }
-
 }
 
 @media only screen and (max-width:620px){
@@ -786,16 +935,83 @@ h6,
   }
 }
 
+@media only screen and (max-width:1200px){
+  .head-text {
+    padding: 2em 0.5rem;
+  }
+}
 
+/* ====== [ MISC ] ====== */
+.shadow{
+  text-shadow: 1px 1px #f2f2f2;
+}
 
-/**
- * Now that all app-wide styles have been applied, we can load the styles for
- * all the submodules and components we are using.
- *
- * TODO: In a later version of this boilerplate, I'd like to automate this.
- */
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-@import '../app/home/home.less';
-@import '../app/console/console.less';
-@import '../app/search/search.less';
-@import '../app/agency/agency.less';
+.cover {
+
+  background-size: cover;
+}
+
+.cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.round-corners{
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px; /* future proofing */
+  -khtml-border-radius: 6px; /* for old Konqueror browsers */
+
+}
+.top-4 {top:4rem;}
+.right-4 {right:4rem;}
+.btn {border:none;}
+
+.card {
+  background: #fefefe;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+  .BoxShadowHelper(3);
+}
+
+.card-dynamic {
+  background: #fefefe;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+  .BoxShadowHelper(1);
+  &:hover {
+    .BoxShadowHelper(3);
+    -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+.BoxShadowHelper(@level: 1){
+  & when (@level = 1) {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+  & when (@level = 2) {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+  & when (@level = 3) {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+  & when (@level = 4) {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  & when (@level = 5) {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+}
+

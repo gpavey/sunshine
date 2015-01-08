@@ -132,7 +132,7 @@ angular.module('cc.slide.menu', [])
     setPlacement: function(val){if(typeof val !== 'undefined') placement = val.toLowerCase()},
     getCurrentSize: function(){return current_size;},
     closeMenu: function(elem){ elem.addClass('cc-menu-close'); elem.removeClass('cc-menu-open');},
-    openMenu: function(elem){elem.addClass('cc-menu.close'); elem.removeClass('cc-menu-close');}
+    openMenu: function(elem){elem.addClass('cc-menu-close'); elem.removeClass('cc-menu-close');}
   }
 })
 .directive('ccContent', ['ccMenuSvc', 'ccContentSvc', '$window', 'Debounce', function (ccMenuSvc, ccContentSvc, $window, Debounce) {
