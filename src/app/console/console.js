@@ -20,15 +20,15 @@ angular.module( 'sunshine.console', [
         });
 
 })
-    .controller('ConsoleCtrl', function ConsoleCtrl( $scope,$rootScope, $state, $location, DepartmentList) {
+    .controller('ConsoleCtrl', function ConsoleCtrl( $scope,$rootScope, $state, $location, Department) {
         var DeptList = {};
 
-        DepartmentList.get_draft().then(function (data){
+        Department.get_draft().then(function (data){
           draft_depts = data;
           $scope.draft_depts = data;
         });
 
-        DepartmentList.get_adopted().then(function (data){
+        Department.get_adopted().then(function (data){
           $adopted_depts = data;
           $scope.adopted_depts = data;
         });

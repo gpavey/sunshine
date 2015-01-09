@@ -1,4 +1,6 @@
 angular.module( 'sunshine.agency', ['ui.router'])
+
+
 .config(function config( $stateProvider ) {
   $stateProvider.state( 'agency', {
     url: '/agency/:schedule_id',
@@ -28,7 +30,8 @@ angular.module( 'sunshine.agency', ['ui.router'])
     data:{ pageTitle: 'Schedule List', authorizedRoles: ['anonymous'] }
   });
 })
-.controller( 'AgencyCtrl', function AgencyController(Schedule, $http, $q, $log, $stateParams, $scope) {
+
+.controller( 'AgencyCtrl', function AgencyController(Schedule, $stateParams) {
   var self = this;
   self.schedule_id = $stateParams.schedule_id;
   self.adopted = {};
@@ -40,6 +43,7 @@ angular.module( 'sunshine.agency', ['ui.router'])
     self.records = self.adopted.record;
 
   });
-
 })
+
+
 ;

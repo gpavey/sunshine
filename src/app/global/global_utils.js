@@ -1,6 +1,10 @@
 /*jshint multistr: true */
 angular.module( 'sunshine.global_utils', [])
+
+// Global Index of Records specific HTML Templates
 .run(['$templateCache', function($templateCache) {
+
+//spinner when pages are waiting to load
   $templateCache.put('loading_msg.html',
   "<div class=\"cg-busy-default-wrapper\">\r" +
   "\n" +
@@ -24,7 +28,7 @@ angular.module( 'sunshine.global_utils', [])
 }])
 
 .factory('HttpInterceptor', function ($q, $window) {
-
+// special spinner to make search icon rotate during HTTP call
   return function (promise) {
     var search_button = angular.element(document.querySelector('.fa-spinner'));
 

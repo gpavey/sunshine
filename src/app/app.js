@@ -92,7 +92,7 @@ var app = angular
         return roles;
     };
 })
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GetDepartment, Departments ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles ) {
 
     $rootScope.API_URL = 'http://localhost:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
@@ -100,7 +100,6 @@ var app = angular
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         if ( angular.isDefined( toState.data.pageTitle ) ) {
           $scope.pageTitle = toState.data.pageTitle ;
-            //console.log($scope.pageTitle);
         }
     });
 
@@ -112,25 +111,6 @@ var app = angular
     $scope.currentUser = user;
 
   };
-
-    GetDepartment.allDept().then(function (data){
-        Departments = data;
-        $scope.departments =  Departments;
-    });
-})
-.service('GetDepartment', function($http, $rootScope){
-    this.allDept = function(){
-        var apiUrl = $rootScope.API_URL;
-
-        return $http
-            .get(apiUrl + '/department')
-            .then(function (res) {
-                return res.data;
-            });
-    };
-})
-.factory("Departments",function(){
-    return {};
 })
 
 ;
