@@ -1,7 +1,20 @@
 angular.module( 'sunshine.global_svcs', [])
 
-// Department Related API Calls
-.service('DepartmentList', function($http, $rootScope, $log) {
+
+/*================================
+
+      [ Department Object ]
+
+==================================*/
+
+.service('Department', function($http, $rootScope) {
+
+  /*****************************************
+  METHOD: get_adopted
+
+  returns the adopted information about a
+  department or agency
+  ******************************************/
   this.get_adopted = function() {
     var apiUrl = $rootScope.API_URL;
     return $http
@@ -11,6 +24,12 @@ angular.module( 'sunshine.global_svcs', [])
       });
   };
 
+  /*****************************************
+  METHOD: get_draft
+
+  returns the draft information about a
+  department or agency
+  ******************************************/
   this.get_draft = function() {
     var apiUrl = $rootScope.API_URL;
     return $http
@@ -21,16 +40,27 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
-//Search Related API Calls
-.service('Search', function($http, $rootScope, $filter, $log) {
+
+/*================================
+
+        [ Search Object ]
+
+==================================*/
+.service('Search', function($http, $rootScope) {
 
   var apiUrl = $rootScope.API_URL;
-
   search_terms = {};
   search_filters = {};
 
-  this.suggest_string = function(suggestObj){
 
+  /*****************************************
+    METHOD: suggest_string
+
+    Iterates over the suggestions
+    returned by Elasticsearch
+    and combines them into one string
+  ******************************************/
+  this.suggest_string = function(suggestObj){
       var general = suggestObj.general;
       var arr_len = general.length;
       var suggest = '';
@@ -52,6 +82,13 @@ angular.module( 'sunshine.global_svcs', [])
       }
   };
 
+  /*****************************************
+  METHOD: set_filters
+
+  accepts arrays from the search results page
+  and converts them into the right format to
+  send to Elasticsearch.
+  ******************************************/
   this.set_filters = function(field, arrToAdd ){
 
     delete search_filters[field];
@@ -62,29 +99,47 @@ angular.module( 'sunshine.global_svcs', [])
     return search_filters;
   };
 
+  /*****************************************
+  METHOD: clear_fitlers
+  ******************************************/
   this.clear_filters = function(){
     search_filters = {};
   };
 
+  /*****************************************
+  METHOD: get_fitlers
+  ******************************************/
   this.get_filters = function(){
     return search_filters;
   };
 
+  /*****************************************
+  METHOD: set_terms
+
+  takes the terms typed into the search
+  textbox and converts them into JSON
+  so it can be passed to Elasticsearch
+  ******************************************/
   this.set_terms = function(terms){
     var json = {};
     json.terms = terms;
     search_terms = json;
   };
 
-
+  /*****************************************
+  METHOD: get_terms
+  ******************************************/
   this.get_terms = function(){
     return search_terms;
   };
 
-  this.get_result_count = function(){
-    return result_count;
-  };
+  /*****************************************
+  METHOD: full_text
 
+  This is the method that makes the HTTP
+  call to the elasticsearch API. It does
+  the full text search of the index
+  ******************************************/
   this.full_text = function() {
     var url = apiUrl + '/search';
 
@@ -103,11 +158,25 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
-//Schedule Related API Calls
-.service('Schedule', function($http, $rootScope, $log) {
+
+/*================================
+
+      [ Schedule Object ]
+
+==================================*/
+
+.service('Schedule', function($http, $rootScope) {
 
   var apiUrl = $rootScope.API_URL;
 
+  /*****************************************
+  METHOD: get_draft
+
+  This method returns all the DRAFT data
+  for a particular schedule; both the information
+  about each records, and the information about the
+  department.
+  ******************************************/
   this.get_draft = function() {
     return $http
       .get(apiUrl + '/draft/schedule/' + $rootScope.selected_draft_dept)
@@ -116,6 +185,14 @@ angular.module( 'sunshine.global_svcs', [])
       });
   };
 
+  /*****************************************
+  METHOD: get_adopted
+
+  This method returns all the ADOPTED (aka published)
+  data for a particular schedule; both the information
+  about each records, and the information about the
+  department.
+  ******************************************/
   this.get_adopted = function(schedule_id) {
 
     return $http
@@ -126,7 +203,13 @@ angular.module( 'sunshine.global_svcs', [])
       });
   };
 
-  this.saveDraftRecord = function(record) {
+  /*****************************************
+  METHOD: save_draft_record
+
+  Saves one record in a schedule. It is
+  saved as a draft.
+  ******************************************/
+  this.save_draft_record = function(record) {
     var url = apiUrl + '/draft/record/';
     console.log(url);
 
@@ -140,6 +223,14 @@ angular.module( 'sunshine.global_svcs', [])
       });
   };
 
+  /*****************************************
+  METHOD: publish
+
+  Publishes and entire schedule such that it
+  is available to the public. This affects all
+  the records in a schedule as well as the
+  department information
+  ******************************************/
   this.publish = function(schedule) {
     var url = apiUrl + '/publish/';
 

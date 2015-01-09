@@ -12,39 +12,36 @@
     </div>
   </div>
 </header>
-<div  class="white-background" ncy-breadcrumb></div>
 
+<div class="white-background" ncy-breadcrumb></div>
 <div ng-controller="AgencyCtrl as agencyCtrl2" class="m2 px4 sm-no-pad" style="min-height:400px">
 
   <div class="relative center"
-    cg-busy="{promise:agencyCtrl2.agency_promise,templateUrl:'loading_msg.html',delay:30}">
-  </div>
+      cg-busy="{promise:agencyCtrl2.agency_promise,templateUrl:'loading_msg.html',delay:30}"></div>
 
-  <div ng-if="agencyCtrl2.adopted.department" class="full-width absolute-center p2-bottom">You can request any of the following records.
-    When possible, a link is included so you can access the document directly. If there is no link, please contact the department using the information provided in the header below. If a division contact is given for a record, it is the preferred way to
-     request access.</div>
+  <div ng-if="agencyCtrl2.adopted.department" class="full-width absolute-center p2-bottom">You can request any of the following records. When possible, a link is included so you can access the document directly. If there is no link, please contact the department using the information provided in the header below. If a division contact is
+    given for a record, it is the preferred way to request access.</div>
 
   <table ng-if="agencyCtrl2.adopted.department">
     <thead>
       <tr>
         <th colspan="8" class="blue-background-md grey-border p2-bottom p2-right p2-left">
-            <div class="left">
-              <h1 class="bold p1-right">{{agencyCtrl2.adopted.department}}</h1>
-              <a class="lh05" href="http://{{agencyCtrl2.adopted.website}}" target="_blank">{{agencyCtrl2.adopted.website}}</a>
-            </div>
-            <div class="right sm-left">
-              <H4 class="bold" >Department Contact:</H4>
-              <div class="regular">{{agencyCtrl2.adopted.contact}}</div>
-              <a href="mailto:{{agencyCtrl2.adopted.email}}" class="regular">{{agencyCtrl2.adopted.email}}</a>
-              <div class="regular">{{agencyCtrl2.adopted.phone}}</div>
-            </div>
-
+          <div class="left">
+            <h1 class="bold p1-right">{{agencyCtrl2.adopted.department}}</h1>
+            <a class="lh05" href="http://{{agencyCtrl2.adopted.website}}" target="_blank">{{agencyCtrl2.adopted.website}}</a>
+          </div>
+          <div class="right sm-left">
+            <H4 class="bold">Department Contact:</H4>
+            <div class="regular">{{agencyCtrl2.adopted.contact}}</div>
+            <a href="mailto:{{agencyCtrl2.adopted.email}}" class="regular">{{agencyCtrl2.adopted.email}}</a>
+            <div class="regular">{{agencyCtrl2.adopted.phone}}</div>
+          </div>
         </th>
       </tr>
     </thead>
   </table>
   <div ng-if="agencyCtrl2.adopted.department" class="right px1 sm-hide">
-      <a ui-sref="agency({schedule_id:'{{agencyCtrl2.schedule_id}}'})">table view </a>
+    <a ui-sref="agency({schedule_id:'{{agencyCtrl2.schedule_id}}'})">table view </a>
   </div>
   <div ng-repeat="record in agencyCtrl2.records" class="grey-border-bottom grey-border-right grey-border-left px2 sm-full-width">
     <h1 class="m0 p2-top blue-text">{{record.title}}</h1>
@@ -62,7 +59,7 @@
         <td>{{record.division_contact}}</td>
       </tr>
       </tr>
-     <tr class="lh20">
+      <tr class="lh20">
         <td ng-if="record.remarks" class="bold vertical-align-top">Remarks: </td>
         <td>{{record.remarks}}</td>
       </tr>
@@ -90,5 +87,5 @@
       </tr>
     </table>
   </div>
-</br>
+  </br>
 </div>

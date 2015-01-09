@@ -31,7 +31,7 @@
   <div class="full-width">
     <button cc-button class="relative left grey-background mb2"><i class="fa fa-chevron-right"></i></button>
   </div>
-    <form name="mainSearch" ng-submit="searchCtrl.submitMainSearch(searchCtrl.terms)" novalidate>
+    <form name="mainSearch" ng-submit="searchCtrl.search(searchCtrl.terms)" novalidate>
       <div class="search-box-sml mb1 mt3 px3">
         <input required name="search" autofocus ng-model="searchCtrl.terms" type="text" size="50"
             maxlength="75" placeholder=" search ..."autocomplete="off"/>
@@ -41,7 +41,7 @@
       <div class="center small mb2 blue-text" ng-if="searchCtrl.suggest">
         Did you mean : <a href="" class="underline"
                           ng-click="searchCtrl.terms = searchCtrl.suggest;
-                                    searchCtrl.submitMainSearch(searchCtrl.terms)" >
+                                    searchCtrl.search(searchCtrl.terms)" >
                         {{searchCtrl.suggest}}
                       </a> ?
       </div>

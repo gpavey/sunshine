@@ -107,7 +107,7 @@ angular.module( 'sunshine.edit', [
         }
       }, 500, 1);
 
-      Schedule.saveDraftRecord(rowEntity)
+      Schedule.save_draft_record(rowEntity)
         .then(function (data){
         });
     };
