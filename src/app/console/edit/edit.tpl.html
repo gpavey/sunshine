@@ -1,17 +1,100 @@
-    <div class="container-fluid" ng-controller="EditCtrl">
-    <div>Schedule Page</div> <button ng-click="publish()">Publish</button>
+<div id="edit-page">
+  <div class="container-fluid" ng-controller="EditCtrl">
+    <div>Schedule Page</div>
+    <button ng-click="publish()">Publish</button>
     <strong>Count:</strong> {{ gridOptions.data.length | number }}</br>
     <div>
-        <input name="department" ng-model="draft_schedule.draft.department">
-        <input name="website" ng-model="draft_schedule.draft.website">
-        <input name="contact" ng-model="draft_schedule.draft.contact">
-        <input name="phone" ng-model="draft_schedule.draft.phone">
-        <input name="email" ng-model="draft_schedule.draft.email">
+  <input name="department" ng-model="draft_dept.draft.department">
+  <input name="website" ng-model="draft_dept.draft.website">
+  <input name="contact" ng-model="draft_dept.draft.contact">
+  <input name="phone" ng-model="draft_dept.draft.phone">
+  <input name="email" ng-model="draft_dept.draft.email">
 
-         <!--<input type="text" ng-model="selected" typeahead="record.category as record.category for record in draft_schedule.record | filter:$viewValue | limitTo:8 | unique:'category'" class="form-control">-->
+
+  <a href="#" editable-text="draft_schedule.draft.department">
+      {{ draft_schedule.draft.department || "empty" }}</a>
+
+        <table class="table table-bordered table-hover table-condensed">
+          <tr style="font-weight: bold">
+            <td>Category</td>
+            <td>Title</td>
+            <td>Link</td>
+            <td>Retention</td>
+            <td>Divison</td>
+            <td>Division Contract</div>
+            <td>On Site</td>
+            <td>Off Site</td>
+            <td>Title</td>
+            <td>Remarks</td>
+          </tr>
+          <tr ng-repeat="record in draft_records">
+
+            <td>
+              <a href="#" editable-text="record.category" buttons="no"
+                >
+                {{record.category}}
+              </a>
+
+            </td>
+            <td>
+              <a href="#" editable-text="record.title" buttons="no"
+            >
+              {{record.title}}
+            </a>
+            </td>
+            <td>
+              <a href="#" editable-text="record.link" buttons="no"
+              >
+              {{record.link}}
+            </a>
+          </td>
+          <td>
+            <a href="#" editable-text="record.retention" buttons="no"
+            >
+            {{record.retention}}
+          </a>
+        </td>
+            <td>
+              <a href="#" editable-text="record.division" buttons="no"
+            >
+              {{record.division}}
+            </a>
+          </td>
+          <td>
+            <a href="#" editable-text="record.division_contact" buttons="no"
+            >
+            {{record.division_contact}}
+          </a>
+        </td>
+          <td>
+            <a href="#" editable-text="record.on_site" buttons="no"
+            >
+            {{record.on_site}}
+          </a>
+        </td>
+        <td>
+          <a href="#" editable-text="record.off_site" buttons="no"
+          >
+          {{record.off_site}}
+        </a>
+      </td>
+      <td>
+        <a href="#" editable-text="record.total" buttons="no"
+        >
+        {{record.total}}
+      </a>
+    </td>
+    <td>
+      <a href="#" editable-text="record.remarks" buttons="no">
+      {{record.remarks}}
+    </a>
+  </td>
+
+          </tr>
+        </table>
+        <button class="btn btn-default" ng-click="addUser()">Add row</button>
+      </div>
 
     </div>
-
-    <div ui-grid="gridOptions"  ui-grid-row-edit ui-grid-edit  ui-grid-cellNav  class="editGrid"></div>
-
+  </div>
 </div>

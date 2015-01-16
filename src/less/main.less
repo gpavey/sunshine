@@ -1,12 +1,12 @@
 
 @import '../../vendor/bootstrap/less/bootstrap.less';
 @import '../../vendor/angular-busy/dist/angular-busy.less';
+@import '../../vendor/angular-xeditable/dist/css/xeditable.less';
 
 @import 'variables.less';
 @import 'fonts/font-awesome-4.2.0/css/font-awesome.css';
 
 //** Common module'scss **/
-@import '../common/angular-ui-grid/ui-grid.less';
 @import '../common/angular-slide-and-push/slide-and-push.less';
 @import '../common/paper-input/paper-input.less';
 @import '../common/paper-input/paper-input.less';
@@ -838,6 +838,19 @@ footer a:hover {
   width:100%;
 }
 
+/* ========= [ Edit ] ============ */
+.editGrid {
+  width: 100%;
+  height: 700px;
+  font-size: 12px;
+}
+
+strong {
+  font-weight: bold;
+  color:blue;
+}
+
+
 /* ====== [ Media Queries ] ====== */
 
 @media only screen and (max-width:600px){
@@ -1037,4 +1050,4 @@ Scott's Added Edits - 010815
 }
 .sm-left {
   padding-top: .75em;
-} 
+}

@@ -211,7 +211,6 @@ angular.module( 'sunshine.global_svcs', [])
   ******************************************/
   this.save_draft_record = function(record) {
     var url = apiUrl + '/draft/record/';
-    console.log(url);
 
     return $http.put(url, record)
       .success(function(data) {

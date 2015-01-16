@@ -11,15 +11,9 @@ var app = angular
   'sunshine.search',
   'sunshine.agency',
   'ui.router',
-  'ui.grid',
-  'ui.grid.edit',
-  'ui.grid.cellNav',
-  'ui.grid.resizeColumns',
-  'ui.grid.rowEdit',
   'angularUtils.directives.dirPagination',
   'ngAnimate',
   'ui.bootstrap',
-  'ui.grid.enhancements',
   'ui.unique',
   'cc.slide.menu',
   'paper.input',
@@ -27,7 +21,8 @@ var app = angular
   'ngSanitize',
   'angular-ellipsis',
   'cgBusy',
-  'ncy-angular-breadcrumb'
+  'ncy-angular-breadcrumb',
+  'xeditable'
 ])
 
 .config(function($breadcrumbProvider) {
@@ -54,7 +49,6 @@ var app = angular
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise( '/home' );
 }, function(USER_ROLESProvider){} )
-
 //Using the main application's run method to execute any code after services have been started
 .run( function run ($rootScope, AUTH_EVENTS, AuthService) {
 
@@ -81,6 +75,9 @@ var app = angular
 //            }
 //        }
 //    });
+})
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 })
 .provider('UserRoles', function()  {
     var roles = {
