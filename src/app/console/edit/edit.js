@@ -121,8 +121,9 @@ angular.module( 'sunshine.edit', [
     $rootScope.$watch('selected_draft_dept', function(newVal, oldVal) {
       Schedule.get_draft()
         .then(function (data){
-          $scope.gridOptions.data =  data.draft.record;
-          $scope.draft_schedule = data;
+          $scope.draft_records = data.draft.record;
+          //$scope.gridOptions.data =  data.draft.record;
+          $scope.draft_dept = data;
           $scope.gridOptions.columnDefs[0].editDropdownOptionsArray = data.record;
           $scope.gridOptions.columnDefs[0].editDropdownValueLabel = 'category';
           $scope.gridOptions.columnDefs[0].editDropdownIdLabel = 'category';
@@ -140,7 +141,9 @@ angular.module( 'sunshine.edit', [
 
     // set selected department when the page first loads
     if ( typeof $rootScope.selected_draft_dept === 'undefined'){
-      $rootScope.selected_draft_dept = "5452b9e058779c197dfd05ca";
+      //$rootScope.selected_draft_dept = "548c8ed3fe0bdfcb496d4bf9"; //MUNI
+      $rootScope.selected_draft_dept = "548c8ed3fe0bdfcb496d4bfe"; //Public Health
+      $rootScope.selected_draft_dept = "548c8ed4fe0bdfcb496d4c08"; //Sherrif
     }
 
     if ( typeof $rootScope.selected_adopted_dept === 'undefined'){
