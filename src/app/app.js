@@ -10,6 +10,7 @@ var app = angular
   'sunshine.global_utils',
   'sunshine.search',
   'sunshine.agency',
+  'sunshine.schedule',
   'ui.router',
   'ui.grid',
   'ui.grid.edit',
