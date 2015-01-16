@@ -10,6 +10,7 @@ var app = angular
   'sunshine.global_utils',
   'sunshine.search',
   'sunshine.agency',
+  'sunshine.schedule',
   'ui.router',
   'ui.grid',
   'ui.grid.edit',
@@ -94,7 +95,7 @@ var app = angular
 })
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles ) {
 
-    $rootScope.API_URL = 'http://localhost:1971';
+    $rootScope.API_URL = 'http://10.250.60.109:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){

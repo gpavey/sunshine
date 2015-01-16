@@ -185,6 +185,14 @@ angular.module( 'sunshine.global_svcs', [])
       });
   };
 
+  this.get_draft2 = function(dept_id) {
+    return $http
+      .get(apiUrl + '/draft/schedule/' + dept_id)
+      .then(function(res) {
+        return res.data;
+      });
+  };
+
   /*****************************************
   METHOD: get_adopted
 

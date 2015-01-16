@@ -11,6 +11,9 @@
 @import '../common/paper-input/paper-input.less';
 @import '../common/paper-input/paper-input.less';
 
+body {
+  -webkit-print-color-adjust: exact;
+}
 
  /* ====== [ Colors ] ====== */
 .white-text {color: white;}
@@ -35,7 +38,7 @@
 .grey-border-left{border-left:1px solid #d7d7d7}
 .grey-border-bottom{border-bottom:1px solid #d7d7d7}
 .grey-background {
-  background: #f2f2f2;
+  background: #f2f2f2 !important;
   border-top: 1px solid #d7d7d7
 }
 .yellow-gold-fade {

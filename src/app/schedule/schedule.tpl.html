@@ -1,0 +1,82 @@
+<div id="schedule-page" ng-controller="ScheduleCtrl as scheduleCtrl" class="exact_print">
+    <H3 class="underline center p3"> RECORDS RETENTION AND DESTRUCTION SCHEDULE</H1>
+    <section data-ui-component="department-info">
+      <table class="m3">
+          <tbody>
+          <tr>
+              <td colspan="2" >
+                  <span class="bold" ng-if="scheduleCtrl.draft.department">Department Name:</span>
+                  {{scheduleCtrl.draft.department}}
+              </td>
+              <td >
+                  <span class="bold" ng-if="scheduleCtrl.draft.website">Department Website:</span>
+                  {{scheduleCtrl.draft.website}}
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <span class="bold" ng-if="scheduleCtrl.draft.contact">Department Contact:</span>
+                  {{scheduleCtrl.draft.contact}}
+              </td>
+              <td >
+                  <span class="bold" ng-if="scheduleCtrl.draft.phone">Contact Phone Number:</span>
+                  {{scheduleCtrl.draft.phone}}
+              </td>
+              <td>
+                  <span class="bold"  ng-if="scheduleCtrl.draft.email">Contact Email Address:</span>
+                  {{scheduleCtrl.draft.email}}
+              </td>
+          </tr>
+          </tbody>
+      </table>
+    </section>
+
+    <section data-ui-component="schedule-info">
+        <table class="grey-border">
+            <thead>
+               <tr>
+                <th class="small p1">Division</th>
+                <th class="small p1">Division Contract</th>
+                <th class="small p1">Record Category</th>
+                <th class="small p1">Record Title/ Description</th>
+                <th class="small p1">Document Link</th>
+                <th class="small p1">Retention Category</th>
+                <th colspan="3" class="center small p1">Retention Period</th>
+                <th class="small p1">Remarks</th>
+               </tr>
+               <tr class="grey-background">
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th class="small">Total</th>
+                   <th class="small">On-site</th>
+                   <th class="small">Off-site</th>
+                   <th></th>
+               </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="record in scheduleCtrl.draft.record | orderBy:['division','category']"  ng-class-even="'grey-background'" ng-class="'grey-border'">
+                <td class="p1 grey-border small">{{record.division}}</td>
+                <td class="p1 grey-border small">{{record.division_contact}}</td>
+                <td class="p1 grey-border small">{{record.category}}</td>
+                <td class="p1 grey-border small">{{record.title}}</td>
+                <td class="p1 grey-border small">{{record.link}}</td>
+                <td class="p1 grey-border small">{{record.retention}}</td>
+                <td class="p1 grey-border small">{{record.total}}</td>
+                <td class="p1 grey-border small">{{record.on_site}}</td>
+                <td class="p1 grey-border small">{{record.off_site}}</td>
+                <td class="p1 grey-border small">{{record.remarks}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section data-ui-component="signature-blocks">
+
+    </section>
+</div>
+
