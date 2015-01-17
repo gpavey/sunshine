@@ -16,11 +16,14 @@ angular.module( 'sunshine.schedule', ['ui.router'])
     });
 })
 
-.controller('ScheduleCtrl', function ScheduleController( $scope, Schedule) {
+.controller('ScheduleCtrl', function ScheduleController( $scope, Schedule, GlobalVariables) {
     var self = this;
+    GlobalVariables.showFooter = false;
     self.test = "cindy";
-    Schedule.get_draft2('54ac67d4b69aac9a13f82b2e').then(function (data){
+    Schedule.get_draft2('548c8ed4fe0bdfcb496d4c08').then(function (data){
         self.draft =  data.draft;
     });
 })
 ;
+//548c8ed4fe0bdfcb496d4c08 sheriff
+//548c8ed3fe0bdfcb496d4bfe DPH

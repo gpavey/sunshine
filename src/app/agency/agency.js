@@ -31,11 +31,13 @@ angular.module( 'sunshine.agency', ['ui.router'])
   });
 })
 
-.controller( 'AgencyCtrl', function AgencyController(Schedule, $stateParams) {
+.controller( 'AgencyCtrl', function AgencyController(Schedule, $stateParams, GlobalVariables) {
   var self = this;
   self.schedule_id = $stateParams.schedule_id;
   self.adopted = {};
   self.records = {};
+
+  GlobalVariables.showFooter = true;
 
   self.agency_promise = Schedule.get_adopted(self.schedule_id)
   .then(function (data){

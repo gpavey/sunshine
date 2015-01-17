@@ -1,82 +1,210 @@
 <div id="schedule-page" ng-controller="ScheduleCtrl as scheduleCtrl" class="exact_print">
-    <H3 class="underline center p3"> RECORDS RETENTION AND DESTRUCTION SCHEDULE</H1>
+  <H3 class="underline center p3"> RECORDS RETENTION AND DESTRUCTION SCHEDULE</H1>
     <section data-ui-component="department-info">
-      <table class="m3">
-          <tbody>
+      <table class="m3" style="table-layout:fixed">
+        <tbody>
           <tr>
-              <td colspan="2" >
-                  <span class="bold" ng-if="scheduleCtrl.draft.department">Department Name:</span>
-                  {{scheduleCtrl.draft.department}}
-              </td>
-              <td >
-                  <span class="bold" ng-if="scheduleCtrl.draft.website">Department Website:</span>
-                  {{scheduleCtrl.draft.website}}
-              </td>
+            <td colspan="2" >
+              <span class="bold" ng-if="scheduleCtrl.draft.department">Department Name:</span>
+              {{scheduleCtrl.draft.department}}
+            </td>
+            <td >
+              <span class="bold" ng-if="scheduleCtrl.draft.website">Department Website:</span>
+              {{scheduleCtrl.draft.website}}
+            </td>
           </tr>
           <tr>
-              <td>
-                  <span class="bold" ng-if="scheduleCtrl.draft.contact">Department Contact:</span>
-                  {{scheduleCtrl.draft.contact}}
-              </td>
-              <td >
-                  <span class="bold" ng-if="scheduleCtrl.draft.phone">Contact Phone Number:</span>
-                  {{scheduleCtrl.draft.phone}}
-              </td>
-              <td>
-                  <span class="bold"  ng-if="scheduleCtrl.draft.email">Contact Email Address:</span>
-                  {{scheduleCtrl.draft.email}}
-              </td>
+            <td>
+              <span class="bold" ng-if="scheduleCtrl.draft.contact">Department Contact:</span>
+              {{scheduleCtrl.draft.contact}}
+            </td>
+            <td >
+              <span class="bold p2«»" ng-if="scheduleCtrl.draft.phone">Contact Phone Number:</span>
+              {{scheduleCtrl.draft.phone}}
+            </td>
+            <td>
+              <span class="bold"  ng-if="scheduleCtrl.draft.email">Contact Email Address:</span>
+              {{scheduleCtrl.draft.email}}
+            </td>
           </tr>
-          </tbody>
+        </tbody>
       </table>
     </section>
 
     <section data-ui-component="schedule-info">
-        <table class="grey-border">
-            <thead>
-               <tr>
-                <th class="small p1">Division</th>
-                <th class="small p1">Division Contract</th>
-                <th class="small p1">Record Category</th>
-                <th class="small p1">Record Title/ Description</th>
-                <th class="small p1">Document Link</th>
-                <th class="small p1">Retention Category</th>
-                <th colspan="3" class="center small p1">Retention Period</th>
-                <th class="small p1">Remarks</th>
-               </tr>
-               <tr class="grey-background">
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th class="small">Total</th>
-                   <th class="small">On-site</th>
-                   <th class="small">Off-site</th>
-                   <th></th>
-               </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="record in scheduleCtrl.draft.record | orderBy:['division','category']"  ng-class-even="'grey-background'" ng-class="'grey-border'">
-                <td class="p1 grey-border small">{{record.division}}</td>
-                <td class="p1 grey-border small">{{record.division_contact}}</td>
-                <td class="p1 grey-border small">{{record.category}}</td>
-                <td class="p1 grey-border small">{{record.title}}</td>
-                <td class="p1 grey-border small">{{record.link}}</td>
-                <td class="p1 grey-border small">{{record.retention}}</td>
-                <td class="p1 grey-border small">{{record.total}}</td>
-                <td class="p1 grey-border small">{{record.on_site}}</td>
-                <td class="p1 grey-border small">{{record.off_site}}</td>
-                <td class="p1 grey-border small">{{record.remarks}}</td>
-            </tr>
-            </tbody>
-        </table>
+      <table class="grey-border">
+          <tr>
+            <th class="small p1">Division</th>
+            <th class="small p1">Division Contract</th>
+            <th class="small p1">Record Category</th>
+            <th class="small p1">Record Title/ Description</th>
+            <th class="small p1">Document Link</th>
+            <th class="small p1">Retention Category</th>
+            <th colspan="3" class="center small p1">Retention Period</th>
+            <th class="small p1">Remarks</th>
+          </tr>
+          <tr class="grey-background">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th class="small">Total</th>
+            <th class="small">On-site</th>
+            <th class="small">Off-site</th>
+            <th></th>
+          </tr>
+          <!-- <tr ng-repeat="record in scheduleCtrl.draft.record | orderBy:['division','category']"  ng-class-even="'grey-background'" ng-class="'grey-border'">
+            <td class="p1 grey-border small">{{record.division}}</td>
+            <td class="p1 grey-border small">{{record.division_contact}}</td>
+            <td class="p1 grey-border small">{{record.category}}</td>
+            <td class="p1 grey-border small">{{record.title}}</td>
+            <td class="p1 grey-border small">{{record.link}}</td>
+            <td class="p1 grey-border small">{{record.retention}}</td>
+            <td class="p1 grey-border small">{{record.total}}</td>
+            <td class="p1 grey-border small">{{record.on_site}}</td>
+            <td class="p1 grey-border small">{{record.off_site}}</td>
+            <td class="p1 grey-border small">{{record.remarks}}</td>
+          </tr> -->
+      </table>
 
     </section>
 
     <section data-ui-component="signature-blocks">
+    <div class="p3-bottom" style="page-break-before:always;">IMPORTANT: For detailed instructions to complete this
+      table, please see document Information on Preparing a Departmental Records Retention Policy page 3</div>
+    <div class="p3-bottom">APPROVALS</div>
+
+    <table>
+      <tr>
+        <td colspan="2">
+          <div>For a departments that does not have a board or commission: </div>
+        </td>
+        <td colspan="2">
+          <div>For a departments with a board or commission: </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">Name of Department</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+          <div class="border-top">Secretary's Signature</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">Steve Kawa</div><div>Chief of Staff</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+          <div class="border-top">Name of Board or Commission</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div class="border-top">Name of Department Head</div>
+        </td>
+        <td>
+          <div class="border-top">Signature of Department Head</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div>ALL DEPARTMENTS:</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div>Approval as to Records relating to financial matters:</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">Ben Rosenfield</div><div>Controller</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">Controller Staff</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div>Approval as to Records of legal significance:</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">Dennis J. Herrera</div><div>City Attorney</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">City Deputy Attorney</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div>Approval as to Records relating to payroll matters:</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top">Jay Huish</div><div>Executive Director, Retirement Board</div>
+        </td>
+        <td>
+          <div class="border-top">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </table>
 
     </section>
-</div>
-
+  </div>
