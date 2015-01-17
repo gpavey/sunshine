@@ -16,8 +16,8 @@ angular.module( 'sunshine.edit', [
     });
   })
 
-   .controller( 'EditCtrl', function ScheduleCtrl( $rootScope, $scope, Schedule, $http, $interval, $q, $log ) {
-
+   .controller( 'EditCtrl', function ScheduleCtrl( $rootScope, $scope, Schedule, $http, $interval, $q, $log, GlobalVariables ) {
+     GlobalVariables.showFooter = true;
     $scope.selected = undefined;
 
     $scope.gridOptions = {

@@ -90,9 +90,10 @@ var app = angular
         return roles;
     };
 })
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles ) {
-
-    $rootScope.API_URL = 'http://10.250.60.109:1971';
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location,
+                            $rootScope, AuthService, UserRoles, GlobalVariables ) {
+    $scope.GlobalVariables = GlobalVariables;
+    $rootScope.API_URL = 'http://localhost:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
@@ -110,5 +111,12 @@ var app = angular
 
   };
 })
+
+.value('GlobalVariables',
+  {
+    "showFooter" : true,
+    "api_url": 'http://localhost:1971'
+  }
+)
 
 ;
