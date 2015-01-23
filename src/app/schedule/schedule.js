@@ -20,7 +20,7 @@ angular.module( 'sunshine.schedule', ['ui.router'])
     var self = this;
     GlobalVariables.showFooter = false;
     self.test = "cindy";
-    Schedule.get_draft2('548c8ed3fe0bdfcb496d4bfe').then(function (data){
+    Schedule.get_draft2('54ac67d4b69aac9a13f82b2e').then(function (data){
         self.draft =  data.draft;
     });
 })
