@@ -119,7 +119,7 @@ angular.module( 'sunshine.edit', [
     };
 
     $rootScope.$watch('selected_draft_dept', function(newVal, oldVal) {
-      Schedule.get_draft()
+      Schedule.get_draft(newVal)
         .then(function (data){
           $scope.draft_records = data.draft.record;
           //$scope.gridOptions.data =  data.draft.record;

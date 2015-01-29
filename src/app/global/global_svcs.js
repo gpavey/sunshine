@@ -177,15 +177,9 @@ angular.module( 'sunshine.global_svcs', [])
   about each records, and the information about the
   department.
   ******************************************/
-  this.get_draft = function() {
-    return $http
-      .get(apiUrl + '/draft/schedule/' + $rootScope.selected_draft_dept)
-      .then(function(res) {
-        return res.data;
-      });
-  };
 
-  this.get_draft2 = function(dept_id) {
+  this.get_draft = function(dept_id) {
+    //Department id used to be in $rootScope. Moved it to parameter
     return $http
       .get(apiUrl + '/draft/schedule/' + dept_id)
       .then(function(res) {
