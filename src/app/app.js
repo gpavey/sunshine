@@ -13,7 +13,7 @@ var app = angular
   'sunshine.schedule',
   'ui.router',
   'angularUtils.directives.dirPagination',
-  'ngAnimate',
+  //'ngAnimate',
   'ui.bootstrap',
   'ui.unique',
   'cc.slide.menu',
