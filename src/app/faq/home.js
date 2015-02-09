@@ -21,9 +21,8 @@ angular.module( 'sunshine.home', ['ui.router'])
     });
 })
 
-.controller('HomeCtrl', function HomeController( $scope, Department, GlobalVariables) {
+.controller('HomeCtrl', function HomeController( $scope, Department) {
     var self = this;
-    GlobalVariables.showFooter = true;
     Department.get_adopted().then(function (data){
         self.dept_list =  data;
     });
@@ -40,5 +39,3 @@ angular.module( 'sunshine.home', ['ui.router'])
 })
 
 ;
-
-

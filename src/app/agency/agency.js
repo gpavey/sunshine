@@ -31,11 +31,23 @@ angular.module( 'sunshine.agency', ['ui.router'])
   });
 })
 
-.controller( 'AgencyCtrl', function AgencyController(Schedule, $stateParams) {
+.controller( 'AgencyCtrl', function AgencyController(Schedule, $stateParams, GlobalVariables) {
   var self = this;
   self.schedule_id = $stateParams.schedule_id;
   self.adopted = {};
   self.records = {};
+
+  self.category_fltr = '';
+  self.title_fltr = '';
+  self.retention_fltr = '';
+  self.division_fltr = '';
+  self.remarks_fltr = '';
+  self.on_site_fltr = '';
+  self.off_site_fltr = '';
+  self.total_fltr = '';
+
+
+  GlobalVariables.showFooter = true;
 
   self.agency_promise = Schedule.get_adopted(self.schedule_id)
   .then(function (data){

@@ -19,7 +19,7 @@ angular.module('sunshine.search', ['ui.router'])
   });
 })
 
-.controller('SearchCtrl', function($scope, Search) {
+.controller('SearchCtrl', function($scope, Search, GlobalVariables) {
 
   var self = this;
   self.results = {};
@@ -32,6 +32,7 @@ angular.module('sunshine.search', ['ui.router'])
   self.retention_sel = [];
 
   Search.clear_filters();
+  GlobalVariables.showFooter = true;
 
   //WATCH DEPARTMENT
   $scope.$watch(

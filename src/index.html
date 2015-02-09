@@ -13,14 +13,13 @@
 </head>
 <body>
 
-  <div class="row" ng-hide="pageTitle == 'Home' || pageTitle == 'Search Results' || pageTitle =='Schedule Table' || pageTitle == 'Schedule List'">
+  <div class="row" ng-hide="pageTitle == 'Home' || pageTitle == 'Search Results' || pageTitle =='Schedule Table' || pageTitle == 'Schedule List' || pageTitle =='Schedule' ">
     <div class="col-xs-12 headerBar">Index of Records Administration Console  <a class="whiteLink" ui-sref="home"> HOME</a></div>
 
   </div>
 
   <!- ------------------Main UI View ------------------------ -->
   <div class="container-fluid pad0 marg0 overflow-hidden"  ui-view="main"></div>
-
 
   <footer class="blue-background py4" >
     <div class="clearfix footer-content">

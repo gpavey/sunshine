@@ -10,16 +10,11 @@ var app = angular
   'sunshine.global_utils',
   'sunshine.search',
   'sunshine.agency',
+  'sunshine.schedule',
   'ui.router',
-  'ui.grid',
-  'ui.grid.edit',
-  'ui.grid.cellNav',
-  'ui.grid.resizeColumns',
-  'ui.grid.rowEdit',
   'angularUtils.directives.dirPagination',
-  'ngAnimate',
+  //'ngAnimate',
   'ui.bootstrap',
-  'ui.grid.enhancements',
   'ui.unique',
   'cc.slide.menu',
   'paper.input',
@@ -27,7 +22,8 @@ var app = angular
   'ngSanitize',
   'angular-ellipsis',
   'cgBusy',
-  'ncy-angular-breadcrumb'
+  'ncy-angular-breadcrumb',
+  'xeditable'
 ])
 
 .config(function($breadcrumbProvider) {
@@ -36,9 +32,10 @@ var app = angular
     template: 'bootstrap3'
   });
 })
-.config(function ($httpProvider) {
-  $httpProvider.responseInterceptors.push('HttpInterceptor');
 
+.config(function ($httpProvider) {
+  //$httpProvider.responseInterceptors.push('HttpInterceptor');
+  $httpProvider.interceptors.push('HttpInterceptor');
   var spinnerFunction = function spinnerFunction(data, headersGetter) {
   var search_button = angular.element(document.querySelector('.fa-search'));
      search_button.removeClass('fa-search');
@@ -54,7 +51,6 @@ var app = angular
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise( '/home' );
 }, function(USER_ROLESProvider){} )
-
 //Using the main application's run method to execute any code after services have been started
 .run( function run ($rootScope, AUTH_EVENTS, AuthService) {
 
@@ -82,6 +78,9 @@ var app = angular
 //        }
 //    });
 })
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+})
 .provider('UserRoles', function()  {
     var roles = {
         anon: 'anonymous',
@@ -92,9 +91,9 @@ var app = angular
         return roles;
     };
 })
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles ) {
-
-    $rootScope.API_URL = 'http://10.250.60.109:1971';
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GlobalVariables ) {
+    $scope.GlobalVariables = GlobalVariables;
+    $rootScope.API_URL = 'http://10.125.60.109:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
@@ -112,5 +111,12 @@ var app = angular
 
   };
 })
+
+.value('GlobalVariables',
+  {
+    "showFooter" : true,
+    "api_url": 'http://localhost:1971'
+  }
+)
 
 ;

@@ -177,9 +177,11 @@ angular.module( 'sunshine.global_svcs', [])
   about each records, and the information about the
   department.
   ******************************************/
-  this.get_draft = function() {
+
+  this.get_draft = function(dept_id) {
+    //Department id used to be in $rootScope. Moved it to parameter
     return $http
-      .get(apiUrl + '/draft/schedule/' + $rootScope.selected_draft_dept)
+      .get(apiUrl + '/draft/schedule/' + dept_id)
       .then(function(res) {
         return res.data;
       });
@@ -211,7 +213,6 @@ angular.module( 'sunshine.global_svcs', [])
   ******************************************/
   this.save_draft_record = function(record) {
     var url = apiUrl + '/draft/record/';
-    console.log(url);
 
     return $http.put(url, record)
       .success(function(data) {
@@ -245,4 +246,19 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
+/*================================
+
+      [ List of Valid Retention Categories ]
+
+==================================*/
+.value("RetentionCategories", 
+    ["1 - Permanent", 
+    "2 - Current", 
+    "3 - Storage",
+    "1 - Permanent, 2 - Current", 
+    "1 - Permanent, 3 - Storage",
+    "2 - Current, 3 - Storage",
+    "1 - Permanent, 2 - Current, 3 - Storage",
+    "4 - No Retention Required"
+  ])
 ;
