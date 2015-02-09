@@ -717,27 +717,30 @@ header{
   width: 600px;
   height: 65px;
   margin: 1em auto 3em;
+  border-top: 1px solid #707070;
+  border-bottom: 1px solid #707070;
+  border-left: 1px solid #707070;
+  padding:0; 
 }
 .search-box button {
-  position: relative;
-  left:-5px;
-  top:-3px;
-  margin-top: 0px;
-  height:65px;
-  width: 100px;
-  border: 1px solid #707070;
+  margin: 0;
+  height:63px;
+  width: 99px;
+  border: 0 none transparent;
+  border-left: 1px solid #707070;
+  border-right: 1px solid #707070;
   font-size:1.5em;
+  float: left;
 }
 .search-box input {
-  position: relative;
-  width: 80%;
-  height: 100%;
+  width: 500px;
+  height: 63px;
+  border: 0 none transparent;
   border-radius: 0px !important;
   font-size:1.5em;
-  border: 1px solid #707070;
-  padding-left: .5em;
-  padding-right: .5em;
-
+  margin: 0 !important;
+  padding: 0 25px;
+  float: left;
 }
 .search-box img {height: 80%;}
 .or-circle {
@@ -859,8 +862,10 @@ footer a:hover {
     display: none !important;
   }
   .logo {
-    margin-top: 2rem;
-    margin-left: 2.5rem;
+    float: none;
+	width: 166px !important;
+    height: 70px !important;
+	margin: 2rem auto 0;
   }
   header {
     height: 320px !important;
@@ -880,20 +885,28 @@ footer a:hover {
   }
   .search-box {
     width: 320px;
-    height: 30px;
+    height: 32px;
     margin:20px auto;
+	margin: 1em auto 3em;
+	border-top: 1px solid #707070;
+	border-bottom: 1px solid #707070;
+	border-left: 1px solid #707070;
+	margin-bottom: .5em;
   }
   .search-box button {
     height:30px;
-    width: 50px;
+    width: 51px;
     font-size:1em;
+	border-left: 1px solid #707070;
+    border-right: 1px solid #707070;
   }
   .search-box input {
-    width: 80%;
-    height: 100%;
+    width: 268px;
+    height: 30px;
     font-size:1em;
+	padding: 0 10px;
   }
-
+  
 }
 
 @media (min-width: 64em) {
@@ -1027,8 +1040,9 @@ footer a:hover {
 
 
 /****************************************
-Scott's Added Edits - 010815
+ Added Edits - 010815
 ****************************************/
+
 .admin-btn .btn {
   border: 1px solid #fff;
 }
@@ -1037,4 +1051,135 @@ Scott's Added Edits - 010815
 }
 .sm-left {
   padding-top: .75em;
+}
+
+/****************************************
+ Footer Edits - 012615
+****************************************/
+
+.footer-content {
+	margin: 0 auto;
+	width: 90%;
+}
+
+.city-seal {
+	margin-bottom: .7em;
+}
+
+.footer-address {
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+	border-bottom: 1px dotted #fff;
+}
+
+.footer-links {
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+	border-bottom: 1px dotted #fff;
+}
+
+.footer-content ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 } 
+
+.footer-content ul li {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1em;
+	font-weight: 100;
+} 
+
+.footer-content ul h3 {
+	margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 1024px) {
+    /* Large laptop styles (wider than 1024 pixels) */
+
+	.footer-content {
+		margin: 0 1.5%;
+		width: 97%;
+	}
+	.city-seal {
+		float: left;
+		margin-bottom: 0;
+	}
+	.footer-address {
+		padding: 0 1.5%;
+		margin: 0;
+		width: 40%;
+		float: left;
+		border: none;
+	}
+	.footer-address ul {
+		margin-left: 4.5em;
+	}
+	.footer-links {
+		padding: 0 3%;
+		margin: 0;
+		width: 29%;
+		float: left;
+		border: none;
+	}
+	
+	.footer-content ul li {
+		margin: 0 0 .5em;
+	} 
+	
+	.footer-content ul h3 {
+		margin-bottom: .5em;
+	}
+	.related-links {
+		border-left: 1px #fff dotted;
+		border-right: 1px #fff dotted;
+	}
+}
+
+/****************************************
+ Agency List & Agency Table Page Edits - 020315
+****************************************/
+#agency-list-page .breadcrumb,
+#agency-table-page .breadcrumb {
+	margin: 1em 0 1em 5em;
+	padding-left: 0;
+}
+
+#agency-table-page .breadcrumb {
+	margin: 1em 0 0 1em;
+}
+
+#agency-list-page .agency-name,
+#agency-table-page .agency-name {
+	margin: .175em 0 .125em;
+}
+
+#agency-list-page .record-headings {
+	padding: 1em 0 .5em;
+	font-size: 1.75em;
+	line-height: 1.1;
+}
+
+#agency-list-page .additional-info {
+	padding: .5em 0 1.5em 0;
+	text-transform: capitalize;
+}
+
+.view-link a {
+	padding: .5em 1em;
+	background: #0a8aea;
+	color: #fff;
+	text-transform: capitalize;
+	font-weight: bold;
+	text-decoration: none;
+	display: inline-block;
+	
+}
+
+@media only screen and (min-width: 1419px) {
+	.intro {
+		float: left;
+		width: 85%;
+	}
+}

@@ -1,9 +1,9 @@
-<div id="agency-table">
+<div id="agency-table-page">
   <header class=" relative cover overflow-hidden white-text search-banner" data-ui-component="header-area">
     <div class="container-fluid">
       <div>
         <div class="col-12 left mt4 ml4 mb4">
-          <a ui-sref="home"><img src="assets/logo-main.png">
+          <a ui-sref="home"><img src="assets/logo-main.png" />
           </a>
         </div>
       </div>
@@ -11,22 +11,23 @@
   </header>
 
   <div class="white-background" ncy-breadcrumb></div>
-
+  <div class="right view-link sm-hide p2-right p2-bottom ng-scope">
+    <a class="px1 regular" ui-sref="agency_list({schedule_id:'{{agencyCtrl.schedule_id}}'})">List View</a>
+  </div>
   <div ng-controller="AgencyCtrl as agencyCtrl" class="m2" style="min-height:400px">
 
     <div class="relative center"
       cg-busy="{promise:agencyCtrl.agency_promise,templateUrl:'loading_msg.html',delay:30}"></div>
-
     <table ng-if="agencyCtrl.adopted.department" class="noborder-top grey-border">
       <thead>
         <tr>
           <th colspan="8" class="blue-background-md grey-border p2-bottom p2-right p2-left">
 
             <div class="left">
-              <H1 class="bold lh05">{{agencyCtrl.adopted.department}}</H1>
+              <h1 class="bold agency-name">{{agencyCtrl.adopted.department}}</h1>
               <a class="lh05" href="http://{{agencyCtrl.adopted.website}}" target="_blank">{{agencyCtrl.adopted.website}}</a>
             </div>
-            <div class="right">
+            <div class="right sm-left">
               <H4 class="bold">Department Contact:</H4>
               <div class="regular">{{agencyCtrl.adopted.contact}}</div>
               <a href="mailto:{{agencyCtrl.adopted.email}}" class="regular">{{agencyCtrl.adopted.email}}</a>
@@ -37,81 +38,76 @@
         <tr>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.category_fltr">
+              <input type="text" required ng-model="agencyCtrl.category_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Category</label>
+              <label><i class="fa fa-pencil"></i>Category</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'category'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'category'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.title_fltr">
+              <input type="text" required ng-model="agencyCtrl.title_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Title</label>
+              <label><i class="fa fa-pencil"></i>Title</label>
             </div>
 
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'title'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'title'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.division_fltr">
+              <input type="text" required ng-model="agencyCtrl.division_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Division</label>
+              <label><i class="fa fa-pencil"></i>Division</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'division'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'division'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.remark_fltr">
+              <input type="text" required ng-model="agencyCtrl.remark_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Remarks</label>
+              <label><i class="fa fa-pencil"></i>Remarks</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'remarks'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'remarks'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.retention_fltr">
+              <input type="text" required ng-model="agencyCtrl.retention_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Retention</label>
+              <label><i class="fa fa-pencil"></i>Retention</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'retention'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'retention'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.on_site_fltr">
+              <input type="text" required ng-model="agencyCtrl.on_site_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>On Site</label>
+              <label><i class="fa fa-pencil"></i>On Site</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'on_site'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'on_site'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.off_site_fltr">
+              <input type="text" required ng-model="agencyCtrl.off_site_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Off Site</label>
+              <label><i class="fa fa-pencil"></i>Off Site</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'off_site'; reverse=!reverse"></i>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'off_site'; reverse=!reverse"></i>
           </th>
           <th class="p3-top">
             <div class="md-group">
-              <input type="text" required ng-model="agencyCtrl.total_fltr">
+              <input type="text" required ng-model="agencyCtrl.total_fltr" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label><i class="fa fa-filter"></i>Total</label>
+              <label><i class="fa fa-pencil"></i>Total</label>
             </div>
-            <i href="" class="fa fa-sort-alpha-asc right pointer mt2" ng-click="predicate = 'total'; reverse=!reverse"></i>
-          </th>
-        </tr>
-        <tr>
-          <th class="right-align" colspan="8">
-            <a class="px1 regular" ui-sref="agency_list({schedule_id:'{{agencyCtrl.schedule_id}}'})">list view</a>
+            <i href="" class="fa fa-sort right pointer mt2" ng-click="predicate = 'total'; reverse=!reverse"></i>
           </th>
         </tr>
       </thead>
