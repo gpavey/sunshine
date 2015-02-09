@@ -246,4 +246,19 @@ angular.module( 'sunshine.global_svcs', [])
   };
 })
 
+/*================================
+
+      [ List of Valid Retention Categories ]
+
+==================================*/
+.value("RetentionCategories", 
+    ["1 - Permanent", 
+    "2 - Current", 
+    "3 - Storage",
+    "1 - Permanent, 2 - Current", 
+    "1 - Permanent, 3 - Storage",
+    "2 - Current, 3 - Storage",
+    "1 - Permanent, 2 - Current, 3 - Storage",
+    "4 - No Retention Required"
+  ])
 ;
