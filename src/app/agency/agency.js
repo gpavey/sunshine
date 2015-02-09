@@ -37,6 +37,16 @@ angular.module( 'sunshine.agency', ['ui.router'])
   self.adopted = {};
   self.records = {};
 
+  self.category_fltr = '';
+  self.title_fltr = '';
+  self.retention_fltr = '';
+  self.division_fltr = '';
+  self.remarks_fltr = '';
+  self.on_site_fltr = '';
+  self.off_site_fltr = '';
+  self.total_fltr = '';
+
+
   GlobalVariables.showFooter = true;
 
   self.agency_promise = Schedule.get_adopted(self.schedule_id)

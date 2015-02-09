@@ -27,6 +27,8 @@ angular.module( 'sunshine.edit', [
 
   })
 
+
+
   .directive("contenteditable", function() {
     return {
       require: "ngModel",
@@ -47,78 +49,81 @@ angular.module( 'sunshine.edit', [
     };
   })
 
-   .controller( 'EditCtrl', function ScheduleCtrl($rootScope, $scope, Schedule, $http, $interval, $q, $log, GlobalVariables ) {
-     GlobalVariables.showFooter = true;
-    $scope.selected = undefined;
-
-
-    $scope.saveRow = function( rowEntity ) {
+   .controller('EditCtrl', function EditCtrl($rootScope, $interval, $http, Schedule, GlobalVariables, RetentionCategories ) {
+    
+      var self = this;
+      self.retention_categories = RetentionCategories;
+      GlobalVariables.showFooter = true;
+      this.selected = undefined;
+    
+      self.saveRow = function( rowEntity ) {
       // create a fake promise - normally you'd use the promise returned by $http or $resource
-      var promise = $q.defer();
-      $scope.gridApi.rowEdit.setSavePromise( $scope.gridApi.grid, rowEntity, promise.promise );
+      // var promise = $q.defer();
+      // $scope.gridApi.rowEdit.setSavePromise( $scope.gridApi.grid, rowEntity, promise.promise );
 
       // fake a delay of 3 seconds whilst the save occurs, return error if gender is "male"
-      $interval( function() {
-        if (rowEntity.gender === 'male' ){
-          promise.reject();
-        } else {
-          promise.resolve();
-        }
-      }, 500, 1);
+      // $interval( function() {
+      //   if (rowEntity.gender === 'male' ){
+      //     promise.reject();
+      //   } else {
+      //     promise.resolve();
+      //   }
+      // }, 500, 1);
 
-      Schedule.save_draft_record(rowEntity)
-        .then(function (data){
-        });
+      // Schedule.save_draft_record(rowEntity)
+      //   .then(function (data){
+      //   });
     };
 
     $rootScope.$watch('selected_draft_dept', function(newVal, oldVal) {
       Schedule.get_draft(newVal)
         .then(function (data){
-        $scope.draft_records = [];
-        $scope.draft_dept = data;
+            self.draft_records = [];
+            self.draft_dept = data;
 
-        var records = data.draft.record;
-        var len = records.length;
-        var max_record_threshold = 100;
+            var records = data.draft.record;
+            var len = records.length;
+            var max_record_threshold = 100;
 
-        //add all records to scope
-        if(len<=max_record_threshold){
-            $scope.draft_records = records;
-        }
-
-        //add the first clump of records to scope(max_record_threshold), then add in batches
-        if(len > max_record_threshold){
-          var batch_size = 40;
-
-          //add the first batch of records to scope (up to max_record_threshold about)
-          for(i=0; i<max_record_threshold; i++){
-            $scope.draft_records.push(records[i]);
-          }
-          
-          //add batches
-          var overage = len - max_record_threshold;
-          var intervals = Math.floor(overage/batch_size);
-          var remainder = overage%batch_size;
-
-          var lbound = max_record_threshold;
-          var ubound = batch_size;
-          
-          if(remainder > 0){intervals++;}
-
-          //pause for a millisecond between batches so that the DOM will load
-          $interval( function() {
-            if((len-lbound) < batch_size){
-              ubound = lbound + remainder;
-            }else{
-              ubound = lbound+batch_size;
+            //add all records to scope
+            if(len<=max_record_threshold){
+                self.draft_records = records;
             }
 
-            for (lbound=lbound; lbound<ubound; lbound++){
-              $scope.draft_records.push(records[lbound]);
-            }
-          }, 1, intervals);
+            //add the first clump of records to scope(max_record_threshold), then add in batches
+            if(len > max_record_threshold){
+              var batch_size = 40;
 
-        }    
+              //add the first batch of records to scope (up to max_record_threshold about)
+              for(i=0; i<max_record_threshold; i++){
+                self.draft_records.push(records[i]);
+              }
+              
+              //add batches
+              var overage = len - max_record_threshold;
+              var intervals = Math.floor(overage/batch_size);
+              var remainder = overage%batch_size;
+
+              var lbound = max_record_threshold;
+              var ubound = batch_size;
+              
+              if(remainder > 0){intervals++;}
+
+              //pause for a millisecond between batches so that the DOM
+              $interval( function() {
+                if((len-lbound) < batch_size){
+                  ubound = lbound + remainder;
+                }else{
+                  ubound = lbound+batch_size;
+                }
+
+                for (lbound=lbound; lbound<ubound; lbound++){
+                  self.draft_records.push(records[lbound]);
+                }
+              }, 1, intervals);
+
+            }    
+
       });
     });
 
@@ -141,8 +146,7 @@ angular.module( 'sunshine.edit', [
       $rootScope.selected_adopted_dept = "5452b9e058779c197dfd05caz";
     }
 
-    $scope.publish = function(){
-      console.log("1st publish call");
+    self.publish = function(){
       Schedule.publish($rootScope.selected_draft_dept);
     };
 });

@@ -62,10 +62,10 @@
         </div>
       </div>
       <div class="row mb6 ml3">
-        <div ng-repeat="item in homeCtrl.dept_list" class="col-xs-6  col-sm-4 col-md-3 p2-bottom">
+        <div ng-repeat="item in ::homeCtrl.dept_list" class="col-xs-6  col-sm-4 col-md-3 p2-bottom">
           <a class="block max-height-30 mt1 mb1"
-              data-ellipsis ui-sref="agency_list({schedule_id:'{{item._id}}'})"
-              data-ng-bind="item.adopted.department" ></a>
+              data-ellipsis ui-sref="agency_list({schedule_id:'{{::item._id}}'})"
+              data-ng-bind="::item.adopted.department" ></a>
         </div>
       </div>
 

@@ -32,9 +32,10 @@ var app = angular
     template: 'bootstrap3'
   });
 })
-.config(function ($httpProvider) {
-  $httpProvider.responseInterceptors.push('HttpInterceptor');
 
+.config(function ($httpProvider) {
+  //$httpProvider.responseInterceptors.push('HttpInterceptor');
+  $httpProvider.interceptors.push('HttpInterceptor');
   var spinnerFunction = function spinnerFunction(data, headersGetter) {
   var search_button = angular.element(document.querySelector('.fa-search'));
      search_button.removeClass('fa-search');
