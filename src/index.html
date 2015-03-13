@@ -19,9 +19,10 @@
   </div>
 
   <!- ------------------Main UI View ------------------------ -->
-  <div class="container-fluid pad0 marg0 overflow-hidden"  ui-view="main"></div>
+  <!- removed overflow-hidden class from ui-view=main because it messes with native scrolling in handsontable -->
+  <div class="container-fluid pad0 marg0"  ui-view="main"></div>
 
-  <footer class="blue-background py4" >
+  <footer class="blue-background py4">
     <div class="clearfix footer-content">
 
         <div class="footer-address">
@@ -48,7 +49,7 @@
           </div>
 
           <div class="footer-links">
-            
+
             <ul>
               <h3>Support:</h3>
               <li><a href="">Contact Us</a></li>

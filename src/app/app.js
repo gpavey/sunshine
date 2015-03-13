@@ -11,9 +11,9 @@ var app = angular
   'sunshine.search',
   'sunshine.agency',
   'sunshine.schedule',
+  'sunshine.edit',
   'ui.router',
   'angularUtils.directives.dirPagination',
-  //'ngAnimate',
   'ui.bootstrap',
   'ui.unique',
   'cc.slide.menu',
@@ -93,7 +93,7 @@ var app = angular
 })
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GlobalVariables ) {
     $scope.GlobalVariables = GlobalVariables;
-    $rootScope.API_URL = 'http://10.250.60.109:1971';
+    $rootScope.API_URL = 'http://localhost:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
@@ -118,5 +118,43 @@ var app = angular
     "api_url": 'http://localhost:1971'
   }
 )
-
 ;
+
+// ============= JS added globally ===================]
+//extend all arrays to have a unique function
+Array.prototype.contains = function(v) {
+    for(var i = 0; i < this.length; i++) {
+        if(this[i] === v) {
+            return true;
+        }
+    }
+    return false;
+};
+Array.prototype.unique = function() {
+    var arr = [];
+    for(var i = 0; i < this.length; i++) {
+        if(!arr.contains(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr;
+};
+Array.prototype.nulless = function() {
+    var arr = [];
+
+    for(var i = 0; i < this.length; i++){
+      if(this[i] != null){
+        arr.push(this[i]);
+      }
+    }
+
+    return arr;
+};
+
+String.prototype.visualLength = function()
+{
+    var ruler = document.getElementById("ruler");
+    ruler.innerHTML = this;
+    return ruler.offsetWidth;
+};
+//[===================================================]

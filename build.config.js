@@ -75,8 +75,8 @@ module.exports = {
       'vendor/checklist-model/checklist-model.js',
       'vendor/angular-busy/dist/angular-busy.js',
       'vendor/angular-breadcrumb/dist/angular-breadcrumb.js',
-      'vendor/angular-xeditable/dist/js/xeditable.min.js'
-      //'vendor/jquery/dist/jquery.min.js', // required by slide.and.push
+      'vendor/angular-xeditable/dist/js/xeditable.min.js',
+      'vendor/handsontable_ccsf/dist/handsontable.full.js'
 
     ],
     css: [
