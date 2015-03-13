@@ -25,6 +25,7 @@ angular.module( 'sunshine.global_utils', [])
   );
 }])
 
+
 .factory('HttpInterceptor', function($q) {
   return {
     response: function(response) {

@@ -23,6 +23,7 @@ angular.module( 'sunshine.global_svcs', [])
         return res.data;
       });
   };
+  
 
   /*****************************************
   METHOD: get_draft
@@ -216,11 +217,28 @@ angular.module( 'sunshine.global_svcs', [])
 
     return $http.put(url, record)
       .success(function(data) {
-        $log.log(data);
+      //  $log.log(data);
         // this.post.push(data);
       })
       .error(function(data) {
-        $log.log(data);
+        //$log.log(data);
+      });
+  };
+
+
+  /*****************************************
+  METHOD: delete_draft_record
+
+  Deletes one record in a schedule. It is
+  deleted from a draft.
+  ******************************************/
+  this.delete_draft_record = function(record) {
+    var url = apiUrl + '/draft/record/' + record._id + '/' + record.dept_id;
+    return $http["delete"](url)
+      .success(function(data) {
+      })
+      .error(function(data) {
+        console.log(data);
       });
   };
 
@@ -251,11 +269,11 @@ angular.module( 'sunshine.global_svcs', [])
       [ List of Valid Retention Categories ]
 
 ==================================*/
-.value("RetentionCategories", 
-    ["1 - Permanent", 
-    "2 - Current", 
+.value("RetentionCategories",
+    ["1 - Permanent",
+    "2 - Current",
     "3 - Storage",
-    "1 - Permanent, 2 - Current", 
+    "1 - Permanent, 2 - Current",
     "1 - Permanent, 3 - Storage",
     "2 - Current, 3 - Storage",
     "1 - Permanent, 2 - Current, 3 - Storage",
