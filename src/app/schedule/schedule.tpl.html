@@ -1,0 +1,217 @@
+<div style="background-image: url(assets/draft.png); id="schedule-page" ng-controller="ScheduleCtrl as scheduleCtrl" class="exact_print">
+  <H3 class="underline center p1 small"> RECORDS RETENTION AND DESTRUCTION SCHEDULE</H3>
+    <section data-ui-component="department-info">
+      <table class="m3" style="table-layout:fixed">
+        <tbody>
+          <tr>
+            <td class="small" colspan="2" >
+              <span class="bold" ng-if="scheduleCtrl.draft.department">Department Name:</span>
+              {{scheduleCtrl.draft.department}}
+            </td>
+            <td >
+              <span class="bold small" ng-if="scheduleCtrl.draft.website">Department Website:</span>
+              {{scheduleCtrl.draft.website}}
+            </td>
+          </tr>
+          <tr>
+            <td class="small">
+              <span class="bold" ng-if="scheduleCtrl.draft.contact">Department Contact:</span>
+              {{scheduleCtrl.draft.contact}}
+            </td>
+            <td  class="small">
+              <span class="bold p2" ng-if="scheduleCtrl.draft.phone">Contact Phone Number:</span>
+              {{scheduleCtrl.draft.phone}}
+            </td>
+            <td class="small">
+              <span class="bold"  ng-if="scheduleCtrl.draft.email">Contact Email Address:</span>
+              {{scheduleCtrl.draft.email}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <section data-ui-component="schedule-info">
+      <table class="grey-border">
+          <tr>
+            <td class="tiny p1">Division</td>
+            <td class="tiny p1">Division Contact</td>
+            <td class="tiny p1">Record Category</td>
+            <td class="tiny p1">Record Title/ Description</td>
+            <td class="tiny p1">Document Link</td>
+            <td class="tiny p1">Retention Category</td>
+            <td colspan="3" class="center tiny p1">Retention Period</td>
+            <td class="tiny p1">Remarks</td>
+          </tr>
+          <tr class="grey-background">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="tiny">Total</td>
+            <td class="tiny">On-site</td>
+            <td class="tiny">Off-site</td>
+            <td></td>
+          </tr>
+          <tr ng-repeat="record in scheduleCtrl.draft.record | orderBy:['division','category']"  ng-class-even="'grey-bar'" ng-class="'grey-border'">
+            <td class="grey-border tiny p1">{{record.division}}</td>
+            <td class="grey-border tiny p1">{{record.division_contact}}</td>
+            <td class="grey-border tiny p1">{{record.category}}</td>
+            <td class="grey-border tiny p1">{{record.title}}</td>
+            <td class="grey-border tiny p1">{{record.link}}</td>
+            <td class="grey-border tiny p1">{{record.retention}}</td>
+            <td class="grey-border tiny p1">{{record.total}}</td>
+            <td class="grey-border tiny p1">{{record.on_site}}</td>
+            <td class="grey-border tiny p1">{{record.off_site}}</td>
+            <td class="grey-border tiny p1">{{record.remarks}}</td>
+          </tr>
+      </table>
+
+    </section>
+
+    <section data-ui-component="signature-blocks">
+    <div class="p2-bottom" style="page-break-before:always;">IMPORTANT: For detailed instructions to complete this
+      table, please see document Information on Preparing a Departmental Records Retention Policy page 3</div>
+    <div class="p1-bottom">APPROVALS</div>
+
+    <table style="table-layout:auto">
+      <tr>
+        <td class="p2-bottom" style="width:40%">
+          <div>For a department that does not have a board or commission: </div>
+        </td>
+	<td style="width:10%"></td>
+        <td style="width:40%">
+          <div>For a department with a board or commission: </div>
+        </td>
+	<td style="width:10%"></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Name of Department</div>
+        </td>
+        <td style="width:10%">
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Secretary's Signature</div>
+        </td>
+        <td style="width:10%">
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Steve Kawa, Chief of Staff</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+          <div colspan="2" class="border-top mt3 mr2 tiny">Name of Board or Commission</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Name of Department Head</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="p3-bottom">ALL DEPARTMENTS:</div>
+        </td>
+        <td>
+        </td>
+        <td>          
+          <div class="border-top mt3 mr2 tiny">Signature of Department Head</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div >Approval as to Records relating to financial matters:</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Ben Rosenfield, Controller</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Controller Staff</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div class="mt3">Approval as to Records of legal significance:</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Dennis J. Herrera, City Attorney</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt3 mr2 tiny">City Deputy Attorney</div>
+        </td>
+        <td>
+          <div class="border-top mt3 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <div class="p2-top p2-bottom">Approval as to Records relating to payroll matters:</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="border-top mt1 mr2 tiny">Jay Huish, Executive Director -  Retirement Board</div>
+        </td>
+        <td>
+          <div class="border-top mt1 mr2 tiny">Date Approved</div>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </table>
+    </section>
+  </div>

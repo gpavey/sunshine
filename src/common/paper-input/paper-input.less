@@ -1,151 +1,118 @@
-/*   starting stylings ------------------------------- */
 
-.group {
-  position: relative;
-  margin-bottom:5px;
-}
-.paper-input input {
-  padding: 10px 0 10px 4px;
-  border: none;
-  margin: 0;
-  float: left;
-  width: 80%;
-}
-.paper-input input:focus {
-  outline: none;
-}
-/* LABEL ======================================= */
+ /* form starting stylings ------------------------------- */
+ .md-group{
+   position: relative;
+   margin-bottom:5px;
+   width: 90%;
+   display: inline-block;
+   float: left;
+ }
+.md-group input{
+   font-size:18px;
+   padding:10px 10px 10px 5px;
+   display:block;
+   width:90%;
+   border:none;
+   border-bottom:1px solid #757575;
+ }
 
-.paper-input label {
-  /* color: #999; */
-  font-weight: bold;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition:0.2s ease all;
-  -moz-transition:0.2s ease all;
-  -webkit-transition:0.2s ease all;
-}
-/* active state */
+.md-group input:focus 		{ outline:none; }
 
-.paper-input input:focus ~ label/*, input:valid ~ label*/,
-.paper-input input.ng-dirty ~ label {
-  top: -20px;
-  font-size: 14px;
-color: #5264AE;
-}
+ /* LABEL ======================================= */
 
-/* BOTTOM BARS ================================= */
-.bar  { position:relative; display:block; /* width:300px; */ }
-.bar:before, .bar:after   {
-  content:'';
-  height:2px;
-  width:0;
-  bottom:1px;
-  position:absolute;
-  background:#0a8aea;
-  transition:0.2s ease all;
-  -moz-transition:0.2s ease all;
-  -webkit-transition:0.2s ease all;
-}
-.bar:before {
-  left:50%;
-}
-.bar:after {
-  right:50%;
-}
+ .md-group label            {
+   color:#5264AE;
+   font-size:14px;
+   font-weight:normal;
+   position:absolute;
+   pointer-events:none;
+   left:5px;
+   top:-20px;
+   transition:0.2s ease all;
+   -moz-transition:0.2s ease all;
+   -webkit-transition:0.2s ease all;
+ }
 
-/* active state */
-.paper-input input:focus ~ .bar:before,
-.paper-input input:focus ~ .bar:after {
-  width:50%;
-}
+.md-group .floating-label{
+   top:10px;
+   font-size:18px;
+   color:#333;
+ }
+ /*
+.md-group label 				 {
+   color:#333;
+   font-size:18px;
+   font-weight:normal;
+   position:absolute;
+   pointer-events:none;
+   left:5px;
+   top:10px;
+   transition:0.2s ease all;
+   -moz-transition:0.2s ease all;
+   -webkit-transition:0.2s ease all;
+ }
+*/
+ /* active state
+.md-group input:focus ~ label		{
+   top:-20px;
+   font-size:14px;
+   color:#5264AE;
+ } */
 
-/* HIGHLIGHTER ================================== */
-.highlight {
-  position:absolute;
-  height:60%;
-  /* width:225px; */
-  top:25%;
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-}
+ /* BOTTOM BARS ================================= */
+ .bar 	{ position:relative; display:block; width:90%; }
+ .bar:before, .bar:after 	{
+   content:'';
+   height:2px;
+   width:0;
+   bottom:1px;
+   position:absolute;
+   background:#5264AE;
+   transition:0.2s ease all;
+   -moz-transition:0.2s ease all;
+   -webkit-transition:0.2s ease all;
+ }
+ .bar:before {
+   left:50%;
+ }
+ .bar:after {
+   right:50%;
+ }
 
-/* active state */
-.paper-input input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
-}
+ /* active state */
+ .md-group input:focus ~ .bar:before,
+ .md-group input:focus ~ .bar:after {
+   width:50%;
+ }
 
-/* ANIMATIONS ================ */
-@-webkit-keyframes inputHighlighter {
-  from { background:#0a8aea; }
-  to 	{ width:0; background:transparent; }
-}
-@-moz-keyframes inputHighlighter {
-  from { background:#0a8aea; }
-  to 	{ width:0; background:transparent; }
-}
-@keyframes inputHighlighter {
-  from { background:#0a8aea; }
-  to 	{ width:0; background:transparent; }
-}
-/* === VALIDATION ==== */
+ /* HIGHLIGHTER ================================== */
+.md-group .highlight {
+   position:absolute;
+   height:60%;
+   width:100px;
+   top:25%;
+   left:0;
+   pointer-events:none;
+   opacity:0.5;
+ }
 
-/* VALID */
-/* .paper-input input.ng-valid.ng-dirty { border-bottom: 1px solid #4fc24f;}
-.paper-input input.ng-valid.ng-dirty ~ .bar:before,
-.paper-input input.ng-valid.ng-dirty ~ .bar:after{
-  background: #4fc24f !important;
-}
-.paper-input input.ng-valid.ng-dirty ~ label{
-  color: #4fc24f;
-}
-.paper-input input.ng-valid.ng-dirty:focus ~ .highlight {
-  -webkit-animation:validHighlighter 0.3s ease !important;
-  -moz-animation:validHighlighter 0.3s ease !important;
-  animation:validHighlighter 0.3s ease;
-}
-@-webkit-keyframes validHighlighter {
-  from { background:#4fc24f; }
-  to 	{ width:0; background:transparent; }
-}
-@-moz-keyframes validHighlighter {
-  from { background:#4fc24f; }
-  to 	{ width:0; background:transparent; }
-}
-@keyframes validHighlighter {
-  from { background:#4fc24f; }
-  to 	{ width:0; background:transparent; }
-}
+ /* active state */
+.md-group input:focus ~ .highlight {
+   -webkit-animation:inputHighlighter 0.3s ease;
+   -moz-animation:inputHighlighter 0.3s ease;
+   animation:inputHighlighter 0.3s ease;
+ }
 
-INVALID
-.paper-input input.ng-invalid.ng-dirty{ border-bottom: 1px solid #d34336;}
-.paper-input input.ng-invalid.ng-dirty ~ .bar:before,
-.paper-input input.ng-invalid.ng-dirty ~ .bar:after{
-  background: #d34336 !important;
-}
-.paper-input input.ng-invalid.ng-dirty ~ label {
-  color: #d34336;
-}
-.paper-input input.ng-invalid.ng-dirty:focus ~ .highlight {
-  -webkit-animation:invalidHighlighter 0.3s ease;
-  -moz-animation:invalidHighlighter 0.3s ease;
-  animation:invalidHighlighter 0.3s ease;
-}
-@-webkit-keyframes invalidHighlighter {
-  from { background:#d34336; }
-  to 	{ width:0; background:transparent; }
-}
-@-moz-keyframes invalidHighlighter {
-  from { background:#d34336; }
-  to 	{ width:0; background:transparent; }
-}
-@keyframes invalidHighlighter {
-  from { background:#d34336; }
-  to 	{ width:0; background:transparent; }
-}
- */
+ /* ANIMATIONS ================ */
+ @-webkit-keyframes inputHighlighter {
+   from { background:#5264AE; }
+   to 	{ width:0; background:transparent; }
+ }
+ @-moz-keyframes inputHighlighter {
+   from { background:#5264AE; }
+   to 	{ width:0; background:transparent; }
+ }
+ @keyframes inputHighlighter {
+   from { background:#5264AE; }
+   to 	{ width:0; background:transparent; }
+ }

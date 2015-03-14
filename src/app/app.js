@@ -7,29 +7,50 @@ var app = angular
   'sunshine.login',
   'sunshine.console',
   'sunshine.global_svcs',
+  'sunshine.global_utils',
   'sunshine.search',
   'sunshine.agency',
+  'sunshine.schedule',
+  'sunshine.edit',
   'ui.router',
-  'ui.grid',
-  'ui.grid.edit',
-  'ui.grid.cellNav',
-  'ui.grid.resizeColumns',
-  'ui.grid.rowEdit',
   'angularUtils.directives.dirPagination',
-  'ngAnimate',
   'ui.bootstrap',
-  'ui.grid.enhancements',
   'ui.unique',
   'cc.slide.menu',
   'paper.input',
   'checklist-model',
-  'ngSanitize'
+  'ngSanitize',
+  'angular-ellipsis',
+  'cgBusy',
+  'ncy-angular-breadcrumb',
+  'xeditable'
 ])
+
+.config(function($breadcrumbProvider) {
+  $breadcrumbProvider.setOptions({
+    prefixStateName: 'home',
+    template: 'bootstrap3'
+  });
+})
+
+.config(function ($httpProvider) {
+  //$httpProvider.responseInterceptors.push('HttpInterceptor');
+  $httpProvider.interceptors.push('HttpInterceptor');
+  var spinnerFunction = function spinnerFunction(data, headersGetter) {
+  var search_button = angular.element(document.querySelector('.fa-search'));
+     search_button.removeClass('fa-search');
+     search_button.addClass('fa-spinner');
+     search_button.addClass('fa-spin');
+
+    return data;
+  };
+
+  $httpProvider.defaults.transformRequest.push(spinnerFunction);
+})
 
 .config( function ( $provide, $stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise( '/home' );
 }, function(USER_ROLESProvider){} )
-
 //Using the main application's run method to execute any code after services have been started
 .run( function run ($rootScope, AUTH_EVENTS, AuthService) {
 
@@ -57,6 +78,9 @@ var app = angular
 //        }
 //    });
 })
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+})
 .provider('UserRoles', function()  {
     var roles = {
         anon: 'anonymous',
@@ -67,15 +91,14 @@ var app = angular
         return roles;
     };
 })
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GetDepartment, Departments ) {
-
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, AuthService, UserRoles, GlobalVariables ) {
+    $scope.GlobalVariables = GlobalVariables;
     $rootScope.API_URL = 'http://localhost:1971';
     $rootScope.USERS_DEPT_ID = '54331f1023fe388f037119c6';
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         if ( angular.isDefined( toState.data.pageTitle ) ) {
           $scope.pageTitle = toState.data.pageTitle ;
-            //console.log($scope.pageTitle);
         }
     });
 
@@ -87,25 +110,51 @@ var app = angular
     $scope.currentUser = user;
 
   };
-
-    GetDepartment.allDept().then(function (data){
-        Departments = data;
-        $scope.departments =  Departments;
-    });
-})
-.service('GetDepartment', function($http, $rootScope){
-    this.allDept = function(){
-        var apiUrl = $rootScope.API_URL;
-
-        return $http
-            .get(apiUrl + '/department')
-            .then(function (res) {
-                return res.data;
-            });
-    };
-})
-.factory("Departments",function(){
-    return {};
 })
 
+.value('GlobalVariables',
+  {
+    "showFooter" : true,
+    "api_url": 'http://localhost:1971'
+  }
+)
 ;
+
+// ============= JS added globally ===================]
+//extend all arrays to have a unique function
+Array.prototype.contains = function(v) {
+    for(var i = 0; i < this.length; i++) {
+        if(this[i] === v) {
+            return true;
+        }
+    }
+    return false;
+};
+Array.prototype.unique = function() {
+    var arr = [];
+    for(var i = 0; i < this.length; i++) {
+        if(!arr.contains(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr;
+};
+Array.prototype.nulless = function() {
+    var arr = [];
+
+    for(var i = 0; i < this.length; i++){
+      if(this[i] != null){
+        arr.push(this[i]);
+      }
+    }
+
+    return arr;
+};
+
+String.prototype.visualLength = function()
+{
+    var ruler = document.getElementById("ruler");
+    ruler.innerHTML = this;
+    return ruler.offsetWidth;
+};
+//[===================================================]

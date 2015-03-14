@@ -1,17 +1,28 @@
-    <div class="container-fluid" ng-controller="EditCtrl">
-    <div>Schedule Page</div> <button ng-click="publish()">Publish</button>
-    <strong>Count:</strong> {{ gridOptions.data.length | number }}</br>
-    <div>
-        <input name="department" ng-model="draft_schedule.draft.department">
-        <input name="website" ng-model="draft_schedule.draft.website">
-        <input name="contact" ng-model="draft_schedule.draft.contact">
-        <input name="phone" ng-model="draft_schedule.draft.phone">
-        <input name="email" ng-model="draft_schedule.draft.email">
+<div id="edit-page">
 
-         <!--<input type="text" ng-model="selected" typeahead="record.category as record.category for record in draft_schedule.record | filter:$viewValue | limitTo:8 | unique:'category'" class="form-control">-->
+  <div class="container-fluid" ng-controller="EditCtrl as editCtrl">
 
-    </div>
+    <!-- Hidden field to convert character to pixels  -->
+    <!-- <table id="ruler" style="border:solid 1px; width:auto; white-space: nowrap"><tr><td id="ruler2"></td></tr></table> -->
 
-    <div ui-grid="gridOptions"  ui-grid-row-edit ui-grid-edit  ui-grid-cellNav  class="editGrid"></div>
 
+  <div id="edit-header" style="z-index:2; height:100px;background-color:white; width:100%">
+      <div>Schedule Page</div>
+      <button ng-click="editCtrl.publish()">Publishing ...</button>
+      <strong>Count:</strong> {{editCtrl.draft_records.length}}</br>
+      <input name="department" ng-model="editCtrl.draft_dept.draft.department">
+      <input name="website" ng-model="editCtrl.draft_dept.draft.website">
+      <input name="contact" ng-model="editCtrl.draft_dept.draft.contact">
+      <input name="phone" ng-model="editCtrl.draft_dept.draft.phone">
+      <input name="email" ng-model="editCtrl.draft_dept.draft.email">
+      <input id="search_field" type="search" placeholder="Search"><span id="resultCount">0</span> results
+      <button id="next" ng-click="editCtrl.next()">next</button>
+      <button id="previous" ng-click="editCtrl.previous()">previous</button>
+  </div>
+
+  <div id="grid-sizing-container" cc-handsontable-container style="position:relative;">
+
+    <div id="edit-schedule" style="overflow:scroll; visibility:hidden" class="handsontable"></div>
+  </div>
+    <span id="ruler" style="visibility:hidden; white-space: nowrap"></span>
 </div>

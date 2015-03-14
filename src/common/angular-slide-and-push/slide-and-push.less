@@ -5,27 +5,58 @@
 }
 
 .cc-button{
-  position:relative;
   border:0;
+}
+
+.cc-button-hide{
+  display:none;
+}
+
+.cc-button-show{
+  display:block;
 }
 
 /* General styles for all menus */
 .cc-menu {
   float:left;
   overflow:hidden;
+  padding-bottom:10px;
+
 /*   -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
 -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5);
 box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5); */
+}
+
+.cc-menu-mobile{
+  position: absolute;
+  display: block;
+  z-index: 1000;
+  top:0px;
 }
 
 .cc-menu-close{
   display:none;
 }
 
-.cc-menu-open{
+.cc-menu-open {
   display:inline;
 }
-.cc-menu a {
+
+/* @media only screen and (max-width: 650px) {
+  .cc-media-start-closed {
+    display: none !important;
+  }
+  .md-full{
+    width:100%;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .cc-menu-close {
+    display: inline;
+  }
+} */
+/* .cc-menu a {
   display: block;
   color: #000;
   font-size: 1.1em;
@@ -39,21 +70,24 @@ box-shadow: 3px 3px 5px 0px rgba(0,0,0,.5); */
 .cc-menu a:active {
   background: #afdefa;
   color: #47a3da;
-}
+} */
 
 /* Orientation-dependent styles for the content of the menu */
 .cc-menu-vertical {
 }
 
-.cc-menu-vertical a {
+/* .cc-menu-vertical a {
   border-bottom: 1px solid #258ecd;
   padding: 1em;
-}
+} */
 
 .cc-menu-left{
   left:0;
 }
 
+.cc-menu-right{
+  right:0;
+}
 /* Transitions */
 
 .cc-menu
