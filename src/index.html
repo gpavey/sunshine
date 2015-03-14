@@ -13,16 +13,11 @@
 </head>
 <body>
 
-  <div class="row" ng-hide="pageTitle == 'Home' || pageTitle == 'Search Results' || pageTitle =='Schedule Table' || pageTitle == 'Schedule List' || pageTitle =='Schedule' ">
-    <div class="col-xs-12 headerBar">Index of Records Administration Console  <a class="whiteLink" ui-sref="home"> HOME</a></div>
-
-  </div>
-
   <!- ------------------Main UI View ------------------------ -->
   <!- removed overflow-hidden class from ui-view=main because it messes with native scrolling in handsontable -->
   <div class="container-fluid pad0 marg0"  ui-view="main"></div>
 
-  <footer class="blue-background py4">
+  <footer class="blue-background py4" ng-if="GlobalVariable.showfooter">
     <div class="clearfix footer-content">
 
         <div class="footer-address">
