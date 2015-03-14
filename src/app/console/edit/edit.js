@@ -17,41 +17,52 @@ angular.module( 'sunshine.edit', [
   })
 
 
-  .controller('EditCtrl', function EditCtrl($rootScope, $interval, $http, Schedule, GlobalVariables, EditTableConfig, EditTableFunctions) {
+  .controller('EditCtrl', function EditCtrl($window, $rootScope, $interval, $http, Schedule, GlobalVariables, EditTableConfig, EditTableFunctions) {
 
-    GlobalVariables.showFooter = true;
+    GlobalVariables.showFooter = false;
     var thisHandsontable;
-    var edit_schedule;
+    var edit_schedule = document.getElementById('edit-schedule');
+    var searchFiled = document.getElementById('search_field');
+    var container = document.getElementById('grid-sizing-container');
     var self = this;
+    self.searchResultCount = 0;
+    self.searchResults = {length:0};
+    self.selSearchResult = -1;
 
-    edit_schedule = document.getElementById('edit-schedule');
+    // instantiate Handsontable if it does not exist
+    if(typeof thisHandsontable == 'undefined'){
+      Handsontable.Dom.addEvent(searchFiled, 'keyup', function (event) {
+        searchResultCount = 0;
+        self.selSearchResults = 0;
+        var queryResult = thisHandsontable.search.query(this.value);
+        resultCount.innerText = searchResultCount.toString();
+        self.searchResults = queryResult;
+        thisHandsontable.render();
+      });
 
+      EditTableConfig.afterChange = EditTableFunctions.autoSave;
+      EditTableConfig.beforeRemoveRow = EditTableFunctions.beforeRemoveRow;
+      EditTableConfig.search = {callback: EditTableFunctions.searchResultCounter};
+      EditTableConfig.columns[1].source = EditTableFunctions.divisionAutoComplete;
+      EditTableConfig.columns[2].source = EditTableFunctions.categoryAutoComplete;
+      thisHandsontable = new Handsontable(edit_schedule, EditTableConfig);
+    }
+
+    // watch for changes to the selected draft department
     $rootScope.$watch('selected_draft_dept', function(newVal, oldVal) {
-
-      if(typeof thisHandsontable == 'undefined'){
-
-        // Basic Handsontable configuration
-        EditTableConfig.afterChange = EditTableFunctions.autoSave;
-        EditTableConfig.beforeRemoveRow = EditTableFunctions.beforeRemoveRow;
-        EditTableConfig.columns[1].source = EditTableFunctions.divisionAutoComplete;
-        EditTableConfig.columns[2].source = EditTableFunctions.categoryAutoComplete;
-        thisHandsontable = new Handsontable(edit_schedule, EditTableConfig);
-      }
-
-
       Schedule.get_draft(newVal)
         .then(function (data){
 
-             edit_schedule.style.visibility = 'hidden';
              var l = EditTableFunctions.getFittedColumnWidths.call(thisHandsontable, data.draft.record);
              var settings = thisHandsontable.getSettings();
+             self.draft_dept = data;
+
+             edit_schedule.style.visibility = 'hidden';
              settings.manualColumnResize = [1, l.division, l.category, l.title, l.link, l.retention, l.on_site, l.off_site, l.total, l.remarks ];
              EditTableFunctions.setDraftDept(data._id);
-
              thisHandsontable.loadData(data.draft.record);
              thisHandsontable.updateSettings(settings);
              edit_schedule.style.visibility = 'visible';
-             self.draft_dept = data;
         });
     });
 
@@ -77,15 +88,62 @@ angular.module( 'sunshine.edit', [
     self.publish = function(){
       Schedule.publish($rootScope.selected_draft_dept);
     };
+
+    self.next = function(){
+
+      if (self.searchResults.length < 1 ){return;}
+
+      self.selSearchResult++;
+
+      if(self.selSearchResult > (self.searchResults.length - 1))
+      {
+        self.selSearchResult = 0;
+      }
+
+      var sel = self.searchResults[self.selSearchResult];
+      thisHandsontable.selectCell(sel.row, sel.col);
+
+    };
+
+    self.previous = function(){
+      if (self.searchResults.length < 1 ){return;}
+
+      self.selSearchResult--;
+
+      if(self.selSearchResult < 0 )
+      {
+        self.selSearchResult = self.searchResults.length - 1;
+      }
+
+      var sel = self.searchResults[self.selSearchResult];
+      thisHandsontable.selectCell(sel.row, sel.col);
+
+    };
 })
  .factory('EditTableFunctions',["Schedule", function(Schedule){
    var draft_dept;
 
    return {
+     searchResultCounter : function (instance, row, col, value, result) {
 
+         Handsontable.Search.DEFAULT_CALLBACK.apply(this, arguments);
+
+         if (result) {
+            searchResultCount++;
+         }
+     },
+
+     //Use the longest string for each field to calculate the initial
+     //length of each column
      getFittedColumnWidths : function(){
-
        var recordArr = arguments[0];
+       var maxColWidth = 800;
+       var minColWidth = 100;
+       var padding = 50; //accounts for arrow on dropdown fields
+       var fittedColumnWidths = {};
+       var longestPerField = {};
+       var cols;
+       var col;
        var sorter = function (property) {
            return function (a,b) {
              if(b[property] != null){bLength = b[property].length;}else{bLength = 0;}
@@ -95,26 +153,27 @@ angular.module( 'sunshine.edit', [
        };
 
        cols = this.getSettings().columns;
-       var l = {};
-       var longest = {};
-       var col;
-       var val;
-       for(var i = 1; i < cols.length; i++){
 
-         longest = recordArr.sort(sorter(cols[i].data))[0];
+       for(var i = 0; i < cols.length; i++){
+         longestPerField = recordArr.sort(sorter(cols[i].data))[0];
          col = cols[i].data;
 
-         if(longest[col] == null){
-           val = 100;
-         }else{
-           val = longest[col].visualLength() + 20;
+         // all values for the column are null; set minWidth
+         if(longestPerField[col] == null){
+           fittedColumnWidths[col] = minColWidth;
+           continue;
          }
 
-         if (val > 800) {val = 800;}
-         l[col] = val;
+         //visual field length greater than maxColWidth
+         if (longestPerField[col].visualLength() > maxColWidth) {
+           fittedColumnWidths[col] = maxColWidth;
+           continue;
+         }
+
+         fittedColumnWidths[col] = longestPerField[col].visualLength() + padding;
        }
 
-       return l;
+       return fittedColumnWidths;
      },
 
      setDraftDept: function(id){
@@ -124,6 +183,7 @@ angular.module( 'sunshine.edit', [
 
      //Autosave function
      autoSave : function(change,source){
+
        var self = this;
 
        if (source === 'loadData') {return;} //dont' save this change
@@ -162,17 +222,19 @@ angular.module( 'sunshine.edit', [
 
      //remove one record from the database
      beforeRemoveRow : function(index, amount){
-       var rowNumber = this.sortIndex[index] ? this.sortIndex[index][0] : index;
-       var row = this.getSourceDataAtRow(rowNumber);
-       row.dept_id = draft_dept;
 
-       Schedule.delete_draft_record(row).
-       success(function(res){
+         var rowNumber = this.sortIndex[index] ? this.sortIndex[index][0] : index;
+         var row = this.getSourceDataAtRow(rowNumber);
+         row.dept_id = draft_dept;
 
-       })
-       .error(function(err){
-         console.log(err);
-       });
+         Schedule.delete_draft_record(row).
+         success(function(res){
+
+         })
+         .error(function(err){
+           console.log(err);
+           console.log(err);
+         });
      }
 
 
@@ -184,21 +246,21 @@ angular.module( 'sunshine.edit', [
     // basic config
     var config = {};
     config.colHeaders = true;
+    config.rowHeaders = true;
     config.autoColumnSize = false;
     config.manualColumnResize = true;
     config.currentRowClassName = "current-row";
     config.minSpareRows = 1;
     config.columnSorting = {column:1};
-    config.fixedRowsTop = 0;
+    config.fixedRowsTop = false;
+    config.columns = [];
     config.autoWrapRow = true;
     config.contextMenu = ["row_above", "row_below", "remove_row"];
-  //  config.colWidths = [1];
     config.colHeaders = ["_id","Division","Category", "Title", "Link", "Retention", "On-site", "Off-site", "Total", "Remarks"];
 
     //schema for empty row
     config.dataSchema={_id:null, division:null, category:null, title:null, link:null, retention:null, on_site:null, off_site:null, total:null, remarks:null};
 
-    config.columns = [];
     //_id Column (hidden)
     config.columns.push({"data":"_id"});
 
@@ -235,15 +297,53 @@ angular.module( 'sunshine.edit', [
     // On-site Column
     config.columns.push({"data":"on_site"});
 
-    //Off-site Column
+    // Off-site Column
     config.columns.push({"data":"off_site"});
 
-    //total Column
+    // Total Column
     config.columns.push({"data":"total"});
 
-    //Remarks Column
+    // Remarks Column
     config.columns.push({"data":"remarks"});
 
     return config;
 })
+.directive('ccHandsontableContainer', ['$window', 'Debounce', function ($window, Debounce) {
+  return {
+    restrict : 'A',
+    scope: true,
+    link: function(scope, elem, attr){
+
+      var resizeCalc = function(){
+
+         var edit_schedule = document.getElementById('edit-schedule');
+
+         var win_width = Math.max(document.documentElement.clientWidth, $window.innerWidth || 0);
+         elem.css('width', win_width + "px");
+
+         var win_height = Math.max(document.documentElement.clientHeight, $window.innerHeight || 0);
+         win_height = win_height - 150;
+         elem.css('height', win_height +"px");
+
+         edit_schedule.style.width = win_width - 15 + "px";
+         edit_schedule.style.height =  win_height + "px";
+       };
+
+      angular.element($window).bind('resize', Debounce.debounce(function() {
+        // must apply since the browser resize event is not seen by the digest process
+        scope.$apply(function() {
+          resizeCalc();
+        });
+      }, 50));
+
+      angular.element($window).bind('load', Debounce.debounce(function() {
+        // must apply since the browser resize event is not seen by the digest process
+        scope.$apply(function() {
+          resizeCalc();
+        });
+      }, 50));
+
+    }
+  };
+}])
 ;
