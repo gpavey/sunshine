@@ -76,7 +76,7 @@ module.exports = {
       'vendor/angular-busy/dist/angular-busy.js',
       'vendor/angular-breadcrumb/dist/angular-breadcrumb.js',
       'vendor/angular-xeditable/dist/js/xeditable.min.js',
-      'vendor/handsontable_ccsf/dist/handsontable.full.min.js'
+      'vendor/handsontable/dist/handsontable.full.min.js'
 
     ],
     css: [
